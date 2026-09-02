@@ -1,0 +1,45 @@
+module Straddle
+  module Models
+    type charge_settings =
+      {
+        daily_amount: Integer,
+        max_amount: Integer,
+        monthly_amount: Integer,
+        monthly_count: Integer,
+        funding_time: String?,
+        linked_bank_account_id: String?
+      }
+
+    class ChargeSettings < Straddle::Internal::Type::BaseModel
+      attr_accessor daily_amount: Integer
+
+      attr_accessor max_amount: Integer
+
+      attr_accessor monthly_amount: Integer
+
+      attr_accessor monthly_count: Integer
+
+      attr_accessor funding_time: String?
+
+      attr_accessor linked_bank_account_id: String?
+
+      def initialize: (
+        daily_amount: Integer,
+        max_amount: Integer,
+        monthly_amount: Integer,
+        monthly_count: Integer,
+        ?funding_time: String?,
+        ?linked_bank_account_id: String?
+      ) -> void
+
+      def to_hash: -> {
+        daily_amount: Integer,
+        max_amount: Integer,
+        monthly_amount: Integer,
+        monthly_count: Integer,
+        funding_time: String?,
+        linked_bank_account_id: String?
+      }
+    end
+  end
+end

@@ -1,0 +1,30 @@
+module Straddle
+  module Models
+    type unmasked_paykey_response =
+      {
+        data: Straddle::UnmaskedPaykey,
+        meta: Straddle::ResponseMetadata,
+        response_type: Straddle::Models::response_type
+      }
+
+    class UnmaskedPaykeyResponse < Straddle::Internal::Type::BaseModel
+      attr_accessor data: Straddle::UnmaskedPaykey
+
+      attr_accessor meta: Straddle::ResponseMetadata
+
+      attr_accessor response_type: Straddle::Models::response_type
+
+      def initialize: (
+        data: Straddle::UnmaskedPaykey,
+        meta: Straddle::ResponseMetadata,
+        response_type: Straddle::Models::response_type
+      ) -> void
+
+      def to_hash: -> {
+        data: Straddle::UnmaskedPaykey,
+        meta: Straddle::ResponseMetadata,
+        response_type: Straddle::Models::response_type
+      }
+    end
+  end
+end

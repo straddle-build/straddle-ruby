@@ -1,0 +1,40 @@
+module Straddle
+  module Models
+    type representative_relationship =
+      {
+        control: bool,
+        owner: bool,
+        primary: bool,
+        percent_ownership: Float?,
+        title: String?
+      }
+
+    class RepresentativeRelationship < Straddle::Internal::Type::BaseModel
+      attr_accessor control: bool
+
+      attr_accessor owner: bool
+
+      attr_accessor primary: bool
+
+      attr_accessor percent_ownership: Float?
+
+      attr_accessor title: String?
+
+      def initialize: (
+        control: bool,
+        owner: bool,
+        primary: bool,
+        ?percent_ownership: Float?,
+        ?title: String?
+      ) -> void
+
+      def to_hash: -> {
+        control: bool,
+        owner: bool,
+        primary: bool,
+        percent_ownership: Float?,
+        title: String?
+      }
+    end
+  end
+end

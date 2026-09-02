@@ -1,0 +1,57 @@
+module Straddle
+  module Models
+    type compliance_profile =
+      Straddle::ComplianceProfile::IndividualComplianceProfile
+      | Straddle::ComplianceProfile::BusinessComplianceProfile
+
+    module ComplianceProfile
+      extend Straddle::Internal::Type::Union
+
+      type individual_compliance_profile = { dob: String?, ssn: String? }
+
+      class IndividualComplianceProfile < Straddle::Internal::Type::BaseModel
+        attr_accessor dob: String?
+
+        attr_accessor ssn: String?
+
+        def initialize: (dob: String?, ssn: String?) -> void
+
+        def to_hash: -> { dob: String?, ssn: String? }
+      end
+
+      type business_compliance_profile =
+        {
+          ein: String?,
+          legal_business_name: String?,
+          representatives: ::Array[Straddle::BusinessCustomerRepresentative]?,
+          website: String?
+        }
+
+      class BusinessComplianceProfile < Straddle::Internal::Type::BaseModel
+        attr_accessor ein: String?
+
+        attr_accessor legal_business_name: String?
+
+        attr_accessor representatives: ::Array[Straddle::BusinessCustomerRepresentative]?
+
+        attr_accessor website: String?
+
+        def initialize: (
+          ein: String?,
+          legal_business_name: String?,
+          ?representatives: ::Array[Straddle::BusinessCustomerRepresentative]?,
+          ?website: String?
+        ) -> void
+
+        def to_hash: -> {
+          ein: String?,
+          legal_business_name: String?,
+          representatives: ::Array[Straddle::BusinessCustomerRepresentative]?,
+          website: String?
+        }
+      end
+
+      def self?.variants: -> ::Array[Straddle::Models::compliance_profile]
+    end
+  end
+end

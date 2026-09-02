@@ -1,0 +1,33 @@
+module Straddle
+  module Models
+    class PaykeyReview = Paykeys::PaykeyReview
+
+    module Paykeys
+      type paykey_review =
+        {
+          paykey_details: Straddle::Paykey,
+          verification_details: Straddle::Paykeys::PaykeyVerificationDetails
+        }
+
+      class PaykeyReview < Straddle::Internal::Type::BaseModel
+        attr_accessor paykey_details: Straddle::Paykey
+
+        attr_reader verification_details: Straddle::Paykeys::PaykeyVerificationDetails?
+
+        def verification_details=: (
+          Straddle::Paykeys::PaykeyVerificationDetails
+        ) -> Straddle::Paykeys::PaykeyVerificationDetails
+
+        def initialize: (
+          paykey_details: Straddle::Paykey,
+          ?verification_details: Straddle::Paykeys::PaykeyVerificationDetails
+        ) -> void
+
+        def to_hash: -> {
+          paykey_details: Straddle::Paykey,
+          verification_details: Straddle::Paykeys::PaykeyVerificationDetails
+        }
+      end
+    end
+  end
+end

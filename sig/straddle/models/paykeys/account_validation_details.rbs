@@ -1,0 +1,32 @@
+module Straddle
+  module Models
+    module Paykeys
+      type account_validation_details =
+        {
+          codes: ::Array[String],
+          decision: Straddle::Models::Paykeys::paykey_verification_result,
+          reason: String?
+        }
+
+      class AccountValidationDetails < Straddle::Internal::Type::BaseModel
+        attr_accessor codes: ::Array[String]
+
+        attr_accessor decision: Straddle::Models::Paykeys::paykey_verification_result
+
+        attr_accessor reason: String?
+
+        def initialize: (
+          codes: ::Array[String],
+          decision: Straddle::Models::Paykeys::paykey_verification_result,
+          ?reason: String?
+        ) -> void
+
+        def to_hash: -> {
+          codes: ::Array[String],
+          decision: Straddle::Models::Paykeys::paykey_verification_result,
+          reason: String?
+        }
+      end
+    end
+  end
+end

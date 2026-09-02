@@ -1,0 +1,98 @@
+module Straddle
+  module Models
+    type linked_bank_account =
+      {
+        id: String,
+        account_id: String?,
+        bank_account: Straddle::MaskedLinkedBankAccountDetails,
+        created_at: Time,
+        purposes: ::Array[Straddle::Models::LinkedBankAccount::purpose],
+        status: Straddle::Models::LinkedBankAccount::status,
+        status_detail: Straddle::LinkedBankAccountStatusDetail,
+        updated_at: Time,
+        description: String?,
+        metadata: ::Hash[Symbol, String?]?,
+        platform_id: String?
+      }
+
+    class LinkedBankAccount < Straddle::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor account_id: String?
+
+      attr_accessor bank_account: Straddle::MaskedLinkedBankAccountDetails
+
+      attr_accessor created_at: Time
+
+      attr_accessor purposes: ::Array[Straddle::Models::LinkedBankAccount::purpose]
+
+      attr_accessor status: Straddle::Models::LinkedBankAccount::status
+
+      attr_accessor status_detail: Straddle::LinkedBankAccountStatusDetail
+
+      attr_accessor updated_at: Time
+
+      attr_accessor description: String?
+
+      attr_accessor metadata: ::Hash[Symbol, String?]?
+
+      attr_accessor platform_id: String?
+
+      def initialize: (
+        id: String,
+        account_id: String?,
+        bank_account: Straddle::MaskedLinkedBankAccountDetails,
+        created_at: Time,
+        purposes: ::Array[Straddle::Models::LinkedBankAccount::purpose],
+        status: Straddle::Models::LinkedBankAccount::status,
+        status_detail: Straddle::LinkedBankAccountStatusDetail,
+        updated_at: Time,
+        ?description: String?,
+        ?metadata: ::Hash[Symbol, String?]?,
+        ?platform_id: String?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        account_id: String?,
+        bank_account: Straddle::MaskedLinkedBankAccountDetails,
+        created_at: Time,
+        purposes: ::Array[Straddle::Models::LinkedBankAccount::purpose],
+        status: Straddle::Models::LinkedBankAccount::status,
+        status_detail: Straddle::LinkedBankAccountStatusDetail,
+        updated_at: Time,
+        description: String?,
+        metadata: ::Hash[Symbol, String?]?,
+        platform_id: String?
+      }
+
+      type purpose = :charges | :payouts | :billing
+
+      module Purpose
+        extend Straddle::Internal::Type::Enum
+
+        CHARGES: :charges
+        PAYOUTS: :payouts
+        BILLING: :billing
+
+        def self?.values: -> ::Array[Straddle::Models::LinkedBankAccount::purpose]
+      end
+
+      type status =
+        :created | :onboarding | :active | :rejected | :inactive | :canceled
+
+      module Status
+        extend Straddle::Internal::Type::Enum
+
+        CREATED: :created
+        ONBOARDING: :onboarding
+        ACTIVE: :active
+        REJECTED: :rejected
+        INACTIVE: :inactive
+        CANCELED: :canceled
+
+        def self?.values: -> ::Array[Straddle::Models::LinkedBankAccount::status]
+      end
+    end
+  end
+end

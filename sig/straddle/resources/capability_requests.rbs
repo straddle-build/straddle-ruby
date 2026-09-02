@@ -1,0 +1,35 @@
+module Straddle
+  module Resources
+    class CapabilityRequests
+      def create: (
+        String account_id,
+        ?businesses: Straddle::CapabilityRequestCreateParams::Businesses,
+        ?charges: Straddle::CapabilityRequestCreateParams::Charges,
+        ?individuals: Straddle::CapabilityRequestCreateParams::Individuals,
+        ?internet: Straddle::CapabilityRequestCreateParams::Internet,
+        ?payouts: Straddle::CapabilityRequestCreateParams::Payouts,
+        ?signed_agreement: Straddle::CapabilityRequestCreateParams::SignedAgreement,
+        ?correlation_id: String,
+        ?idempotency_key: String,
+        ?request_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::CapabilityRequestList
+
+      def list: (
+        String account_id,
+        ?category: Straddle::Models::CapabilityRequestListParams::category,
+        ?page_number: Integer,
+        ?page_size: Integer,
+        ?sort_by: String,
+        ?sort_order: Straddle::Models::CapabilityRequestListParams::sort_order,
+        ?status: Straddle::Models::CapabilityRequestListParams::status,
+        ?type: Straddle::Models::CapabilityRequestListParams::type_,
+        ?correlation_id: String,
+        ?request_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::CapabilityRequestList
+
+      def initialize: (client: Straddle::Client) -> void
+    end
+  end
+end

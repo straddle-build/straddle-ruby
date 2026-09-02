@@ -1,0 +1,60 @@
+module Straddle
+  module Models
+    type page_metadata =
+      {
+        api_request_id: String,
+        api_request_timestamp: Time,
+        max_page_size: Integer,
+        page_number: Integer,
+        page_size: Integer,
+        sort_by: String,
+        sort_order: Straddle::Models::sort_order,
+        total_items: Integer,
+        total_pages: Integer
+      }
+
+    class PageMetadata < Straddle::Internal::Type::BaseModel
+      attr_accessor api_request_id: String
+
+      attr_accessor api_request_timestamp: Time
+
+      attr_accessor max_page_size: Integer
+
+      attr_accessor page_number: Integer
+
+      attr_accessor page_size: Integer
+
+      attr_accessor sort_by: String
+
+      attr_accessor sort_order: Straddle::Models::sort_order
+
+      attr_accessor total_items: Integer
+
+      attr_accessor total_pages: Integer
+
+      def initialize: (
+        api_request_id: String,
+        api_request_timestamp: Time,
+        max_page_size: Integer,
+        page_number: Integer,
+        page_size: Integer,
+        sort_by: String,
+        sort_order: Straddle::Models::sort_order,
+        total_items: Integer,
+        total_pages: Integer
+      ) -> void
+
+      def to_hash: -> {
+        api_request_id: String,
+        api_request_timestamp: Time,
+        max_page_size: Integer,
+        page_number: Integer,
+        page_size: Integer,
+        sort_by: String,
+        sort_order: Straddle::Models::sort_order,
+        total_items: Integer,
+        total_pages: Integer
+      }
+    end
+  end
+end

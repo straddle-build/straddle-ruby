@@ -1,0 +1,15 @@
+module Straddle
+  module Models
+    type paykey_balance_refresh_status = :pending | :completed | :failed
+
+    module PaykeyBalanceRefreshStatus
+      extend Straddle::Internal::Type::Enum
+
+      PENDING: :pending
+      COMPLETED: :completed
+      FAILED: :failed
+
+      def self?.values: -> ::Array[Straddle::Models::paykey_balance_refresh_status]
+    end
+  end
+end

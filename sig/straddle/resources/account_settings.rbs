@@ -1,0 +1,14 @@
+module Straddle
+  module Resources
+    class AccountSettings
+      def retrieve: (
+        String account_id,
+        ?correlation_id: String,
+        ?request_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::AccountSettingsResponse
+
+      def initialize: (client: Straddle::Client) -> void
+    end
+  end
+end

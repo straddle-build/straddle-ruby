@@ -1,0 +1,70 @@
+module Straddle
+  module Resources
+    class Accounts
+      def create: (
+        access_level: Straddle::Models::AccountCreateParams::access_level,
+        account_type: Straddle::Models::AccountCreateParams::account_type,
+        business_profile: Straddle::AccountBusinessProfile,
+        organization_id: String,
+        ?external_id: String?,
+        ?metadata: ::Hash[Symbol, String?]?,
+        ?correlation_id: String,
+        ?idempotency_key: String,
+        ?request_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::AccountResponse
+
+      def retrieve: (
+        String account_id,
+        ?correlation_id: String,
+        ?request_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::AccountResponse
+
+      def update: (
+        String account_id,
+        business_profile: Straddle::AccountBusinessProfile,
+        ?external_id: String?,
+        ?metadata: ::Hash[Symbol, String?]?,
+        ?correlation_id: String,
+        ?idempotency_key: String,
+        ?request_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::AccountResponse
+
+      def list: (
+        ?external_id: String,
+        ?page_number: Integer,
+        ?page_size: Integer,
+        ?search_text: String,
+        ?sort_by: String,
+        ?sort_order: Straddle::Models::AccountListParams::sort_order,
+        ?status: Straddle::Models::AccountListParams::status,
+        ?type: Straddle::Models::AccountListParams::type_,
+        ?correlation_id: String,
+        ?request_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::AccountList
+
+      def onboard: (
+        String account_id,
+        terms_of_service: Straddle::TermsOfService,
+        ?correlation_id: String,
+        ?idempotency_key: String,
+        ?request_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::AccountResponse
+
+      def simulate_onboarding: (
+        String account_id,
+        ?final_status: Straddle::Models::AccountSimulateOnboardingParams::final_status,
+        ?correlation_id: String,
+        ?idempotency_key: String,
+        ?request_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::AccountResponse
+
+      def initialize: (client: Straddle::Client) -> void
+    end
+  end
+end

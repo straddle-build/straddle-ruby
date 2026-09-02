@@ -1,0 +1,47 @@
+module Straddle
+  module Models
+    type account_consent_settings =
+      {
+        internet: Straddle::Models::AccountConsentSettings::internet,
+        signed_agreement: Straddle::Models::AccountConsentSettings::signed_agreement
+      }
+
+    class AccountConsentSettings < Straddle::Internal::Type::BaseModel
+      attr_accessor internet: Straddle::Models::AccountConsentSettings::internet
+
+      attr_accessor signed_agreement: Straddle::Models::AccountConsentSettings::signed_agreement
+
+      def initialize: (
+        internet: Straddle::Models::AccountConsentSettings::internet,
+        signed_agreement: Straddle::Models::AccountConsentSettings::signed_agreement
+      ) -> void
+
+      def to_hash: -> {
+        internet: Straddle::Models::AccountConsentSettings::internet,
+        signed_agreement: Straddle::Models::AccountConsentSettings::signed_agreement
+      }
+
+      type internet = :active | :inactive
+
+      module Internet
+        extend Straddle::Internal::Type::Enum
+
+        ACTIVE: :active
+        INACTIVE: :inactive
+
+        def self?.values: -> ::Array[Straddle::Models::AccountConsentSettings::internet]
+      end
+
+      type signed_agreement = :active | :inactive
+
+      module SignedAgreement
+        extend Straddle::Internal::Type::Enum
+
+        ACTIVE: :active
+        INACTIVE: :inactive
+
+        def self?.values: -> ::Array[Straddle::Models::AccountConsentSettings::signed_agreement]
+      end
+    end
+  end
+end

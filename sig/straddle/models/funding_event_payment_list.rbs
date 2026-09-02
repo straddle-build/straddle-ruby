@@ -1,0 +1,30 @@
+module Straddle
+  module Models
+    type funding_event_payment_list =
+      {
+        data: ::Array[Straddle::FundingEventPayment],
+        meta: Straddle::PageMetadata,
+        response_type: Straddle::Models::response_type
+      }
+
+    class FundingEventPaymentList < Straddle::Internal::Type::BaseModel
+      attr_accessor data: ::Array[Straddle::FundingEventPayment]
+
+      attr_accessor meta: Straddle::PageMetadata
+
+      attr_accessor response_type: Straddle::Models::response_type
+
+      def initialize: (
+        data: ::Array[Straddle::FundingEventPayment],
+        meta: Straddle::PageMetadata,
+        response_type: Straddle::Models::response_type
+      ) -> void
+
+      def to_hash: -> {
+        data: ::Array[Straddle::FundingEventPayment],
+        meta: Straddle::PageMetadata,
+        response_type: Straddle::Models::response_type
+      }
+    end
+  end
+end

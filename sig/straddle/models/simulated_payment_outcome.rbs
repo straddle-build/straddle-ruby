@@ -1,0 +1,38 @@
+module Straddle
+  module Models
+    type simulated_payment_outcome =
+      :standard
+      | :paid
+      | :on_hold_daily_limit
+      | :cancelled_for_fraud_risk
+      | :cancelled_for_balance_check
+      | :failed_insufficient_funds
+      | :reversed_insufficient_funds
+      | :failed_customer_dispute
+      | :reversed_customer_dispute
+      | :failed_closed_bank_account
+      | :reversed_closed_bank_account
+      | :failed_not_authorized
+      | :reversed_not_authorized
+
+    module SimulatedPaymentOutcome
+      extend Straddle::Internal::Type::Enum
+
+      STANDARD: :standard
+      PAID: :paid
+      ON_HOLD_DAILY_LIMIT: :on_hold_daily_limit
+      CANCELLED_FOR_FRAUD_RISK: :cancelled_for_fraud_risk
+      CANCELLED_FOR_BALANCE_CHECK: :cancelled_for_balance_check
+      FAILED_INSUFFICIENT_FUNDS: :failed_insufficient_funds
+      REVERSED_INSUFFICIENT_FUNDS: :reversed_insufficient_funds
+      FAILED_CUSTOMER_DISPUTE: :failed_customer_dispute
+      REVERSED_CUSTOMER_DISPUTE: :reversed_customer_dispute
+      FAILED_CLOSED_BANK_ACCOUNT: :failed_closed_bank_account
+      REVERSED_CLOSED_BANK_ACCOUNT: :reversed_closed_bank_account
+      FAILED_NOT_AUTHORIZED: :failed_not_authorized
+      REVERSED_NOT_AUTHORIZED: :reversed_not_authorized
+
+      def self?.values: -> ::Array[Straddle::Models::simulated_payment_outcome]
+    end
+  end
+end

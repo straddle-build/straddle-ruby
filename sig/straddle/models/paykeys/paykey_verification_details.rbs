@@ -1,0 +1,49 @@
+module Straddle
+  module Models
+    class PaykeyVerificationDetails = Paykeys::PaykeyVerificationDetails
+
+    module Paykeys
+      type paykey_verification_details =
+        {
+          id: String,
+          breakdown: Straddle::Paykeys::PaykeyVerificationBreakdown,
+          created_at: Time,
+          decision: Straddle::Models::Paykeys::paykey_verification_result,
+          messages: ::Hash[Symbol, String],
+          updated_at: Time
+        }
+
+      class PaykeyVerificationDetails < Straddle::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor breakdown: Straddle::Paykeys::PaykeyVerificationBreakdown
+
+        attr_accessor created_at: Time
+
+        attr_accessor decision: Straddle::Models::Paykeys::paykey_verification_result
+
+        attr_accessor messages: ::Hash[Symbol, String]
+
+        attr_accessor updated_at: Time
+
+        def initialize: (
+          id: String,
+          breakdown: Straddle::Paykeys::PaykeyVerificationBreakdown,
+          created_at: Time,
+          decision: Straddle::Models::Paykeys::paykey_verification_result,
+          messages: ::Hash[Symbol, String],
+          updated_at: Time
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          breakdown: Straddle::Paykeys::PaykeyVerificationBreakdown,
+          created_at: Time,
+          decision: Straddle::Models::Paykeys::paykey_verification_result,
+          messages: ::Hash[Symbol, String],
+          updated_at: Time
+        }
+      end
+    end
+  end
+end

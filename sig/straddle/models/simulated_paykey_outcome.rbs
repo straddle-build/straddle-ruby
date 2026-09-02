@@ -1,0 +1,16 @@
+module Straddle
+  module Models
+    type simulated_paykey_outcome = :standard | :active | :rejected | :review
+
+    module SimulatedPaykeyOutcome
+      extend Straddle::Internal::Type::Enum
+
+      STANDARD: :standard
+      ACTIVE: :active
+      REJECTED: :rejected
+      REVIEW: :review
+
+      def self?.values: -> ::Array[Straddle::Models::simulated_paykey_outcome]
+    end
+  end
+end

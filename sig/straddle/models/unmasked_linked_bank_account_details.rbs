@@ -1,0 +1,35 @@
+module Straddle
+  module Models
+    type unmasked_linked_bank_account_details =
+      {
+        account_holder: String,
+        account_number: String,
+        institution_name: String,
+        routing_number: String
+      }
+
+    class UnmaskedLinkedBankAccountDetails < Straddle::Internal::Type::BaseModel
+      attr_accessor account_holder: String
+
+      attr_accessor account_number: String
+
+      attr_accessor institution_name: String
+
+      attr_accessor routing_number: String
+
+      def initialize: (
+        account_holder: String,
+        account_number: String,
+        institution_name: String,
+        routing_number: String
+      ) -> void
+
+      def to_hash: -> {
+        account_holder: String,
+        account_number: String,
+        institution_name: String,
+        routing_number: String
+      }
+    end
+  end
+end

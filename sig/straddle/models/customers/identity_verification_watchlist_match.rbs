@@ -1,0 +1,37 @@
+module Straddle
+  module Models
+    module Customers
+      type identity_verification_watchlist_match =
+        {
+          correlation: Straddle::Models::Customers::correlation_bucket,
+          list_name: String,
+          match_fields: ::Array[String],
+          urls: ::Array[String]
+        }
+
+      class IdentityVerificationWatchlistMatch < Straddle::Internal::Type::BaseModel
+        attr_accessor correlation: Straddle::Models::Customers::correlation_bucket
+
+        attr_accessor list_name: String
+
+        attr_accessor match_fields: ::Array[String]
+
+        attr_accessor urls: ::Array[String]
+
+        def initialize: (
+          correlation: Straddle::Models::Customers::correlation_bucket,
+          list_name: String,
+          match_fields: ::Array[String],
+          urls: ::Array[String]
+        ) -> void
+
+        def to_hash: -> {
+          correlation: Straddle::Models::Customers::correlation_bucket,
+          list_name: String,
+          match_fields: ::Array[String],
+          urls: ::Array[String]
+        }
+      end
+    end
+  end
+end

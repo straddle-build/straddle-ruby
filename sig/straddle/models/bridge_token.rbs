@@ -1,0 +1,13 @@
+module Straddle
+  module Models
+    type bridge_token = { bridge_token: String }
+
+    class BridgeToken < Straddle::Internal::Type::BaseModel
+      attr_accessor bridge_token: String
+
+      def initialize: (bridge_token: String) -> void
+
+      def to_hash: -> { bridge_token: String }
+    end
+  end
+end

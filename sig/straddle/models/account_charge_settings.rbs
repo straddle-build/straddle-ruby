@@ -1,0 +1,68 @@
+module Straddle
+  module Models
+    type account_charge_settings =
+      {
+        daily_amount: Integer,
+        funding_time: Straddle::Models::AccountChargeSettings::funding_time,
+        linked_bank_account_id: String,
+        max_amount: Integer,
+        monthly_amount: Integer,
+        monthly_count: Integer
+      }
+
+    class AccountChargeSettings < Straddle::Internal::Type::BaseModel
+      attr_accessor daily_amount: Integer
+
+      attr_accessor funding_time: Straddle::Models::AccountChargeSettings::funding_time
+
+      attr_accessor linked_bank_account_id: String
+
+      attr_accessor max_amount: Integer
+
+      attr_accessor monthly_amount: Integer
+
+      attr_accessor monthly_count: Integer
+
+      def initialize: (
+        daily_amount: Integer,
+        funding_time: Straddle::Models::AccountChargeSettings::funding_time,
+        linked_bank_account_id: String,
+        max_amount: Integer,
+        monthly_amount: Integer,
+        monthly_count: Integer
+      ) -> void
+
+      def to_hash: -> {
+        daily_amount: Integer,
+        funding_time: Straddle::Models::AccountChargeSettings::funding_time,
+        linked_bank_account_id: String,
+        max_amount: Integer,
+        monthly_amount: Integer,
+        monthly_count: Integer
+      }
+
+      type funding_time =
+        :immediate
+        | :next_day
+        | :one_day
+        | :two_day
+        | :three_day
+        | :four_day
+        | :five_day
+
+      module FundingTime
+        extend Straddle::Internal::Type::Enum
+
+        IMMEDIATE: :immediate
+        NEXT_DAY: :next_day
+        ONE_DAY: :one_day
+        TWO_DAY: :two_day
+        THREE_DAY: :three_day
+        FOUR_DAY: :four_day
+        FIVE_DAY: :five_day
+
+        def self?.values: -> ::Array[Straddle::Models::AccountChargeSettings::funding_time]
+      end
+    end
+  end
+end

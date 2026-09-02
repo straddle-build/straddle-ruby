@@ -1,0 +1,17 @@
+module Straddle
+  module Models
+    type funding_event_type =
+      :charge_deposit | :charge_reversal | :payout_return | :payout_withdrawal
+
+    module FundingEventType
+      extend Straddle::Internal::Type::Enum
+
+      CHARGE_DEPOSIT: :charge_deposit
+      CHARGE_REVERSAL: :charge_reversal
+      PAYOUT_RETURN: :payout_return
+      PAYOUT_WITHDRAWAL: :payout_withdrawal
+
+      def self?.values: -> ::Array[Straddle::Models::funding_event_type]
+    end
+  end
+end

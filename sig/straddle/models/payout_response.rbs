@@ -1,0 +1,30 @@
+module Straddle
+  module Models
+    type payout_response =
+      {
+        data: Straddle::Payout,
+        meta: Straddle::ResponseMetadata,
+        response_type: Straddle::Models::response_type
+      }
+
+    class PayoutResponse < Straddle::Internal::Type::BaseModel
+      attr_accessor data: Straddle::Payout
+
+      attr_accessor meta: Straddle::ResponseMetadata
+
+      attr_accessor response_type: Straddle::Models::response_type
+
+      def initialize: (
+        data: Straddle::Payout,
+        meta: Straddle::ResponseMetadata,
+        response_type: Straddle::Models::response_type
+      ) -> void
+
+      def to_hash: -> {
+        data: Straddle::Payout,
+        meta: Straddle::ResponseMetadata,
+        response_type: Straddle::Models::response_type
+      }
+    end
+  end
+end

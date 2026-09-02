@@ -1,0 +1,19 @@
+module Straddle
+  module Models
+    type paykey_source =
+      :bank_account | :straddle | :mx | :plaid | :tan | :quiltt
+
+    module PaykeySource
+      extend Straddle::Internal::Type::Enum
+
+      BANK_ACCOUNT: :bank_account
+      STRADDLE: :straddle
+      MX: :mx
+      PLAID: :plaid
+      TAN: :tan
+      QUILTT: :quiltt
+
+      def self?.values: -> ::Array[Straddle::Models::paykey_source]
+    end
+  end
+end

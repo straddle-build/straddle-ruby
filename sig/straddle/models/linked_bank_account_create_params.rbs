@@ -1,0 +1,111 @@
+module Straddle
+  module Models
+    type linked_bank_account_create_params =
+      {
+        bank_account: Straddle::LinkedBankAccountCreateParams::BankAccount,
+        account_id: String?,
+        description: String?,
+        metadata: ::Hash[Symbol, String?]?,
+        platform_id: String?,
+        purposes: ::Array[Straddle::Models::LinkedBankAccountCreateParams::purpose]?,
+        correlation_id: String,
+        idempotency_key: String,
+        request_id: String
+      }
+      & Straddle::Internal::Type::request_parameters
+
+    class LinkedBankAccountCreateParams < Straddle::Internal::Type::BaseModel
+      extend Straddle::Internal::Type::RequestParameters::Converter
+      include Straddle::Internal::Type::RequestParameters
+
+      attr_accessor bank_account: Straddle::LinkedBankAccountCreateParams::BankAccount
+
+      attr_accessor account_id: String?
+
+      attr_accessor description: String?
+
+      attr_accessor metadata: ::Hash[Symbol, String?]?
+
+      attr_accessor platform_id: String?
+
+      attr_accessor purposes: ::Array[Straddle::Models::LinkedBankAccountCreateParams::purpose]?
+
+      attr_reader correlation_id: String?
+
+      def correlation_id=: (String) -> String
+
+      attr_reader idempotency_key: String?
+
+      def idempotency_key=: (String) -> String
+
+      attr_reader request_id: String?
+
+      def request_id=: (String) -> String
+
+      def initialize: (
+        bank_account: Straddle::LinkedBankAccountCreateParams::BankAccount,
+        ?account_id: String?,
+        ?description: String?,
+        ?metadata: ::Hash[Symbol, String?]?,
+        ?platform_id: String?,
+        ?purposes: ::Array[Straddle::Models::LinkedBankAccountCreateParams::purpose]?,
+        ?correlation_id: String,
+        ?idempotency_key: String,
+        ?request_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        bank_account: Straddle::LinkedBankAccountCreateParams::BankAccount,
+        account_id: String?,
+        description: String?,
+        metadata: ::Hash[Symbol, String?]?,
+        platform_id: String?,
+        purposes: ::Array[Straddle::Models::LinkedBankAccountCreateParams::purpose]?,
+        correlation_id: String,
+        idempotency_key: String,
+        request_id: String,
+        request_options: Straddle::RequestOptions
+      }
+
+      type bank_account =
+        {
+          account_holder: String,
+          account_number: String,
+          routing_number: String
+        }
+
+      class BankAccount < Straddle::Internal::Type::BaseModel
+        attr_accessor account_holder: String
+
+        attr_accessor account_number: String
+
+        attr_accessor routing_number: String
+
+        def initialize: (
+          account_holder: String,
+          account_number: String,
+          routing_number: String
+        ) -> void
+
+        def to_hash: -> {
+          account_holder: String,
+          account_number: String,
+          routing_number: String
+        }
+      end
+
+      type purpose = :charges | :payouts | :billing
+
+      module Purpose
+        extend Straddle::Internal::Type::Enum
+
+        CHARGES: :charges
+        PAYOUTS: :payouts
+        BILLING: :billing
+
+        def self?.values: -> ::Array[Straddle::Models::LinkedBankAccountCreateParams::purpose]
+      end
+    end
+  end
+end

@@ -1,0 +1,43 @@
+module Straddle
+  module Models
+    type account_settings_response =
+      {
+        data: Straddle::AccountSettingsAPI,
+        meta: Straddle::ResponseMetadata,
+        response_type: Straddle::Models::AccountSettingsResponse::response_type
+      }
+
+    class AccountSettingsResponse < Straddle::Internal::Type::BaseModel
+      attr_accessor data: Straddle::AccountSettingsAPI
+
+      attr_accessor meta: Straddle::ResponseMetadata
+
+      attr_accessor response_type: Straddle::Models::AccountSettingsResponse::response_type
+
+      def initialize: (
+        data: Straddle::AccountSettingsAPI,
+        meta: Straddle::ResponseMetadata,
+        response_type: Straddle::Models::AccountSettingsResponse::response_type
+      ) -> void
+
+      def to_hash: -> {
+        data: Straddle::AccountSettingsAPI,
+        meta: Straddle::ResponseMetadata,
+        response_type: Straddle::Models::AccountSettingsResponse::response_type
+      }
+
+      type response_type = :object | :array | :error | :none
+
+      module ResponseType
+        extend Straddle::Internal::Type::Enum
+
+        OBJECT: :object
+        ARRAY: :array
+        ERROR: :error
+        NONE: :none
+
+        def self?.values: -> ::Array[Straddle::Models::AccountSettingsResponse::response_type]
+      end
+    end
+  end
+end

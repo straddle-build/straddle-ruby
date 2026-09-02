@@ -1,0 +1,66 @@
+module Straddle
+  module Resources
+    class LinkedBankAccounts
+      def create: (
+        bank_account: Straddle::LinkedBankAccountCreateParams::BankAccount,
+        ?account_id: String?,
+        ?description: String?,
+        ?metadata: ::Hash[Symbol, String?]?,
+        ?platform_id: String?,
+        ?purposes: ::Array[Straddle::Models::LinkedBankAccountCreateParams::purpose]?,
+        ?correlation_id: String,
+        ?idempotency_key: String,
+        ?request_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::LinkedBankAccountResponse
+
+      def retrieve: (
+        String linked_bank_account_id,
+        ?correlation_id: String,
+        ?request_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::LinkedBankAccountResponse
+
+      def update: (
+        String linked_bank_account_id,
+        bank_account: Straddle::LinkedBankAccountUpdateParams::BankAccount,
+        ?metadata: ::Hash[Symbol, String?]?,
+        ?correlation_id: String,
+        ?idempotency_key: String,
+        ?request_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::LinkedBankAccountResponse
+
+      def list: (
+        ?account_id: String,
+        ?level: Straddle::Models::LinkedBankAccountListParams::level,
+        ?page_number: Integer,
+        ?page_size: Integer,
+        ?purpose: Straddle::Models::LinkedBankAccountListParams::purpose,
+        ?sort_by: String,
+        ?sort_order: Straddle::Models::LinkedBankAccountListParams::sort_order,
+        ?status: Straddle::Models::LinkedBankAccountListParams::status,
+        ?correlation_id: String,
+        ?request_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::LinkedBankAccountList
+
+      def cancel: (
+        String linked_bank_account_id,
+        ?correlation_id: String,
+        ?idempotency_key: String,
+        ?request_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::LinkedBankAccountResponse
+
+      def list_unmasked: (
+        String linked_bank_account_id,
+        ?correlation_id: String,
+        ?request_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::UnmaskedLinkedBankAccountResponse
+
+      def initialize: (client: Straddle::Client) -> void
+    end
+  end
+end

@@ -1,0 +1,41 @@
+module Straddle
+  module Models
+    module Customers
+      type identity_verification_watchlist =
+        {
+          codes: ::Array[String]?,
+          decision: Straddle::Models::Customers::verification_decision,
+          matched: ::Array[String]?,
+          matches: ::Array[Straddle::Customers::IdentityVerificationWatchlistMatch]?
+        }
+
+      class IdentityVerificationWatchlist < Straddle::Internal::Type::BaseModel
+        attr_accessor codes: ::Array[String]?
+
+        attr_reader decision: Straddle::Models::Customers::verification_decision?
+
+        def decision=: (
+          Straddle::Models::Customers::verification_decision
+        ) -> Straddle::Models::Customers::verification_decision
+
+        attr_accessor matched: ::Array[String]?
+
+        attr_accessor matches: ::Array[Straddle::Customers::IdentityVerificationWatchlistMatch]?
+
+        def initialize: (
+          ?codes: ::Array[String]?,
+          ?decision: Straddle::Models::Customers::verification_decision,
+          ?matched: ::Array[String]?,
+          ?matches: ::Array[Straddle::Customers::IdentityVerificationWatchlistMatch]?
+        ) -> void
+
+        def to_hash: -> {
+          codes: ::Array[String]?,
+          decision: Straddle::Models::Customers::verification_decision,
+          matched: ::Array[String]?,
+          matches: ::Array[Straddle::Customers::IdentityVerificationWatchlistMatch]?
+        }
+      end
+    end
+  end
+end

@@ -1,0 +1,22 @@
+module Straddle
+  module Models
+    type funding_event_configuration =
+      { sandbox_outcome: Straddle::Models::simulated_payment_outcome }
+
+    class FundingEventConfiguration < Straddle::Internal::Type::BaseModel
+      attr_reader sandbox_outcome: Straddle::Models::simulated_payment_outcome?
+
+      def sandbox_outcome=: (
+        Straddle::Models::simulated_payment_outcome
+      ) -> Straddle::Models::simulated_payment_outcome
+
+      def initialize: (
+        ?sandbox_outcome: Straddle::Models::simulated_payment_outcome
+      ) -> void
+
+      def to_hash: -> {
+        sandbox_outcome: Straddle::Models::simulated_payment_outcome
+      }
+    end
+  end
+end

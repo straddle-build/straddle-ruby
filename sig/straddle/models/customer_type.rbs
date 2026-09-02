@@ -1,0 +1,14 @@
+module Straddle
+  module Models
+    type customer_type = :individual | :business
+
+    module CustomerType
+      extend Straddle::Internal::Type::Enum
+
+      INDIVIDUAL: :individual
+      BUSINESS: :business
+
+      def self?.values: -> ::Array[Straddle::Models::customer_type]
+    end
+  end
+end

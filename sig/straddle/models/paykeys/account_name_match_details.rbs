@@ -1,0 +1,52 @@
+module Straddle
+  module Models
+    module Paykeys
+      type account_name_match_details =
+        {
+          codes: ::Array[String],
+          decision: Straddle::Models::Paykeys::paykey_verification_result,
+          correlation_score: Float?,
+          customer_name: String?,
+          matched_name: String?,
+          names_on_account: ::Array[String]?,
+          reason: String?
+        }
+
+      class AccountNameMatchDetails < Straddle::Internal::Type::BaseModel
+        attr_accessor codes: ::Array[String]
+
+        attr_accessor decision: Straddle::Models::Paykeys::paykey_verification_result
+
+        attr_accessor correlation_score: Float?
+
+        attr_accessor customer_name: String?
+
+        attr_accessor matched_name: String?
+
+        attr_accessor names_on_account: ::Array[String]?
+
+        attr_accessor reason: String?
+
+        def initialize: (
+          codes: ::Array[String],
+          decision: Straddle::Models::Paykeys::paykey_verification_result,
+          ?correlation_score: Float?,
+          ?customer_name: String?,
+          ?matched_name: String?,
+          ?names_on_account: ::Array[String]?,
+          ?reason: String?
+        ) -> void
+
+        def to_hash: -> {
+          codes: ::Array[String],
+          decision: Straddle::Models::Paykeys::paykey_verification_result,
+          correlation_score: Float?,
+          customer_name: String?,
+          matched_name: String?,
+          names_on_account: ::Array[String]?,
+          reason: String?
+        }
+      end
+    end
+  end
+end

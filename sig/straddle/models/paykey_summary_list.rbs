@@ -1,0 +1,30 @@
+module Straddle
+  module Models
+    type paykey_summary_list =
+      {
+        data: ::Array[Straddle::PaykeySummary],
+        meta: Straddle::PageMetadata,
+        response_type: Straddle::Models::response_type
+      }
+
+    class PaykeySummaryList < Straddle::Internal::Type::BaseModel
+      attr_accessor data: ::Array[Straddle::PaykeySummary]
+
+      attr_accessor meta: Straddle::PageMetadata
+
+      attr_accessor response_type: Straddle::Models::response_type
+
+      def initialize: (
+        data: ::Array[Straddle::PaykeySummary],
+        meta: Straddle::PageMetadata,
+        response_type: Straddle::Models::response_type
+      ) -> void
+
+      def to_hash: -> {
+        data: ::Array[Straddle::PaykeySummary],
+        meta: Straddle::PageMetadata,
+        response_type: Straddle::Models::response_type
+      }
+    end
+  end
+end

@@ -1,0 +1,91 @@
+module Straddle
+  module Models
+    type unmasked_customer =
+      {
+        id: String,
+        created_at: Time,
+        email: String,
+        name: String,
+        phone: String,
+        status: Straddle::Models::customer_status,
+        type: Straddle::Models::customer_type,
+        updated_at: Time,
+        address: Straddle::CustomerAddress?,
+        compliance_profile: Straddle::Models::unmasked_compliance_profile?,
+        config: Straddle::CustomerConfiguration,
+        device: Straddle::CustomerDevice,
+        external_id: String?,
+        metadata: ::Hash[Symbol, String]?
+      }
+
+    class UnmaskedCustomer < Straddle::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor created_at: Time
+
+      attr_accessor email: String
+
+      attr_accessor name: String
+
+      attr_accessor phone: String
+
+      attr_accessor status: Straddle::Models::customer_status
+
+      attr_accessor type: Straddle::Models::customer_type
+
+      attr_accessor updated_at: Time
+
+      attr_accessor address: Straddle::CustomerAddress?
+
+      attr_accessor compliance_profile: Straddle::Models::unmasked_compliance_profile?
+
+      attr_reader config: Straddle::CustomerConfiguration?
+
+      def config=: (
+        Straddle::CustomerConfiguration
+      ) -> Straddle::CustomerConfiguration
+
+      attr_reader device: Straddle::CustomerDevice?
+
+      def device=: (Straddle::CustomerDevice) -> Straddle::CustomerDevice
+
+      attr_accessor external_id: String?
+
+      attr_accessor metadata: ::Hash[Symbol, String]?
+
+      def initialize: (
+        id: String,
+        created_at: Time,
+        email: String,
+        name: String,
+        phone: String,
+        status: Straddle::Models::customer_status,
+        type: Straddle::Models::customer_type,
+        updated_at: Time,
+        ?address: Straddle::CustomerAddress?,
+        ?compliance_profile: Straddle::Models::unmasked_compliance_profile?,
+        ?config: Straddle::CustomerConfiguration,
+        ?device: Straddle::CustomerDevice,
+        ?external_id: String?,
+        ?metadata: ::Hash[Symbol, String]?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        created_at: Time,
+        email: String,
+        name: String,
+        phone: String,
+        status: Straddle::Models::customer_status,
+        type: Straddle::Models::customer_type,
+        updated_at: Time,
+        address: Straddle::CustomerAddress?,
+        compliance_profile: Straddle::Models::unmasked_compliance_profile?,
+        config: Straddle::CustomerConfiguration,
+        device: Straddle::CustomerDevice,
+        external_id: String?,
+        metadata: ::Hash[Symbol, String]?
+      }
+    end
+  end
+end

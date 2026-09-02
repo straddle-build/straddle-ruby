@@ -1,0 +1,47 @@
+module Straddle
+  module Models
+    type account_customer_type_settings =
+      {
+        businesses: Straddle::Models::AccountCustomerTypeSettings::businesses,
+        individuals: Straddle::Models::AccountCustomerTypeSettings::individuals
+      }
+
+    class AccountCustomerTypeSettings < Straddle::Internal::Type::BaseModel
+      attr_accessor businesses: Straddle::Models::AccountCustomerTypeSettings::businesses
+
+      attr_accessor individuals: Straddle::Models::AccountCustomerTypeSettings::individuals
+
+      def initialize: (
+        businesses: Straddle::Models::AccountCustomerTypeSettings::businesses,
+        individuals: Straddle::Models::AccountCustomerTypeSettings::individuals
+      ) -> void
+
+      def to_hash: -> {
+        businesses: Straddle::Models::AccountCustomerTypeSettings::businesses,
+        individuals: Straddle::Models::AccountCustomerTypeSettings::individuals
+      }
+
+      type businesses = :active | :inactive
+
+      module Businesses
+        extend Straddle::Internal::Type::Enum
+
+        ACTIVE: :active
+        INACTIVE: :inactive
+
+        def self?.values: -> ::Array[Straddle::Models::AccountCustomerTypeSettings::businesses]
+      end
+
+      type individuals = :active | :inactive
+
+      module Individuals
+        extend Straddle::Internal::Type::Enum
+
+        ACTIVE: :active
+        INACTIVE: :inactive
+
+        def self?.values: -> ::Array[Straddle::Models::AccountCustomerTypeSettings::individuals]
+      end
+    end
+  end
+end

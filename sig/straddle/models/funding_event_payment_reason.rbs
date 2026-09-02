@@ -1,0 +1,16 @@
+module Straddle
+  module Models
+    type funding_event_payment_reason = :credit | :debit | :reversal | :failed
+
+    module FundingEventPaymentReason
+      extend Straddle::Internal::Type::Enum
+
+      CREDIT: :credit
+      DEBIT: :debit
+      REVERSAL: :reversal
+      FAILED: :failed
+
+      def self?.values: -> ::Array[Straddle::Models::funding_event_payment_reason]
+    end
+  end
+end

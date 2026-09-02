@@ -1,0 +1,139 @@
+module Straddle
+  module Models
+    type paykey_list_params =
+      {
+        created_from: Time,
+        created_to: Time,
+        customer_id: String,
+        page_number: Integer,
+        page_size: Integer,
+        search_text: String,
+        sort_by: Straddle::Models::PaykeyListParams::sort_by,
+        sort_order: Straddle::Models::sort_order,
+        source: ::Array[Straddle::Models::paykey_source],
+        status: ::Array[Straddle::Models::paykey_status],
+        unblock_eligible: bool,
+        correlation_id: String,
+        request_id: String,
+        straddle_account_id: String
+      }
+      & Straddle::Internal::Type::request_parameters
+
+    class PaykeyListParams < Straddle::Internal::Type::BaseModel
+      extend Straddle::Internal::Type::RequestParameters::Converter
+      include Straddle::Internal::Type::RequestParameters
+
+      attr_reader created_from: Time?
+
+      def created_from=: (Time) -> Time
+
+      attr_reader created_to: Time?
+
+      def created_to=: (Time) -> Time
+
+      attr_reader customer_id: String?
+
+      def customer_id=: (String) -> String
+
+      attr_reader page_number: Integer?
+
+      def page_number=: (Integer) -> Integer
+
+      attr_reader page_size: Integer?
+
+      def page_size=: (Integer) -> Integer
+
+      attr_reader search_text: String?
+
+      def search_text=: (String) -> String
+
+      attr_reader sort_by: Straddle::Models::PaykeyListParams::sort_by?
+
+      def sort_by=: (
+        Straddle::Models::PaykeyListParams::sort_by
+      ) -> Straddle::Models::PaykeyListParams::sort_by
+
+      attr_reader sort_order: Straddle::Models::sort_order?
+
+      def sort_order=: (
+        Straddle::Models::sort_order
+      ) -> Straddle::Models::sort_order
+
+      attr_reader source: ::Array[Straddle::Models::paykey_source]?
+
+      def source=: (
+        ::Array[Straddle::Models::paykey_source]
+      ) -> ::Array[Straddle::Models::paykey_source]
+
+      attr_reader status: ::Array[Straddle::Models::paykey_status]?
+
+      def status=: (
+        ::Array[Straddle::Models::paykey_status]
+      ) -> ::Array[Straddle::Models::paykey_status]
+
+      attr_reader unblock_eligible: bool?
+
+      def unblock_eligible=: (bool) -> bool
+
+      attr_reader correlation_id: String?
+
+      def correlation_id=: (String) -> String
+
+      attr_reader request_id: String?
+
+      def request_id=: (String) -> String
+
+      attr_reader straddle_account_id: String?
+
+      def straddle_account_id=: (String) -> String
+
+      def initialize: (
+        ?created_from: Time,
+        ?created_to: Time,
+        ?customer_id: String,
+        ?page_number: Integer,
+        ?page_size: Integer,
+        ?search_text: String,
+        ?sort_by: Straddle::Models::PaykeyListParams::sort_by,
+        ?sort_order: Straddle::Models::sort_order,
+        ?source: ::Array[Straddle::Models::paykey_source],
+        ?status: ::Array[Straddle::Models::paykey_status],
+        ?unblock_eligible: bool,
+        ?correlation_id: String,
+        ?request_id: String,
+        ?straddle_account_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        created_from: Time,
+        created_to: Time,
+        customer_id: String,
+        page_number: Integer,
+        page_size: Integer,
+        search_text: String,
+        sort_by: Straddle::Models::PaykeyListParams::sort_by,
+        sort_order: Straddle::Models::sort_order,
+        source: ::Array[Straddle::Models::paykey_source],
+        status: ::Array[Straddle::Models::paykey_status],
+        unblock_eligible: bool,
+        correlation_id: String,
+        request_id: String,
+        straddle_account_id: String,
+        request_options: Straddle::RequestOptions
+      }
+
+      type sort_by = :institution_name | :expires_at | :created_at
+
+      module SortBy
+        extend Straddle::Internal::Type::Enum
+
+        INSTITUTION_NAME: :institution_name
+        EXPIRES_AT: :expires_at
+        CREATED_AT: :created_at
+
+        def self?.values: -> ::Array[Straddle::Models::PaykeyListParams::sort_by]
+      end
+    end
+  end
+end

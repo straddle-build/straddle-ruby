@@ -1,0 +1,40 @@
+module Straddle
+  module Models
+    type customer_details =
+      {
+        id: String,
+        customer_type: Straddle::Models::customer_type,
+        email: String,
+        name: String,
+        phone: String
+      }
+
+    class CustomerDetails < Straddle::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor customer_type: Straddle::Models::customer_type
+
+      attr_accessor email: String
+
+      attr_accessor name: String
+
+      attr_accessor phone: String
+
+      def initialize: (
+        id: String,
+        customer_type: Straddle::Models::customer_type,
+        email: String,
+        name: String,
+        phone: String
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        customer_type: Straddle::Models::customer_type,
+        email: String,
+        name: String,
+        phone: String
+      }
+    end
+  end
+end

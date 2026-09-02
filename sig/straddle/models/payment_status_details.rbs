@@ -1,0 +1,40 @@
+module Straddle
+  module Models
+    type payment_status_details =
+      {
+        changed_at: Time,
+        message: String,
+        reason: Straddle::Models::payment_status_reason,
+        source: Straddle::Models::payment_status_source,
+        code: String?
+      }
+
+    class PaymentStatusDetails < Straddle::Internal::Type::BaseModel
+      attr_accessor changed_at: Time
+
+      attr_accessor message: String
+
+      attr_accessor reason: Straddle::Models::payment_status_reason
+
+      attr_accessor source: Straddle::Models::payment_status_source
+
+      attr_accessor code: String?
+
+      def initialize: (
+        changed_at: Time,
+        message: String,
+        reason: Straddle::Models::payment_status_reason,
+        source: Straddle::Models::payment_status_source,
+        ?code: String?
+      ) -> void
+
+      def to_hash: -> {
+        changed_at: Time,
+        message: String,
+        reason: Straddle::Models::payment_status_reason,
+        source: Straddle::Models::payment_status_source,
+        code: String?
+      }
+    end
+  end
+end

@@ -1,0 +1,59 @@
+module Straddle
+  module Resources
+    class Bridge
+      def create_bank_account_paykey: (
+        account_number: String,
+        account_type: Straddle::Models::account_type,
+        customer_id: String,
+        routing_number: String,
+        ?config: Straddle::PaykeyConfiguration,
+        ?external_id: String?,
+        ?metadata: ::Hash[Symbol, String]?,
+        ?correlation_id: String,
+        ?idempotency_key: String,
+        ?request_id: String,
+        ?straddle_account_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::PaykeyResponse
+
+      def create_plaid_paykey: (
+        customer_id: String,
+        plaid_token: String,
+        ?config: Straddle::PaykeyConfiguration,
+        ?external_id: String?,
+        ?metadata: ::Hash[Symbol, String]?,
+        ?correlation_id: String,
+        ?idempotency_key: String,
+        ?request_id: String,
+        ?straddle_account_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::PaykeyResponse
+
+      def create_quiltt_paykey: (
+        customer_id: String,
+        quiltt_token: String,
+        ?config: Straddle::PaykeyConfiguration,
+        ?external_id: String?,
+        ?metadata: ::Hash[Symbol, String]?,
+        ?correlation_id: String,
+        ?idempotency_key: String,
+        ?request_id: String,
+        ?straddle_account_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::RevealedPaykeyResponse
+
+      def create_token: (
+        customer_id: String,
+        ?config: Straddle::PaykeyConfiguration,
+        ?external_id: String?,
+        ?correlation_id: String,
+        ?idempotency_key: String,
+        ?request_id: String,
+        ?straddle_account_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::BridgeTokenResponse
+
+      def initialize: (client: Straddle::Client) -> void
+    end
+  end
+end

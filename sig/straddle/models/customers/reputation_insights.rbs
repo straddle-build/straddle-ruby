@@ -1,0 +1,182 @@
+module Straddle
+  module Models
+    module Customers
+      type reputation_insights =
+        {
+          accounts_active_count: Integer?,
+          accounts_closed_count: Integer?,
+          accounts_closed_dates: ::Array[Date]?,
+          accounts_count: Integer?,
+          accounts_fraud_count: Integer?,
+          accounts_fraud_labeled_dates: ::Array[Date]?,
+          accounts_fraud_loss_total_amount: Float?,
+          ach_fraud_transactions_count: Integer?,
+          ach_fraud_transactions_dates: ::Array[Date]?,
+          ach_fraud_transactions_total_amount: Float?,
+          ach_returned_transactions_count: Integer?,
+          ach_returned_transactions_dates: ::Array[Date]?,
+          ach_returned_transactions_total_amount: Float?,
+          applications_approved_count: Integer?,
+          applications_count: Integer?,
+          applications_dates: ::Array[Date]?,
+          applications_declined_count: Integer?,
+          applications_fraud_count: Integer?,
+          card_disputed_transactions_count: Integer?,
+          card_disputed_transactions_dates: ::Array[Date]?,
+          card_disputed_transactions_total_amount: Float?,
+          card_fraud_transactions_count: Integer?,
+          card_fraud_transactions_dates: ::Array[Date]?,
+          card_fraud_transactions_total_amount: Float?,
+          card_stopped_transactions_count: Integer?,
+          card_stopped_transactions_dates: ::Array[Date]?,
+          user_active_profile_count: Integer?,
+          user_address_count: Integer?,
+          user_closed_profile_count: Integer?,
+          user_dob_count: Integer?,
+          user_email_count: Integer?,
+          user_institution_count: Integer?,
+          user_mobile_count: Integer?
+        }
+
+      class ReputationInsights < Straddle::Internal::Type::BaseModel
+        attr_accessor accounts_active_count: Integer?
+
+        attr_accessor accounts_closed_count: Integer?
+
+        attr_accessor accounts_closed_dates: ::Array[Date]?
+
+        attr_accessor accounts_count: Integer?
+
+        attr_accessor accounts_fraud_count: Integer?
+
+        attr_accessor accounts_fraud_labeled_dates: ::Array[Date]?
+
+        attr_accessor accounts_fraud_loss_total_amount: Float?
+
+        attr_accessor ach_fraud_transactions_count: Integer?
+
+        attr_accessor ach_fraud_transactions_dates: ::Array[Date]?
+
+        attr_accessor ach_fraud_transactions_total_amount: Float?
+
+        attr_accessor ach_returned_transactions_count: Integer?
+
+        attr_accessor ach_returned_transactions_dates: ::Array[Date]?
+
+        attr_accessor ach_returned_transactions_total_amount: Float?
+
+        attr_accessor applications_approved_count: Integer?
+
+        attr_accessor applications_count: Integer?
+
+        attr_accessor applications_dates: ::Array[Date]?
+
+        attr_accessor applications_declined_count: Integer?
+
+        attr_accessor applications_fraud_count: Integer?
+
+        attr_accessor card_disputed_transactions_count: Integer?
+
+        attr_accessor card_disputed_transactions_dates: ::Array[Date]?
+
+        attr_accessor card_disputed_transactions_total_amount: Float?
+
+        attr_accessor card_fraud_transactions_count: Integer?
+
+        attr_accessor card_fraud_transactions_dates: ::Array[Date]?
+
+        attr_accessor card_fraud_transactions_total_amount: Float?
+
+        attr_accessor card_stopped_transactions_count: Integer?
+
+        attr_accessor card_stopped_transactions_dates: ::Array[Date]?
+
+        attr_accessor user_active_profile_count: Integer?
+
+        attr_accessor user_address_count: Integer?
+
+        attr_accessor user_closed_profile_count: Integer?
+
+        attr_accessor user_dob_count: Integer?
+
+        attr_accessor user_email_count: Integer?
+
+        attr_accessor user_institution_count: Integer?
+
+        attr_accessor user_mobile_count: Integer?
+
+        def initialize: (
+          ?accounts_active_count: Integer?,
+          ?accounts_closed_count: Integer?,
+          ?accounts_closed_dates: ::Array[Date]?,
+          ?accounts_count: Integer?,
+          ?accounts_fraud_count: Integer?,
+          ?accounts_fraud_labeled_dates: ::Array[Date]?,
+          ?accounts_fraud_loss_total_amount: Float?,
+          ?ach_fraud_transactions_count: Integer?,
+          ?ach_fraud_transactions_dates: ::Array[Date]?,
+          ?ach_fraud_transactions_total_amount: Float?,
+          ?ach_returned_transactions_count: Integer?,
+          ?ach_returned_transactions_dates: ::Array[Date]?,
+          ?ach_returned_transactions_total_amount: Float?,
+          ?applications_approved_count: Integer?,
+          ?applications_count: Integer?,
+          ?applications_dates: ::Array[Date]?,
+          ?applications_declined_count: Integer?,
+          ?applications_fraud_count: Integer?,
+          ?card_disputed_transactions_count: Integer?,
+          ?card_disputed_transactions_dates: ::Array[Date]?,
+          ?card_disputed_transactions_total_amount: Float?,
+          ?card_fraud_transactions_count: Integer?,
+          ?card_fraud_transactions_dates: ::Array[Date]?,
+          ?card_fraud_transactions_total_amount: Float?,
+          ?card_stopped_transactions_count: Integer?,
+          ?card_stopped_transactions_dates: ::Array[Date]?,
+          ?user_active_profile_count: Integer?,
+          ?user_address_count: Integer?,
+          ?user_closed_profile_count: Integer?,
+          ?user_dob_count: Integer?,
+          ?user_email_count: Integer?,
+          ?user_institution_count: Integer?,
+          ?user_mobile_count: Integer?
+        ) -> void
+
+        def to_hash: -> {
+          accounts_active_count: Integer?,
+          accounts_closed_count: Integer?,
+          accounts_closed_dates: ::Array[Date]?,
+          accounts_count: Integer?,
+          accounts_fraud_count: Integer?,
+          accounts_fraud_labeled_dates: ::Array[Date]?,
+          accounts_fraud_loss_total_amount: Float?,
+          ach_fraud_transactions_count: Integer?,
+          ach_fraud_transactions_dates: ::Array[Date]?,
+          ach_fraud_transactions_total_amount: Float?,
+          ach_returned_transactions_count: Integer?,
+          ach_returned_transactions_dates: ::Array[Date]?,
+          ach_returned_transactions_total_amount: Float?,
+          applications_approved_count: Integer?,
+          applications_count: Integer?,
+          applications_dates: ::Array[Date]?,
+          applications_declined_count: Integer?,
+          applications_fraud_count: Integer?,
+          card_disputed_transactions_count: Integer?,
+          card_disputed_transactions_dates: ::Array[Date]?,
+          card_disputed_transactions_total_amount: Float?,
+          card_fraud_transactions_count: Integer?,
+          card_fraud_transactions_dates: ::Array[Date]?,
+          card_fraud_transactions_total_amount: Float?,
+          card_stopped_transactions_count: Integer?,
+          card_stopped_transactions_dates: ::Array[Date]?,
+          user_active_profile_count: Integer?,
+          user_address_count: Integer?,
+          user_closed_profile_count: Integer?,
+          user_dob_count: Integer?,
+          user_email_count: Integer?,
+          user_institution_count: Integer?,
+          user_mobile_count: Integer?
+        }
+      end
+    end
+  end
+end

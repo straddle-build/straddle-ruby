@@ -1,0 +1,30 @@
+module Straddle
+  module Models
+    type customer_response =
+      {
+        data: Straddle::Customer,
+        meta: Straddle::ResponseMetadata,
+        response_type: Straddle::Models::response_type
+      }
+
+    class CustomerResponse < Straddle::Internal::Type::BaseModel
+      attr_accessor data: Straddle::Customer
+
+      attr_accessor meta: Straddle::ResponseMetadata
+
+      attr_accessor response_type: Straddle::Models::response_type
+
+      def initialize: (
+        data: Straddle::Customer,
+        meta: Straddle::ResponseMetadata,
+        response_type: Straddle::Models::response_type
+      ) -> void
+
+      def to_hash: -> {
+        data: Straddle::Customer,
+        meta: Straddle::ResponseMetadata,
+        response_type: Straddle::Models::response_type
+      }
+    end
+  end
+end

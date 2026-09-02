@@ -1,0 +1,39 @@
+module Straddle
+  module Models
+    type charge_configuration =
+      {
+        balance_check: Straddle::Models::balance_check_mode,
+        auto_hold: bool?,
+        auto_hold_message: String?,
+        sandbox_outcome: Straddle::Models::simulated_payment_outcome
+      }
+
+    class ChargeConfiguration < Straddle::Internal::Type::BaseModel
+      attr_accessor balance_check: Straddle::Models::balance_check_mode
+
+      attr_accessor auto_hold: bool?
+
+      attr_accessor auto_hold_message: String?
+
+      attr_reader sandbox_outcome: Straddle::Models::simulated_payment_outcome?
+
+      def sandbox_outcome=: (
+        Straddle::Models::simulated_payment_outcome
+      ) -> Straddle::Models::simulated_payment_outcome
+
+      def initialize: (
+        balance_check: Straddle::Models::balance_check_mode,
+        ?auto_hold: bool?,
+        ?auto_hold_message: String?,
+        ?sandbox_outcome: Straddle::Models::simulated_payment_outcome
+      ) -> void
+
+      def to_hash: -> {
+        balance_check: Straddle::Models::balance_check_mode,
+        auto_hold: bool?,
+        auto_hold_message: String?,
+        sandbox_outcome: Straddle::Models::simulated_payment_outcome
+      }
+    end
+  end
+end

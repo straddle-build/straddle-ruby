@@ -1,0 +1,109 @@
+module Straddle
+  module Models
+    type capability_request =
+      {
+        id: String,
+        account_id: String,
+        category: Straddle::Models::CapabilityRequest::category,
+        created_at: Time,
+        enable: bool,
+        status: Straddle::Models::CapabilityRequest::status,
+        type: Straddle::Models::CapabilityRequest::type_,
+        updated_at: Time,
+        settings: ::Hash[Symbol, top]?
+      }
+
+    class CapabilityRequest < Straddle::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor account_id: String
+
+      attr_accessor category: Straddle::Models::CapabilityRequest::category
+
+      attr_accessor created_at: Time
+
+      attr_accessor enable: bool
+
+      attr_accessor status: Straddle::Models::CapabilityRequest::status
+
+      attr_accessor type: Straddle::Models::CapabilityRequest::type_
+
+      attr_accessor updated_at: Time
+
+      attr_accessor settings: ::Hash[Symbol, top]?
+
+      def initialize: (
+        id: String,
+        account_id: String,
+        category: Straddle::Models::CapabilityRequest::category,
+        created_at: Time,
+        enable: bool,
+        status: Straddle::Models::CapabilityRequest::status,
+        type: Straddle::Models::CapabilityRequest::type_,
+        updated_at: Time,
+        ?settings: ::Hash[Symbol, top]?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        account_id: String,
+        category: Straddle::Models::CapabilityRequest::category,
+        created_at: Time,
+        enable: bool,
+        status: Straddle::Models::CapabilityRequest::status,
+        type: Straddle::Models::CapabilityRequest::type_,
+        updated_at: Time,
+        settings: ::Hash[Symbol, top]?
+      }
+
+      type category = :payment_type | :customer_type | :consent_type
+
+      module Category
+        extend Straddle::Internal::Type::Enum
+
+        PAYMENT_TYPE: :payment_type
+        CUSTOMER_TYPE: :customer_type
+        CONSENT_TYPE: :consent_type
+
+        def self?.values: -> ::Array[Straddle::Models::CapabilityRequest::category]
+      end
+
+      type status =
+        :active | :inactive | :in_review | :rejected | :approved | :reviewing
+
+      module Status
+        extend Straddle::Internal::Type::Enum
+
+        ACTIVE: :active
+        INACTIVE: :inactive
+        IN_REVIEW: :in_review
+        REJECTED: :rejected
+        APPROVED: :approved
+        REVIEWING: :reviewing
+
+        def self?.values: -> ::Array[Straddle::Models::CapabilityRequest::status]
+      end
+
+      type type_ =
+        :charges
+        | :payouts
+        | :individuals
+        | :businesses
+        | :signed_agreement
+        | :internet
+
+      module Type
+        extend Straddle::Internal::Type::Enum
+
+        CHARGES: :charges
+        PAYOUTS: :payouts
+        INDIVIDUALS: :individuals
+        BUSINESSES: :businesses
+        SIGNED_AGREEMENT: :signed_agreement
+        INTERNET: :internet
+
+        def self?.values: -> ::Array[Straddle::Models::CapabilityRequest::type_]
+      end
+    end
+  end
+end

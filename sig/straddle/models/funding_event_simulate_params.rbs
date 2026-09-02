@@ -1,0 +1,74 @@
+module Straddle
+  module Models
+    type funding_event_simulate_params =
+      {
+        funding_event_job_type: Straddle::Models::FundingEventSimulateParams::funding_event_job_type,
+        sandbox_outcome: Straddle::Models::simulated_payment_outcome,
+        correlation_id: String,
+        idempotency_key: String,
+        request_id: String,
+        straddle_account_id: String
+      }
+      & Straddle::Internal::Type::request_parameters
+
+    class FundingEventSimulateParams < Straddle::Internal::Type::BaseModel
+      extend Straddle::Internal::Type::RequestParameters::Converter
+      include Straddle::Internal::Type::RequestParameters
+
+      attr_accessor funding_event_job_type: Straddle::Models::FundingEventSimulateParams::funding_event_job_type
+
+      attr_reader sandbox_outcome: Straddle::Models::simulated_payment_outcome?
+
+      def sandbox_outcome=: (
+        Straddle::Models::simulated_payment_outcome
+      ) -> Straddle::Models::simulated_payment_outcome
+
+      attr_reader correlation_id: String?
+
+      def correlation_id=: (String) -> String
+
+      attr_reader idempotency_key: String?
+
+      def idempotency_key=: (String) -> String
+
+      attr_reader request_id: String?
+
+      def request_id=: (String) -> String
+
+      attr_reader straddle_account_id: String?
+
+      def straddle_account_id=: (String) -> String
+
+      def initialize: (
+        funding_event_job_type: Straddle::Models::FundingEventSimulateParams::funding_event_job_type,
+        ?sandbox_outcome: Straddle::Models::simulated_payment_outcome,
+        ?correlation_id: String,
+        ?idempotency_key: String,
+        ?request_id: String,
+        ?straddle_account_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        funding_event_job_type: Straddle::Models::FundingEventSimulateParams::funding_event_job_type,
+        sandbox_outcome: Straddle::Models::simulated_payment_outcome,
+        correlation_id: String,
+        idempotency_key: String,
+        request_id: String,
+        straddle_account_id: String,
+        request_options: Straddle::RequestOptions
+      }
+
+      type funding_event_job_type = :charges | :payouts
+
+      module FundingEventJobType
+        extend Straddle::Internal::Type::Enum
+
+        CHARGES: :charges
+        PAYOUTS: :payouts
+
+        def self?.values: -> ::Array[Straddle::Models::FundingEventSimulateParams::funding_event_job_type]
+      end
+    end
+  end
+end

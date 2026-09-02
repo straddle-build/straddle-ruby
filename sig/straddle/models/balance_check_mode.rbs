@@ -1,0 +1,15 @@
+module Straddle
+  module Models
+    type balance_check_mode = :required | :enabled | :disabled
+
+    module BalanceCheckMode
+      extend Straddle::Internal::Type::Enum
+
+      REQUIRED: :required
+      ENABLED: :enabled
+      DISABLED: :disabled
+
+      def self?.values: -> ::Array[Straddle::Models::balance_check_mode]
+    end
+  end
+end

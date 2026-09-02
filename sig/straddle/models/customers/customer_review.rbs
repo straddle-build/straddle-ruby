@@ -1,0 +1,33 @@
+module Straddle
+  module Models
+    class CustomerReview = Customers::CustomerReview
+
+    module Customers
+      type customer_review =
+        {
+          customer_details: Straddle::Customer,
+          identity_details: Straddle::Customers::CustomerIdentityVerification
+        }
+
+      class CustomerReview < Straddle::Internal::Type::BaseModel
+        attr_accessor customer_details: Straddle::Customer
+
+        attr_reader identity_details: Straddle::Customers::CustomerIdentityVerification?
+
+        def identity_details=: (
+          Straddle::Customers::CustomerIdentityVerification
+        ) -> Straddle::Customers::CustomerIdentityVerification
+
+        def initialize: (
+          customer_details: Straddle::Customer,
+          ?identity_details: Straddle::Customers::CustomerIdentityVerification
+        ) -> void
+
+        def to_hash: -> {
+          customer_details: Straddle::Customer,
+          identity_details: Straddle::Customers::CustomerIdentityVerification
+        }
+      end
+    end
+  end
+end

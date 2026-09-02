@@ -1,0 +1,443 @@
+module Straddle
+  class Account = Straddle::Models::Account
+
+  class AccountAddress = Straddle::Models::AccountAddress
+
+  class AccountBusinessProfile = Straddle::Models::AccountBusinessProfile
+
+  class AccountCapabilities = Straddle::Models::AccountCapabilities
+
+  class AccountCapability = Straddle::Models::AccountCapability
+
+  class AccountChargeSettings = Straddle::Models::AccountChargeSettings
+
+  class AccountConsentCapabilities = Straddle::Models::AccountConsentCapabilities
+
+  class AccountConsentSettings = Straddle::Models::AccountConsentSettings
+
+  class AccountCreatedV1WebhookEvent = Straddle::Models::AccountCreatedV1WebhookEvent
+
+  class AccountCreateParams = Straddle::Models::AccountCreateParams
+
+  class AccountCustomerCapabilities = Straddle::Models::AccountCustomerCapabilities
+
+  class AccountCustomerTypeSettings = Straddle::Models::AccountCustomerTypeSettings
+
+  class AccountEventV1WebhookEvent = Straddle::Models::AccountEventV1WebhookEvent
+
+  class AccountIndustry = Straddle::Models::AccountIndustry
+
+  class AccountList = Straddle::Models::AccountList
+
+  class AccountListParams = Straddle::Models::AccountListParams
+
+  class AccountOnboardParams = Straddle::Models::AccountOnboardParams
+
+  class AccountPaymentCapabilities = Straddle::Models::AccountPaymentCapabilities
+
+  class AccountPaymentSettings = Straddle::Models::AccountPaymentSettings
+
+  class AccountPaymentTypeSettings = Straddle::Models::AccountPaymentTypeSettings
+
+  class AccountPayoutSettings = Straddle::Models::AccountPayoutSettings
+
+  class AccountPolicyControls = Straddle::Models::AccountPolicyControls
+
+  class AccountResponse = Straddle::Models::AccountResponse
+
+  class AccountRetrieveParams = Straddle::Models::AccountRetrieveParams
+
+  class AccountSettingRetrieveParams = Straddle::Models::AccountSettingRetrieveParams
+
+  class AccountSettingsAPI = Straddle::Models::AccountSettingsAPI
+
+  class AccountSettingsResponse = Straddle::Models::AccountSettingsResponse
+
+  class AccountSimulateOnboardingParams = Straddle::Models::AccountSimulateOnboardingParams
+
+  class AccountStatementSettings = Straddle::Models::AccountStatementSettings
+
+  class AccountStatusDetail = Straddle::Models::AccountStatusDetail
+
+  class AccountSupportChannels = Straddle::Models::AccountSupportChannels
+
+  module AccountType = Straddle::Models::AccountType
+
+  class AccountUpdateParams = Straddle::Models::AccountUpdateParams
+
+  module BalanceCheckMode = Straddle::Models::BalanceCheckMode
+
+  class BridgeCreateBankAccountPaykeyParams = Straddle::Models::BridgeCreateBankAccountPaykeyParams
+
+  class BridgeCreatePlaidPaykeyParams = Straddle::Models::BridgeCreatePlaidPaykeyParams
+
+  class BridgeCreateQuilttPaykeyParams = Straddle::Models::BridgeCreateQuilttPaykeyParams
+
+  class BridgeCreateTokenParams = Straddle::Models::BridgeCreateTokenParams
+
+  class BridgeToken = Straddle::Models::BridgeToken
+
+  class BridgeTokenResponse = Straddle::Models::BridgeTokenResponse
+
+  class BusinessCustomerRepresentative = Straddle::Models::BusinessCustomerRepresentative
+
+  class CapabilityRequest = Straddle::Models::CapabilityRequest
+
+  class CapabilityRequestCreatedV1WebhookEvent = Straddle::Models::CapabilityRequestCreatedV1WebhookEvent
+
+  class CapabilityRequestCreateParams = Straddle::Models::CapabilityRequestCreateParams
+
+  class CapabilityRequestEventV1WebhookEvent = Straddle::Models::CapabilityRequestEventV1WebhookEvent
+
+  class CapabilityRequestList = Straddle::Models::CapabilityRequestList
+
+  class CapabilityRequestListParams = Straddle::Models::CapabilityRequestListParams
+
+  class Charge = Straddle::Models::Charge
+
+  class ChargeCancelParams = Straddle::Models::ChargeCancelParams
+
+  class ChargeConfiguration = Straddle::Models::ChargeConfiguration
+
+  class ChargeCreatedV1WebhookEvent = Straddle::Models::ChargeCreatedV1WebhookEvent
+
+  class ChargeCreateParams = Straddle::Models::ChargeCreateParams
+
+  class ChargeEventV1WebhookEvent = Straddle::Models::ChargeEventV1WebhookEvent
+
+  class ChargeHoldParams = Straddle::Models::ChargeHoldParams
+
+  class ChargeListUnmaskedParams = Straddle::Models::ChargeListUnmaskedParams
+
+  class ChargeRefundParams = Straddle::Models::ChargeRefundParams
+
+  class ChargeReleaseParams = Straddle::Models::ChargeReleaseParams
+
+  class ChargeResponse = Straddle::Models::ChargeResponse
+
+  class ChargeResubmitParams = Straddle::Models::ChargeResubmitParams
+
+  class ChargeRetrieveParams = Straddle::Models::ChargeRetrieveParams
+
+  class ChargeSettings = Straddle::Models::ChargeSettings
+
+  class ChargeUpdateParams = Straddle::Models::ChargeUpdateParams
+
+  class ChargeUploadAuthorizationProofParams = Straddle::Models::ChargeUploadAuthorizationProofParams
+
+  module ComplianceProfile = Straddle::Models::ComplianceProfile
+
+  module ConsentType = Straddle::Models::ConsentType
+
+  class Customer = Straddle::Models::Customer
+
+  class CustomerAddress = Straddle::Models::CustomerAddress
+
+  class CustomerConfiguration = Straddle::Models::CustomerConfiguration
+
+  class CustomerCreatedV1WebhookEvent = Straddle::Models::CustomerCreatedV1WebhookEvent
+
+  class CustomerCreateParams = Straddle::Models::CustomerCreateParams
+
+  class CustomerDeleteParams = Straddle::Models::CustomerDeleteParams
+
+  class CustomerDetails = Straddle::Models::CustomerDetails
+
+  class CustomerDevice = Straddle::Models::CustomerDevice
+
+  class CustomerEventV1WebhookEvent = Straddle::Models::CustomerEventV1WebhookEvent
+
+  class CustomerListParams = Straddle::Models::CustomerListParams
+
+  class CustomerListUnmaskedParams = Straddle::Models::CustomerListUnmaskedParams
+
+  class CustomerRefreshReviewParams = Straddle::Models::CustomerRefreshReviewParams
+
+  class CustomerResponse = Straddle::Models::CustomerResponse
+
+  class CustomerRetrieveParams = Straddle::Models::CustomerRetrieveParams
+
+  module Customers = Straddle::Models::Customers
+
+  module CustomerStatus = Straddle::Models::CustomerStatus
+
+  class CustomerSummary = Straddle::Models::CustomerSummary
+
+  class CustomerSummaryList = Straddle::Models::CustomerSummaryList
+
+  module CustomerType = Straddle::Models::CustomerType
+
+  class CustomerUpdateParams = Straddle::Models::CustomerUpdateParams
+
+  class FundingEvent = Straddle::Models::FundingEvent
+
+  class FundingEventConfiguration = Straddle::Models::FundingEventConfiguration
+
+  class FundingEventCreatedV1WebhookEvent = Straddle::Models::FundingEventCreatedV1WebhookEvent
+
+  class FundingEventEventV1WebhookEvent = Straddle::Models::FundingEventEventV1WebhookEvent
+
+  class FundingEventListParams = Straddle::Models::FundingEventListParams
+
+  class FundingEventListPaymentsParams = Straddle::Models::FundingEventListPaymentsParams
+
+  class FundingEventPayment = Straddle::Models::FundingEventPayment
+
+  class FundingEventPaymentList = Straddle::Models::FundingEventPaymentList
+
+  module FundingEventPaymentReason = Straddle::Models::FundingEventPaymentReason
+
+  class FundingEventResponse = Straddle::Models::FundingEventResponse
+
+  class FundingEventRetrieveParams = Straddle::Models::FundingEventRetrieveParams
+
+  class FundingEventSimulateParams = Straddle::Models::FundingEventSimulateParams
+
+  class FundingEventSimulation = Straddle::Models::FundingEventSimulation
+
+  class FundingEventSimulationResult = Straddle::Models::FundingEventSimulationResult
+
+  class FundingEventSummary = Straddle::Models::FundingEventSummary
+
+  class FundingEventSummaryList = Straddle::Models::FundingEventSummaryList
+
+  module FundingEventTransferDirection = Straddle::Models::FundingEventTransferDirection
+
+  module FundingEventType = Straddle::Models::FundingEventType
+
+  class LinkedBankAccount = Straddle::Models::LinkedBankAccount
+
+  class LinkedBankAccountCancelParams = Straddle::Models::LinkedBankAccountCancelParams
+
+  class LinkedBankAccountCreatedV1WebhookEvent = Straddle::Models::LinkedBankAccountCreatedV1WebhookEvent
+
+  class LinkedBankAccountCreateParams = Straddle::Models::LinkedBankAccountCreateParams
+
+  class LinkedBankAccountEventV1WebhookEvent = Straddle::Models::LinkedBankAccountEventV1WebhookEvent
+
+  class LinkedBankAccountList = Straddle::Models::LinkedBankAccountList
+
+  class LinkedBankAccountListParams = Straddle::Models::LinkedBankAccountListParams
+
+  class LinkedBankAccountListUnmaskedParams = Straddle::Models::LinkedBankAccountListUnmaskedParams
+
+  class LinkedBankAccountResponse = Straddle::Models::LinkedBankAccountResponse
+
+  class LinkedBankAccountRetrieveParams = Straddle::Models::LinkedBankAccountRetrieveParams
+
+  class LinkedBankAccountStatusDetail = Straddle::Models::LinkedBankAccountStatusDetail
+
+  class LinkedBankAccountUpdateParams = Straddle::Models::LinkedBankAccountUpdateParams
+
+  class MaskedCustomerDevice = Straddle::Models::MaskedCustomerDevice
+
+  class MaskedLinkedBankAccountDetails = Straddle::Models::MaskedLinkedBankAccountDetails
+
+  class MaskedPaymentDevice = Straddle::Models::MaskedPaymentDevice
+
+  class Organization = Straddle::Models::Organization
+
+  class OrganizationCreateParams = Straddle::Models::OrganizationCreateParams
+
+  class OrganizationList = Straddle::Models::OrganizationList
+
+  class OrganizationListParams = Straddle::Models::OrganizationListParams
+
+  class OrganizationResponse = Straddle::Models::OrganizationResponse
+
+  class OrganizationRetrieveParams = Straddle::Models::OrganizationRetrieveParams
+
+  class PageMetadata = Straddle::Models::PageMetadata
+
+  class Paykey = Straddle::Models::Paykey
+
+  class PaykeyBalanceDetails = Straddle::Models::PaykeyBalanceDetails
+
+  module PaykeyBalanceRefreshStatus = Straddle::Models::PaykeyBalanceRefreshStatus
+
+  class PaykeyBankDetails = Straddle::Models::PaykeyBankDetails
+
+  class PaykeyCancelParams = Straddle::Models::PaykeyCancelParams
+
+  class PaykeyConfiguration = Straddle::Models::PaykeyConfiguration
+
+  class PaykeyCreatedV1WebhookEvent = Straddle::Models::PaykeyCreatedV1WebhookEvent
+
+  class PaykeyDetails = Straddle::Models::PaykeyDetails
+
+  class PaykeyEventV1WebhookEvent = Straddle::Models::PaykeyEventV1WebhookEvent
+
+  class PaykeyListParams = Straddle::Models::PaykeyListParams
+
+  class PaykeyListUnmaskedParams = Straddle::Models::PaykeyListUnmaskedParams
+
+  module PaykeyProcessingMode = Straddle::Models::PaykeyProcessingMode
+
+  class PaykeyRefreshBalanceParams = Straddle::Models::PaykeyRefreshBalanceParams
+
+  class PaykeyRefreshReviewParams = Straddle::Models::PaykeyRefreshReviewParams
+
+  class PaykeyResponse = Straddle::Models::PaykeyResponse
+
+  class PaykeyRetrieveParams = Straddle::Models::PaykeyRetrieveParams
+
+  class PaykeyRevealParams = Straddle::Models::PaykeyRevealParams
+
+  module Paykeys = Straddle::Models::Paykeys
+
+  module PaykeySource = Straddle::Models::PaykeySource
+
+  module PaykeyStatus = Straddle::Models::PaykeyStatus
+
+  class PaykeySummary = Straddle::Models::PaykeySummary
+
+  class PaykeySummaryList = Straddle::Models::PaykeySummaryList
+
+  class PaykeyUnblockParams = Straddle::Models::PaykeyUnblockParams
+
+  class PaymentAuthorizationProof = Straddle::Models::PaymentAuthorizationProof
+
+  class PaymentDevice = Straddle::Models::PaymentDevice
+
+  module PaymentDocumentType = Straddle::Models::PaymentDocumentType
+
+  class PaymentListParams = Straddle::Models::PaymentListParams
+
+  module PaymentRail = Straddle::Models::PaymentRail
+
+  module PaymentRelationship = Straddle::Models::PaymentRelationship
+
+  module PaymentStatus = Straddle::Models::PaymentStatus
+
+  class PaymentStatusDetails = Straddle::Models::PaymentStatusDetails
+
+  class PaymentStatusHistory = Straddle::Models::PaymentStatusHistory
+
+  module PaymentStatusReason = Straddle::Models::PaymentStatusReason
+
+  module PaymentStatusSource = Straddle::Models::PaymentStatusSource
+
+  class PaymentSummary = Straddle::Models::PaymentSummary
+
+  class PaymentSummaryList = Straddle::Models::PaymentSummaryList
+
+  module PaymentType = Straddle::Models::PaymentType
+
+  class Payout = Straddle::Models::Payout
+
+  class PayoutCancelParams = Straddle::Models::PayoutCancelParams
+
+  class PayoutConfiguration = Straddle::Models::PayoutConfiguration
+
+  class PayoutCreatedV1WebhookEvent = Straddle::Models::PayoutCreatedV1WebhookEvent
+
+  class PayoutCreateParams = Straddle::Models::PayoutCreateParams
+
+  class PayoutEventV1WebhookEvent = Straddle::Models::PayoutEventV1WebhookEvent
+
+  class PayoutHoldParams = Straddle::Models::PayoutHoldParams
+
+  class PayoutListUnmaskedParams = Straddle::Models::PayoutListUnmaskedParams
+
+  class PayoutReleaseParams = Straddle::Models::PayoutReleaseParams
+
+  class PayoutResponse = Straddle::Models::PayoutResponse
+
+  class PayoutResubmitParams = Straddle::Models::PayoutResubmitParams
+
+  class PayoutRetrieveParams = Straddle::Models::PayoutRetrieveParams
+
+  class PayoutSettings = Straddle::Models::PayoutSettings
+
+  class PayoutUpdateParams = Straddle::Models::PayoutUpdateParams
+
+  class PayoutUploadAuthorizationProofParams = Straddle::Models::PayoutUploadAuthorizationProofParams
+
+  class PlatformCreatedV1WebhookEvent = Straddle::Models::PlatformCreatedV1WebhookEvent
+
+  class PlatformEventV1WebhookEvent = Straddle::Models::PlatformEventV1WebhookEvent
+
+  class RelatedPayment = Straddle::Models::RelatedPayment
+
+  class Representative = Straddle::Models::Representative
+
+  class RepresentativeCreatedV1WebhookEvent = Straddle::Models::RepresentativeCreatedV1WebhookEvent
+
+  class RepresentativeCreateParams = Straddle::Models::RepresentativeCreateParams
+
+  class RepresentativeEventV1WebhookEvent = Straddle::Models::RepresentativeEventV1WebhookEvent
+
+  class RepresentativeList = Straddle::Models::RepresentativeList
+
+  class RepresentativeListParams = Straddle::Models::RepresentativeListParams
+
+  class RepresentativeListUnmaskedParams = Straddle::Models::RepresentativeListUnmaskedParams
+
+  class RepresentativeRelationship = Straddle::Models::RepresentativeRelationship
+
+  class RepresentativeResponse = Straddle::Models::RepresentativeResponse
+
+  class RepresentativeRetrieveParams = Straddle::Models::RepresentativeRetrieveParams
+
+  class RepresentativeStatusDetail = Straddle::Models::RepresentativeStatusDetail
+
+  class RepresentativeUpdateParams = Straddle::Models::RepresentativeUpdateParams
+
+  class ResponseMetadata = Straddle::Models::ResponseMetadata
+
+  module ResponseType = Straddle::Models::ResponseType
+
+  class RevealedPaykey = Straddle::Models::RevealedPaykey
+
+  class RevealedPaykeyResponse = Straddle::Models::RevealedPaykeyResponse
+
+  module SimulatedCustomerOutcome = Straddle::Models::SimulatedCustomerOutcome
+
+  module SimulatedPaykeyOutcome = Straddle::Models::SimulatedPaykeyOutcome
+
+  module SimulatedPaymentOutcome = Straddle::Models::SimulatedPaymentOutcome
+
+  module SortOrder = Straddle::Models::SortOrder
+
+  class TermsOfService = Straddle::Models::TermsOfService
+
+  module TransferDirection = Straddle::Models::TransferDirection
+
+  class UnmaskedCharge = Straddle::Models::UnmaskedCharge
+
+  class UnmaskedChargeResponse = Straddle::Models::UnmaskedChargeResponse
+
+  module UnmaskedComplianceProfile = Straddle::Models::UnmaskedComplianceProfile
+
+  class UnmaskedCustomer = Straddle::Models::UnmaskedCustomer
+
+  class UnmaskedCustomerResponse = Straddle::Models::UnmaskedCustomerResponse
+
+  class UnmaskedLinkedBankAccount = Straddle::Models::UnmaskedLinkedBankAccount
+
+  class UnmaskedLinkedBankAccountDetails = Straddle::Models::UnmaskedLinkedBankAccountDetails
+
+  class UnmaskedLinkedBankAccountResponse = Straddle::Models::UnmaskedLinkedBankAccountResponse
+
+  class UnmaskedPaykey = Straddle::Models::UnmaskedPaykey
+
+  class UnmaskedPaykeyBankDetails = Straddle::Models::UnmaskedPaykeyBankDetails
+
+  class UnmaskedPaykeyResponse = Straddle::Models::UnmaskedPaykeyResponse
+
+  class UnmaskedPayout = Straddle::Models::UnmaskedPayout
+
+  class UnmaskedPayoutResponse = Straddle::Models::UnmaskedPayoutResponse
+
+  class UnmaskedRepresentative = Straddle::Models::UnmaskedRepresentative
+
+  class UnmaskedRepresentativeResponse = Straddle::Models::UnmaskedRepresentativeResponse
+
+  module UnwrapWebhookEvent = Straddle::Models::UnwrapWebhookEvent
+
+  class UserCreatedV1WebhookEvent = Straddle::Models::UserCreatedV1WebhookEvent
+
+  class UserEventV1WebhookEvent = Straddle::Models::UserEventV1WebhookEvent
+
+  class WebhookUnwrapParams = Straddle::Models::WebhookUnwrapParams
+end

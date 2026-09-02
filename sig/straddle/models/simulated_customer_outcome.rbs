@@ -1,0 +1,17 @@
+module Straddle
+  module Models
+    type simulated_customer_outcome =
+      :standard | :verified | :rejected | :review
+
+    module SimulatedCustomerOutcome
+      extend Straddle::Internal::Type::Enum
+
+      STANDARD: :standard
+      VERIFIED: :verified
+      REJECTED: :rejected
+      REVIEW: :review
+
+      def self?.values: -> ::Array[Straddle::Models::simulated_customer_outcome]
+    end
+  end
+end

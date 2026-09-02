@@ -1,0 +1,35 @@
+module Straddle
+  module Models
+    type account_created_v1_webhook_event =
+      {
+        account_id: String,
+        data: Straddle::Account,
+        event_id: String,
+        event_type: String
+      }
+
+    class AccountCreatedV1WebhookEvent < Straddle::Internal::Type::BaseModel
+      attr_accessor account_id: String
+
+      attr_accessor data: Straddle::Account
+
+      attr_accessor event_id: String
+
+      attr_accessor event_type: String
+
+      def initialize: (
+        account_id: String,
+        data: Straddle::Account,
+        event_id: String,
+        event_type: String
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        data: Straddle::Account,
+        event_id: String,
+        event_type: String
+      }
+    end
+  end
+end

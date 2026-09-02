@@ -1,0 +1,106 @@
+module Straddle
+  module Models
+    type funding_event =
+      {
+        id: String,
+        amount: Integer,
+        created_at: Time,
+        direction: Straddle::Models::funding_event_transfer_direction,
+        event_type: Straddle::Models::funding_event_type,
+        payment_count: Integer,
+        status_history: ::Array[Straddle::PaymentStatusHistory],
+        trace_ids: ::Hash[Symbol, String],
+        trace_numbers: ::Array[String],
+        transfer_date: Date,
+        updated_at: Time,
+        config: Straddle::FundingEventConfiguration,
+        linked_bank_account_details: Straddle::UnmaskedLinkedBankAccountDetails,
+        status: Straddle::Models::payment_status,
+        status_details: Straddle::PaymentStatusDetails
+      }
+
+    class FundingEvent < Straddle::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor amount: Integer
+
+      attr_accessor created_at: Time
+
+      attr_accessor direction: Straddle::Models::funding_event_transfer_direction
+
+      attr_accessor event_type: Straddle::Models::funding_event_type
+
+      attr_accessor payment_count: Integer
+
+      attr_accessor status_history: ::Array[Straddle::PaymentStatusHistory]
+
+      attr_accessor trace_ids: ::Hash[Symbol, String]
+
+      attr_accessor trace_numbers: ::Array[String]
+
+      attr_accessor transfer_date: Date
+
+      attr_accessor updated_at: Time
+
+      attr_reader config: Straddle::FundingEventConfiguration?
+
+      def config=: (
+        Straddle::FundingEventConfiguration
+      ) -> Straddle::FundingEventConfiguration
+
+      attr_reader linked_bank_account_details: Straddle::UnmaskedLinkedBankAccountDetails?
+
+      def linked_bank_account_details=: (
+        Straddle::UnmaskedLinkedBankAccountDetails
+      ) -> Straddle::UnmaskedLinkedBankAccountDetails
+
+      attr_reader status: Straddle::Models::payment_status?
+
+      def status=: (
+        Straddle::Models::payment_status
+      ) -> Straddle::Models::payment_status
+
+      attr_reader status_details: Straddle::PaymentStatusDetails?
+
+      def status_details=: (
+        Straddle::PaymentStatusDetails
+      ) -> Straddle::PaymentStatusDetails
+
+      def initialize: (
+        id: String,
+        amount: Integer,
+        created_at: Time,
+        direction: Straddle::Models::funding_event_transfer_direction,
+        event_type: Straddle::Models::funding_event_type,
+        payment_count: Integer,
+        status_history: ::Array[Straddle::PaymentStatusHistory],
+        trace_ids: ::Hash[Symbol, String],
+        trace_numbers: ::Array[String],
+        transfer_date: Date,
+        updated_at: Time,
+        ?config: Straddle::FundingEventConfiguration,
+        ?linked_bank_account_details: Straddle::UnmaskedLinkedBankAccountDetails,
+        ?status: Straddle::Models::payment_status,
+        ?status_details: Straddle::PaymentStatusDetails
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        amount: Integer,
+        created_at: Time,
+        direction: Straddle::Models::funding_event_transfer_direction,
+        event_type: Straddle::Models::funding_event_type,
+        payment_count: Integer,
+        status_history: ::Array[Straddle::PaymentStatusHistory],
+        trace_ids: ::Hash[Symbol, String],
+        trace_numbers: ::Array[String],
+        transfer_date: Date,
+        updated_at: Time,
+        config: Straddle::FundingEventConfiguration,
+        linked_bank_account_details: Straddle::UnmaskedLinkedBankAccountDetails,
+        status: Straddle::Models::payment_status,
+        status_details: Straddle::PaymentStatusDetails
+      }
+    end
+  end
+end

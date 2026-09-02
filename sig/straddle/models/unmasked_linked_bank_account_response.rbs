@@ -1,0 +1,43 @@
+module Straddle
+  module Models
+    type unmasked_linked_bank_account_response =
+      {
+        data: Straddle::UnmaskedLinkedBankAccount,
+        meta: Straddle::ResponseMetadata,
+        response_type: Straddle::Models::UnmaskedLinkedBankAccountResponse::response_type
+      }
+
+    class UnmaskedLinkedBankAccountResponse < Straddle::Internal::Type::BaseModel
+      attr_accessor data: Straddle::UnmaskedLinkedBankAccount
+
+      attr_accessor meta: Straddle::ResponseMetadata
+
+      attr_accessor response_type: Straddle::Models::UnmaskedLinkedBankAccountResponse::response_type
+
+      def initialize: (
+        data: Straddle::UnmaskedLinkedBankAccount,
+        meta: Straddle::ResponseMetadata,
+        response_type: Straddle::Models::UnmaskedLinkedBankAccountResponse::response_type
+      ) -> void
+
+      def to_hash: -> {
+        data: Straddle::UnmaskedLinkedBankAccount,
+        meta: Straddle::ResponseMetadata,
+        response_type: Straddle::Models::UnmaskedLinkedBankAccountResponse::response_type
+      }
+
+      type response_type = :object | :array | :error | :none
+
+      module ResponseType
+        extend Straddle::Internal::Type::Enum
+
+        OBJECT: :object
+        ARRAY: :array
+        ERROR: :error
+        NONE: :none
+
+        def self?.values: -> ::Array[Straddle::Models::UnmaskedLinkedBankAccountResponse::response_type]
+      end
+    end
+  end
+end

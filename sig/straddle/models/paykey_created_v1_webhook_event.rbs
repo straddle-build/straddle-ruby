@@ -1,0 +1,289 @@
+module Straddle
+  module Models
+    type paykey_created_v1_webhook_event =
+      {
+        account_id: String,
+        data: Straddle::PaykeyCreatedV1WebhookEvent::Data,
+        event_id: String,
+        event_type: String
+      }
+
+    class PaykeyCreatedV1WebhookEvent < Straddle::Internal::Type::BaseModel
+      attr_accessor account_id: String
+
+      attr_accessor data: Straddle::PaykeyCreatedV1WebhookEvent::Data
+
+      attr_accessor event_id: String
+
+      attr_accessor event_type: String
+
+      def initialize: (
+        account_id: String,
+        data: Straddle::PaykeyCreatedV1WebhookEvent::Data,
+        event_id: String,
+        event_type: String
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        data: Straddle::PaykeyCreatedV1WebhookEvent::Data,
+        event_id: String,
+        event_type: String
+      }
+
+      type data =
+        {
+          id: String,
+          created_at: Time,
+          label: String,
+          paykey: String,
+          source: Straddle::Models::paykey_source,
+          status: Straddle::Models::PaykeyCreatedV1WebhookEvent::Data::status,
+          updated_at: Time,
+          balance: Straddle::PaykeyCreatedV1WebhookEvent::Data::Balance,
+          bank_data: Straddle::PaykeyCreatedV1WebhookEvent::Data::BankData,
+          customer_id: String?,
+          expires_at: Time?,
+          institution_name: String?,
+          metadata: ::Hash[Symbol, String?]?,
+          status_details: Straddle::PaykeyCreatedV1WebhookEvent::Data::StatusDetails
+        }
+
+      class Data < Straddle::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor created_at: Time
+
+        attr_accessor label: String
+
+        attr_accessor paykey: String
+
+        attr_accessor source: Straddle::Models::paykey_source
+
+        attr_accessor status: Straddle::Models::PaykeyCreatedV1WebhookEvent::Data::status
+
+        attr_accessor updated_at: Time
+
+        attr_reader balance: Straddle::PaykeyCreatedV1WebhookEvent::Data::Balance?
+
+        def balance=: (
+          Straddle::PaykeyCreatedV1WebhookEvent::Data::Balance
+        ) -> Straddle::PaykeyCreatedV1WebhookEvent::Data::Balance
+
+        attr_reader bank_data: Straddle::PaykeyCreatedV1WebhookEvent::Data::BankData?
+
+        def bank_data=: (
+          Straddle::PaykeyCreatedV1WebhookEvent::Data::BankData
+        ) -> Straddle::PaykeyCreatedV1WebhookEvent::Data::BankData
+
+        attr_accessor customer_id: String?
+
+        attr_accessor expires_at: Time?
+
+        attr_accessor institution_name: String?
+
+        attr_accessor metadata: ::Hash[Symbol, String?]?
+
+        attr_reader status_details: Straddle::PaykeyCreatedV1WebhookEvent::Data::StatusDetails?
+
+        def status_details=: (
+          Straddle::PaykeyCreatedV1WebhookEvent::Data::StatusDetails
+        ) -> Straddle::PaykeyCreatedV1WebhookEvent::Data::StatusDetails
+
+        def initialize: (
+          id: String,
+          created_at: Time,
+          label: String,
+          paykey: String,
+          source: Straddle::Models::paykey_source,
+          status: Straddle::Models::PaykeyCreatedV1WebhookEvent::Data::status,
+          updated_at: Time,
+          ?balance: Straddle::PaykeyCreatedV1WebhookEvent::Data::Balance,
+          ?bank_data: Straddle::PaykeyCreatedV1WebhookEvent::Data::BankData,
+          ?customer_id: String?,
+          ?expires_at: Time?,
+          ?institution_name: String?,
+          ?metadata: ::Hash[Symbol, String?]?,
+          ?status_details: Straddle::PaykeyCreatedV1WebhookEvent::Data::StatusDetails
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          created_at: Time,
+          label: String,
+          paykey: String,
+          source: Straddle::Models::paykey_source,
+          status: Straddle::Models::PaykeyCreatedV1WebhookEvent::Data::status,
+          updated_at: Time,
+          balance: Straddle::PaykeyCreatedV1WebhookEvent::Data::Balance,
+          bank_data: Straddle::PaykeyCreatedV1WebhookEvent::Data::BankData,
+          customer_id: String?,
+          expires_at: Time?,
+          institution_name: String?,
+          metadata: ::Hash[Symbol, String?]?,
+          status_details: Straddle::PaykeyCreatedV1WebhookEvent::Data::StatusDetails
+        }
+
+        type status =
+          :pending | :active | :inactive | :rejected | :review | :blocked
+
+        module Status
+          extend Straddle::Internal::Type::Enum
+
+          PENDING: :pending
+          ACTIVE: :active
+          INACTIVE: :inactive
+          REJECTED: :rejected
+          REVIEW: :review
+          BLOCKED: :blocked
+
+          def self?.values: -> ::Array[Straddle::Models::PaykeyCreatedV1WebhookEvent::Data::status]
+        end
+
+        type balance =
+          {
+            status: Straddle::Models::paykey_balance_refresh_status,
+            account_balance: Float?,
+            updated_at: Time?
+          }
+
+        class Balance < Straddle::Internal::Type::BaseModel
+          attr_accessor status: Straddle::Models::paykey_balance_refresh_status
+
+          attr_accessor account_balance: Float?
+
+          attr_accessor updated_at: Time?
+
+          def initialize: (
+            status: Straddle::Models::paykey_balance_refresh_status,
+            ?account_balance: Float?,
+            ?updated_at: Time?
+          ) -> void
+
+          def to_hash: -> {
+            status: Straddle::Models::paykey_balance_refresh_status,
+            account_balance: Float?,
+            updated_at: Time?
+          }
+        end
+
+        type bank_data =
+          {
+            account_number: String,
+            account_type: Straddle::Models::account_type,
+            routing_number: String
+          }
+
+        class BankData < Straddle::Internal::Type::BaseModel
+          attr_accessor account_number: String
+
+          attr_accessor account_type: Straddle::Models::account_type
+
+          attr_accessor routing_number: String
+
+          def initialize: (
+            account_number: String,
+            account_type: Straddle::Models::account_type,
+            routing_number: String
+          ) -> void
+
+          def to_hash: -> {
+            account_number: String,
+            account_type: Straddle::Models::account_type,
+            routing_number: String
+          }
+        end
+
+        type status_details =
+          {
+            changed_at: Time,
+            code: String?,
+            message: String,
+            reason: Straddle::Models::PaykeyCreatedV1WebhookEvent::Data::StatusDetails::reason,
+            source: Straddle::Models::payment_status_source
+          }
+
+        class StatusDetails < Straddle::Internal::Type::BaseModel
+          attr_accessor changed_at: Time
+
+          attr_accessor code: String?
+
+          attr_accessor message: String
+
+          attr_accessor reason: Straddle::Models::PaykeyCreatedV1WebhookEvent::Data::StatusDetails::reason
+
+          attr_accessor source: Straddle::Models::payment_status_source
+
+          def initialize: (
+            changed_at: Time,
+            code: String?,
+            message: String,
+            reason: Straddle::Models::PaykeyCreatedV1WebhookEvent::Data::StatusDetails::reason,
+            source: Straddle::Models::payment_status_source
+          ) -> void
+
+          def to_hash: -> {
+            changed_at: Time,
+            code: String?,
+            message: String,
+            reason: Straddle::Models::PaykeyCreatedV1WebhookEvent::Data::StatusDetails::reason,
+            source: Straddle::Models::payment_status_source
+          }
+
+          type reason =
+            :insufficient_funds
+            | :closed_bank_account
+            | :invalid_bank_account
+            | :invalid_routing
+            | :disputed
+            | :payment_stopped
+            | :owner_deceased
+            | :frozen_bank_account
+            | :risk_review
+            | :fraudulent
+            | :duplicate_entry
+            | :invalid_paykey
+            | :payment_blocked
+            | :amount_too_large
+            | :too_many_attempts
+            | :internal_system_error
+            | :user_request
+            | :ok
+            | :other_network_return
+            | :payout_refused
+            | :validating
+            | :auto_hold
+
+          module Reason
+            extend Straddle::Internal::Type::Enum
+
+            INSUFFICIENT_FUNDS: :insufficient_funds
+            CLOSED_BANK_ACCOUNT: :closed_bank_account
+            INVALID_BANK_ACCOUNT: :invalid_bank_account
+            INVALID_ROUTING: :invalid_routing
+            DISPUTED: :disputed
+            PAYMENT_STOPPED: :payment_stopped
+            OWNER_DECEASED: :owner_deceased
+            FROZEN_BANK_ACCOUNT: :frozen_bank_account
+            RISK_REVIEW: :risk_review
+            FRAUDULENT: :fraudulent
+            DUPLICATE_ENTRY: :duplicate_entry
+            INVALID_PAYKEY: :invalid_paykey
+            PAYMENT_BLOCKED: :payment_blocked
+            AMOUNT_TOO_LARGE: :amount_too_large
+            TOO_MANY_ATTEMPTS: :too_many_attempts
+            INTERNAL_SYSTEM_ERROR: :internal_system_error
+            USER_REQUEST: :user_request
+            OK: :ok
+            OTHER_NETWORK_RETURN: :other_network_return
+            PAYOUT_REFUSED: :payout_refused
+            VALIDATING: :validating
+            AUTO_HOLD: :auto_hold
+
+            def self?.values: -> ::Array[Straddle::Models::PaykeyCreatedV1WebhookEvent::Data::StatusDetails::reason]
+          end
+        end
+      end
+    end
+  end
+end

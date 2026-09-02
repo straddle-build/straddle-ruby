@@ -1,0 +1,120 @@
+module Straddle
+  module Models
+    class CustomerKYCVerification = Customers::CustomerKYCVerification
+
+    module Customers
+      type customer_kyc_verification =
+        {
+          validations: Straddle::Customers::CustomerKYCVerification::Validations,
+          codes: ::Array[String]?,
+          decision: Straddle::Models::Customers::verification_decision
+        }
+
+      class CustomerKYCVerification < Straddle::Internal::Type::BaseModel
+        attr_accessor validations: Straddle::Customers::CustomerKYCVerification::Validations
+
+        attr_accessor codes: ::Array[String]?
+
+        attr_reader decision: Straddle::Models::Customers::verification_decision?
+
+        def decision=: (
+          Straddle::Models::Customers::verification_decision
+        ) -> Straddle::Models::Customers::verification_decision
+
+        def initialize: (
+          validations: Straddle::Customers::CustomerKYCVerification::Validations,
+          ?codes: ::Array[String]?,
+          ?decision: Straddle::Models::Customers::verification_decision
+        ) -> void
+
+        def to_hash: -> {
+          validations: Straddle::Customers::CustomerKYCVerification::Validations,
+          codes: ::Array[String]?,
+          decision: Straddle::Models::Customers::verification_decision
+        }
+
+        type validations =
+          {
+            address: bool,
+            city: bool,
+            dob: bool,
+            email: bool,
+            first_name: bool,
+            last_name: bool,
+            phone: bool,
+            ssn: bool,
+            state: bool,
+            zip: bool
+          }
+
+        class Validations < Straddle::Internal::Type::BaseModel
+          attr_reader address: bool?
+
+          def address=: (bool) -> bool
+
+          attr_reader city: bool?
+
+          def city=: (bool) -> bool
+
+          attr_reader dob: bool?
+
+          def dob=: (bool) -> bool
+
+          attr_reader email: bool?
+
+          def email=: (bool) -> bool
+
+          attr_reader first_name: bool?
+
+          def first_name=: (bool) -> bool
+
+          attr_reader last_name: bool?
+
+          def last_name=: (bool) -> bool
+
+          attr_reader phone: bool?
+
+          def phone=: (bool) -> bool
+
+          attr_reader ssn: bool?
+
+          def ssn=: (bool) -> bool
+
+          attr_reader state: bool?
+
+          def state=: (bool) -> bool
+
+          attr_reader zip: bool?
+
+          def zip=: (bool) -> bool
+
+          def initialize: (
+            ?address: bool,
+            ?city: bool,
+            ?dob: bool,
+            ?email: bool,
+            ?first_name: bool,
+            ?last_name: bool,
+            ?phone: bool,
+            ?ssn: bool,
+            ?state: bool,
+            ?zip: bool
+          ) -> void
+
+          def to_hash: -> {
+            address: bool,
+            city: bool,
+            dob: bool,
+            email: bool,
+            first_name: bool,
+            last_name: bool,
+            phone: bool,
+            ssn: bool,
+            state: bool,
+            zip: bool
+          }
+        end
+      end
+    end
+  end
+end

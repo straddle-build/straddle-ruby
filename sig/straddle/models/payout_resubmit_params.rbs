@@ -1,0 +1,69 @@
+module Straddle
+  module Models
+    type payout_resubmit_params =
+      {
+        id: String,
+        description: String?,
+        external_id: String?,
+        payment_date: Date?,
+        correlation_id: String,
+        idempotency_key: String,
+        request_id: String,
+        straddle_account_id: String
+      }
+      & Straddle::Internal::Type::request_parameters
+
+    class PayoutResubmitParams < Straddle::Internal::Type::BaseModel
+      extend Straddle::Internal::Type::RequestParameters::Converter
+      include Straddle::Internal::Type::RequestParameters
+
+      attr_accessor id: String
+
+      attr_accessor description: String?
+
+      attr_accessor external_id: String?
+
+      attr_accessor payment_date: Date?
+
+      attr_reader correlation_id: String?
+
+      def correlation_id=: (String) -> String
+
+      attr_reader idempotency_key: String?
+
+      def idempotency_key=: (String) -> String
+
+      attr_reader request_id: String?
+
+      def request_id=: (String) -> String
+
+      attr_reader straddle_account_id: String?
+
+      def straddle_account_id=: (String) -> String
+
+      def initialize: (
+        id: String,
+        ?description: String?,
+        ?external_id: String?,
+        ?payment_date: Date?,
+        ?correlation_id: String,
+        ?idempotency_key: String,
+        ?request_id: String,
+        ?straddle_account_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        description: String?,
+        external_id: String?,
+        payment_date: Date?,
+        correlation_id: String,
+        idempotency_key: String,
+        request_id: String,
+        straddle_account_id: String,
+        request_options: Straddle::RequestOptions
+      }
+    end
+  end
+end

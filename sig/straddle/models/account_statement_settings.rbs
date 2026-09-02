@@ -1,0 +1,30 @@
+module Straddle
+  module Models
+    type account_statement_settings =
+      {
+        company_id: String?,
+        company_name: String?,
+        default_descriptor: String?
+      }
+
+    class AccountStatementSettings < Straddle::Internal::Type::BaseModel
+      attr_accessor company_id: String?
+
+      attr_accessor company_name: String?
+
+      attr_accessor default_descriptor: String?
+
+      def initialize: (
+        ?company_id: String?,
+        ?company_name: String?,
+        ?default_descriptor: String?
+      ) -> void
+
+      def to_hash: -> {
+        company_id: String?,
+        company_name: String?,
+        default_descriptor: String?
+      }
+    end
+  end
+end

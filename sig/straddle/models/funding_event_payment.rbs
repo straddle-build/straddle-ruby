@@ -1,0 +1,86 @@
+module Straddle
+  module Models
+    type funding_event_payment =
+      {
+        id: String,
+        currency: String,
+        external_id: String,
+        funding_amount: Integer,
+        payment_amount: Integer,
+        payment_date: Date,
+        payment_type: Straddle::Models::payment_type,
+        reason: Straddle::Models::funding_event_payment_reason,
+        status: Straddle::Models::payment_status,
+        trace_ids: ::Hash[Symbol, String],
+        customer_details: Straddle::CustomerDetails,
+        metadata: ::Hash[Symbol, String]?,
+        paykey_details: Straddle::PaykeyDetails
+      }
+
+    class FundingEventPayment < Straddle::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor currency: String
+
+      attr_accessor external_id: String
+
+      attr_accessor funding_amount: Integer
+
+      attr_accessor payment_amount: Integer
+
+      attr_accessor payment_date: Date
+
+      attr_accessor payment_type: Straddle::Models::payment_type
+
+      attr_accessor reason: Straddle::Models::funding_event_payment_reason
+
+      attr_accessor status: Straddle::Models::payment_status
+
+      attr_accessor trace_ids: ::Hash[Symbol, String]
+
+      attr_reader customer_details: Straddle::CustomerDetails?
+
+      def customer_details=: (
+        Straddle::CustomerDetails
+      ) -> Straddle::CustomerDetails
+
+      attr_accessor metadata: ::Hash[Symbol, String]?
+
+      attr_reader paykey_details: Straddle::PaykeyDetails?
+
+      def paykey_details=: (Straddle::PaykeyDetails) -> Straddle::PaykeyDetails
+
+      def initialize: (
+        id: String,
+        currency: String,
+        external_id: String,
+        funding_amount: Integer,
+        payment_amount: Integer,
+        payment_date: Date,
+        payment_type: Straddle::Models::payment_type,
+        reason: Straddle::Models::funding_event_payment_reason,
+        status: Straddle::Models::payment_status,
+        trace_ids: ::Hash[Symbol, String],
+        ?customer_details: Straddle::CustomerDetails,
+        ?metadata: ::Hash[Symbol, String]?,
+        ?paykey_details: Straddle::PaykeyDetails
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        currency: String,
+        external_id: String,
+        funding_amount: Integer,
+        payment_amount: Integer,
+        payment_date: Date,
+        payment_type: Straddle::Models::payment_type,
+        reason: Straddle::Models::funding_event_payment_reason,
+        status: Straddle::Models::payment_status,
+        trace_ids: ::Hash[Symbol, String],
+        customer_details: Straddle::CustomerDetails,
+        metadata: ::Hash[Symbol, String]?,
+        paykey_details: Straddle::PaykeyDetails
+      }
+    end
+  end
+end

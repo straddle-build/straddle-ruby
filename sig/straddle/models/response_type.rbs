@@ -1,0 +1,16 @@
+module Straddle
+  module Models
+    type response_type = :object | :array | :error | :none
+
+    module ResponseType
+      extend Straddle::Internal::Type::Enum
+
+      OBJECT: :object
+      ARRAY: :array
+      ERROR: :error
+      NONE: :none
+
+      def self?.values: -> ::Array[Straddle::Models::response_type]
+    end
+  end
+end

@@ -1,0 +1,144 @@
+module Straddle
+  module Models
+    type funding_event_list_params =
+      {
+        created_from: Date?,
+        created_to: Date?,
+        direction: Straddle::Models::transfer_direction,
+        event_type: Straddle::Models::funding_event_type,
+        page_number: Integer,
+        page_size: Integer,
+        search_text: String?,
+        sort_by: Straddle::Models::FundingEventListParams::sort_by,
+        sort_order: Straddle::Models::sort_order,
+        status: ::Array[Straddle::Models::payment_status]?,
+        status_reason: ::Array[Straddle::Models::payment_status_reason]?,
+        status_source: ::Array[Straddle::Models::payment_status_source]?,
+        trace_id: String?,
+        trace_number: String?,
+        correlation_id: String,
+        request_id: String,
+        straddle_account_id: String
+      }
+      & Straddle::Internal::Type::request_parameters
+
+    class FundingEventListParams < Straddle::Internal::Type::BaseModel
+      extend Straddle::Internal::Type::RequestParameters::Converter
+      include Straddle::Internal::Type::RequestParameters
+
+      attr_accessor created_from: Date?
+
+      attr_accessor created_to: Date?
+
+      attr_reader direction: Straddle::Models::transfer_direction?
+
+      def direction=: (
+        Straddle::Models::transfer_direction
+      ) -> Straddle::Models::transfer_direction
+
+      attr_reader event_type: Straddle::Models::funding_event_type?
+
+      def event_type=: (
+        Straddle::Models::funding_event_type
+      ) -> Straddle::Models::funding_event_type
+
+      attr_reader page_number: Integer?
+
+      def page_number=: (Integer) -> Integer
+
+      attr_reader page_size: Integer?
+
+      def page_size=: (Integer) -> Integer
+
+      attr_accessor search_text: String?
+
+      attr_reader sort_by: Straddle::Models::FundingEventListParams::sort_by?
+
+      def sort_by=: (
+        Straddle::Models::FundingEventListParams::sort_by
+      ) -> Straddle::Models::FundingEventListParams::sort_by
+
+      attr_reader sort_order: Straddle::Models::sort_order?
+
+      def sort_order=: (
+        Straddle::Models::sort_order
+      ) -> Straddle::Models::sort_order
+
+      attr_accessor status: ::Array[Straddle::Models::payment_status]?
+
+      attr_accessor status_reason: ::Array[Straddle::Models::payment_status_reason]?
+
+      attr_accessor status_source: ::Array[Straddle::Models::payment_status_source]?
+
+      attr_accessor trace_id: String?
+
+      attr_accessor trace_number: String?
+
+      attr_reader correlation_id: String?
+
+      def correlation_id=: (String) -> String
+
+      attr_reader request_id: String?
+
+      def request_id=: (String) -> String
+
+      attr_reader straddle_account_id: String?
+
+      def straddle_account_id=: (String) -> String
+
+      def initialize: (
+        ?created_from: Date?,
+        ?created_to: Date?,
+        ?direction: Straddle::Models::transfer_direction,
+        ?event_type: Straddle::Models::funding_event_type,
+        ?page_number: Integer,
+        ?page_size: Integer,
+        ?search_text: String?,
+        ?sort_by: Straddle::Models::FundingEventListParams::sort_by,
+        ?sort_order: Straddle::Models::sort_order,
+        ?status: ::Array[Straddle::Models::payment_status]?,
+        ?status_reason: ::Array[Straddle::Models::payment_status_reason]?,
+        ?status_source: ::Array[Straddle::Models::payment_status_source]?,
+        ?trace_id: String?,
+        ?trace_number: String?,
+        ?correlation_id: String,
+        ?request_id: String,
+        ?straddle_account_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        created_from: Date?,
+        created_to: Date?,
+        direction: Straddle::Models::transfer_direction,
+        event_type: Straddle::Models::funding_event_type,
+        page_number: Integer,
+        page_size: Integer,
+        search_text: String?,
+        sort_by: Straddle::Models::FundingEventListParams::sort_by,
+        sort_order: Straddle::Models::sort_order,
+        status: ::Array[Straddle::Models::payment_status]?,
+        status_reason: ::Array[Straddle::Models::payment_status_reason]?,
+        status_source: ::Array[Straddle::Models::payment_status_source]?,
+        trace_id: String?,
+        trace_number: String?,
+        correlation_id: String,
+        request_id: String,
+        straddle_account_id: String,
+        request_options: Straddle::RequestOptions
+      }
+
+      type sort_by = :transfer_date | :id | :amount
+
+      module SortBy
+        extend Straddle::Internal::Type::Enum
+
+        TRANSFER_DATE: :transfer_date
+        ID: :id
+        AMOUNT: :amount
+
+        def self?.values: -> ::Array[Straddle::Models::FundingEventListParams::sort_by]
+      end
+    end
+  end
+end

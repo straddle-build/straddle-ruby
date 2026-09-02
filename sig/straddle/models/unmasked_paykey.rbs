@@ -1,0 +1,107 @@
+module Straddle
+  module Models
+    type unmasked_paykey =
+      {
+        id: String,
+        config: Straddle::PaykeyConfiguration,
+        created_at: Time,
+        label: String,
+        paykey: String,
+        source: Straddle::Models::paykey_source,
+        status: Straddle::Models::paykey_status,
+        updated_at: Time,
+        balance: Straddle::PaykeyBalanceDetails,
+        bank_data: Straddle::UnmaskedPaykeyBankDetails,
+        customer_id: String?,
+        expires_at: Time?,
+        external_id: String?,
+        institution_name: String?,
+        metadata: ::Hash[Symbol, String]?,
+        status_details: Straddle::PaymentStatusDetails
+      }
+
+    class UnmaskedPaykey < Straddle::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor config: Straddle::PaykeyConfiguration
+
+      attr_accessor created_at: Time
+
+      attr_accessor label: String
+
+      attr_accessor paykey: String
+
+      attr_accessor source: Straddle::Models::paykey_source
+
+      attr_accessor status: Straddle::Models::paykey_status
+
+      attr_accessor updated_at: Time
+
+      attr_reader balance: Straddle::PaykeyBalanceDetails?
+
+      def balance=: (
+        Straddle::PaykeyBalanceDetails
+      ) -> Straddle::PaykeyBalanceDetails
+
+      attr_reader bank_data: Straddle::UnmaskedPaykeyBankDetails?
+
+      def bank_data=: (
+        Straddle::UnmaskedPaykeyBankDetails
+      ) -> Straddle::UnmaskedPaykeyBankDetails
+
+      attr_accessor customer_id: String?
+
+      attr_accessor expires_at: Time?
+
+      attr_accessor external_id: String?
+
+      attr_accessor institution_name: String?
+
+      attr_accessor metadata: ::Hash[Symbol, String]?
+
+      attr_reader status_details: Straddle::PaymentStatusDetails?
+
+      def status_details=: (
+        Straddle::PaymentStatusDetails
+      ) -> Straddle::PaymentStatusDetails
+
+      def initialize: (
+        id: String,
+        config: Straddle::PaykeyConfiguration,
+        created_at: Time,
+        label: String,
+        paykey: String,
+        source: Straddle::Models::paykey_source,
+        status: Straddle::Models::paykey_status,
+        updated_at: Time,
+        ?balance: Straddle::PaykeyBalanceDetails,
+        ?bank_data: Straddle::UnmaskedPaykeyBankDetails,
+        ?customer_id: String?,
+        ?expires_at: Time?,
+        ?external_id: String?,
+        ?institution_name: String?,
+        ?metadata: ::Hash[Symbol, String]?,
+        ?status_details: Straddle::PaymentStatusDetails
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        config: Straddle::PaykeyConfiguration,
+        created_at: Time,
+        label: String,
+        paykey: String,
+        source: Straddle::Models::paykey_source,
+        status: Straddle::Models::paykey_status,
+        updated_at: Time,
+        balance: Straddle::PaykeyBalanceDetails,
+        bank_data: Straddle::UnmaskedPaykeyBankDetails,
+        customer_id: String?,
+        expires_at: Time?,
+        external_id: String?,
+        institution_name: String?,
+        metadata: ::Hash[Symbol, String]?,
+        status_details: Straddle::PaymentStatusDetails
+      }
+    end
+  end
+end

@@ -1,0 +1,30 @@
+module Straddle
+  module Models
+    type unmasked_charge_response =
+      {
+        data: Straddle::UnmaskedCharge,
+        meta: Straddle::ResponseMetadata,
+        response_type: Straddle::Models::response_type
+      }
+
+    class UnmaskedChargeResponse < Straddle::Internal::Type::BaseModel
+      attr_accessor data: Straddle::UnmaskedCharge
+
+      attr_accessor meta: Straddle::ResponseMetadata
+
+      attr_accessor response_type: Straddle::Models::response_type
+
+      def initialize: (
+        data: Straddle::UnmaskedCharge,
+        meta: Straddle::ResponseMetadata,
+        response_type: Straddle::Models::response_type
+      ) -> void
+
+      def to_hash: -> {
+        data: Straddle::UnmaskedCharge,
+        meta: Straddle::ResponseMetadata,
+        response_type: Straddle::Models::response_type
+      }
+    end
+  end
+end

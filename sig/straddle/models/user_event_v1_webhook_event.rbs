@@ -1,0 +1,223 @@
+module Straddle
+  module Models
+    type user_event_v1_webhook_event =
+      {
+        account_id: String,
+        data: Straddle::UserEventV1WebhookEvent::Data,
+        event_id: String,
+        event_type: String
+      }
+
+    class UserEventV1WebhookEvent < Straddle::Internal::Type::BaseModel
+      attr_accessor account_id: String
+
+      attr_accessor data: Straddle::UserEventV1WebhookEvent::Data
+
+      attr_accessor event_id: String
+
+      attr_accessor event_type: String
+
+      def initialize: (
+        account_id: String,
+        data: Straddle::UserEventV1WebhookEvent::Data,
+        event_id: String,
+        event_type: String
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        data: Straddle::UserEventV1WebhookEvent::Data,
+        event_id: String,
+        event_type: String
+      }
+
+      type data =
+        {
+          id: String,
+          created_at: Time,
+          email: String,
+          first_name: String,
+          last_name: String,
+          level: Straddle::Models::UserEventV1WebhookEvent::Data::level,
+          memberships: ::Array[Straddle::UserEventV1WebhookEvent::Data::Membership],
+          roles: ::Array[Straddle::Models::UserEventV1WebhookEvent::Data::role],
+          status: Straddle::Models::UserEventV1WebhookEvent::Data::status,
+          updated_at: Time,
+          authenticator_id: String?,
+          organization_id: String?,
+          platform_id: String?
+        }
+
+      class Data < Straddle::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor created_at: Time
+
+        attr_accessor email: String
+
+        attr_accessor first_name: String
+
+        attr_accessor last_name: String
+
+        attr_accessor level: Straddle::Models::UserEventV1WebhookEvent::Data::level
+
+        attr_accessor memberships: ::Array[Straddle::UserEventV1WebhookEvent::Data::Membership]
+
+        attr_accessor roles: ::Array[Straddle::Models::UserEventV1WebhookEvent::Data::role]
+
+        attr_accessor status: Straddle::Models::UserEventV1WebhookEvent::Data::status
+
+        attr_accessor updated_at: Time
+
+        attr_accessor authenticator_id: String?
+
+        attr_accessor organization_id: String?
+
+        attr_accessor platform_id: String?
+
+        def initialize: (
+          id: String,
+          created_at: Time,
+          email: String,
+          first_name: String,
+          last_name: String,
+          level: Straddle::Models::UserEventV1WebhookEvent::Data::level,
+          memberships: ::Array[Straddle::UserEventV1WebhookEvent::Data::Membership],
+          roles: ::Array[Straddle::Models::UserEventV1WebhookEvent::Data::role],
+          status: Straddle::Models::UserEventV1WebhookEvent::Data::status,
+          updated_at: Time,
+          ?authenticator_id: String?,
+          ?organization_id: String?,
+          ?platform_id: String?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          created_at: Time,
+          email: String,
+          first_name: String,
+          last_name: String,
+          level: Straddle::Models::UserEventV1WebhookEvent::Data::level,
+          memberships: ::Array[Straddle::UserEventV1WebhookEvent::Data::Membership],
+          roles: ::Array[Straddle::Models::UserEventV1WebhookEvent::Data::role],
+          status: Straddle::Models::UserEventV1WebhookEvent::Data::status,
+          updated_at: Time,
+          authenticator_id: String?,
+          organization_id: String?,
+          platform_id: String?
+        }
+
+        type level = :none | :onboarding | :straddle | :platform | :organization
+
+        module Level
+          extend Straddle::Internal::Type::Enum
+
+          NONE: :none
+          ONBOARDING: :onboarding
+          STRADDLE: :straddle
+          PLATFORM: :platform
+          ORGANIZATION: :organization
+
+          def self?.values: -> ::Array[Straddle::Models::UserEventV1WebhookEvent::Data::level]
+        end
+
+        type membership =
+          {
+            authenticator_organization_id: String,
+            entity_name: String,
+            level: Straddle::Models::UserEventV1WebhookEvent::Data::Membership::level,
+            roles: ::Array[Straddle::Models::UserEventV1WebhookEvent::Data::Membership::role],
+            entity_id: String?
+          }
+
+        class Membership < Straddle::Internal::Type::BaseModel
+          attr_accessor authenticator_organization_id: String
+
+          attr_accessor entity_name: String
+
+          attr_accessor level: Straddle::Models::UserEventV1WebhookEvent::Data::Membership::level
+
+          attr_accessor roles: ::Array[Straddle::Models::UserEventV1WebhookEvent::Data::Membership::role]
+
+          attr_accessor entity_id: String?
+
+          def initialize: (
+            authenticator_organization_id: String,
+            entity_name: String,
+            level: Straddle::Models::UserEventV1WebhookEvent::Data::Membership::level,
+            roles: ::Array[Straddle::Models::UserEventV1WebhookEvent::Data::Membership::role],
+            ?entity_id: String?
+          ) -> void
+
+          def to_hash: -> {
+            authenticator_organization_id: String,
+            entity_name: String,
+            level: Straddle::Models::UserEventV1WebhookEvent::Data::Membership::level,
+            roles: ::Array[Straddle::Models::UserEventV1WebhookEvent::Data::Membership::role],
+            entity_id: String?
+          }
+
+          type level =
+            :none
+            | :onboarding
+            | :account
+            | :organization
+            | :platform
+            | :straddle
+
+          module Level
+            extend Straddle::Internal::Type::Enum
+
+            NONE: :none
+            ONBOARDING: :onboarding
+            ACCOUNT: :account
+            ORGANIZATION: :organization
+            PLATFORM: :platform
+            STRADDLE: :straddle
+
+            def self?.values: -> ::Array[Straddle::Models::UserEventV1WebhookEvent::Data::Membership::level]
+          end
+
+          type role = :none | :member | :developer | :admin
+
+          module Role
+            extend Straddle::Internal::Type::Enum
+
+            NONE: :none
+            MEMBER: :member
+            DEVELOPER: :developer
+            ADMIN: :admin
+
+            def self?.values: -> ::Array[Straddle::Models::UserEventV1WebhookEvent::Data::Membership::role]
+          end
+        end
+
+        type role = :none | :member | :developer | :admin
+
+        module Role
+          extend Straddle::Internal::Type::Enum
+
+          NONE: :none
+          MEMBER: :member
+          DEVELOPER: :developer
+          ADMIN: :admin
+
+          def self?.values: -> ::Array[Straddle::Models::UserEventV1WebhookEvent::Data::role]
+        end
+
+        type status = :invited | :active | :onboarding | :inactive
+
+        module Status
+          extend Straddle::Internal::Type::Enum
+
+          INVITED: :invited
+          ACTIVE: :active
+          ONBOARDING: :onboarding
+          INACTIVE: :inactive
+
+          def self?.values: -> ::Array[Straddle::Models::UserEventV1WebhookEvent::Data::status]
+        end
+      end
+    end
+  end
+end

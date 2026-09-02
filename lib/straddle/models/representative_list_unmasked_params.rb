@@ -1,0 +1,37 @@
+# frozen_string_literal: true
+
+module Straddle
+  module Models
+    # @see Straddle::Resources::Representatives#list_unmasked
+    class RepresentativeListUnmaskedParams < Straddle::Internal::Type::BaseModel
+      extend Straddle::Internal::Type::RequestParameters::Converter
+      include Straddle::Internal::Type::RequestParameters
+
+      # @!attribute representative_id
+      #
+      #   @return [String]
+      required :representative_id, String
+
+      # @!attribute correlation_id
+      #   Optional client-generated identifier for tracing a series of related requests.
+      #
+      #   @return [String, nil]
+      optional :correlation_id, String
+
+      # @!attribute request_id
+      #   Optional client-generated identifier for tracing one request.
+      #
+      #   @return [String, nil]
+      optional :request_id, String
+
+      # @!method initialize(representative_id:, correlation_id: nil, request_id: nil, request_options: {})
+      #   @param representative_id [String]
+      #
+      #   @param correlation_id [String] Optional client-generated identifier for tracing a series of related requests.
+      #
+      #   @param request_id [String] Optional client-generated identifier for tracing one request.
+      #
+      #   @param request_options [Straddle::RequestOptions, Hash{Symbol=>Object}]
+    end
+  end
+end

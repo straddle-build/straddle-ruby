@@ -1,0 +1,71 @@
+module Straddle
+  module Models
+    type account_business_profile =
+      {
+        name: String,
+        website: String,
+        address: Straddle::AccountAddress?,
+        description: String?,
+        industry: Straddle::AccountIndustry,
+        legal_name: String?,
+        phone: String?,
+        support_channels: Straddle::AccountSupportChannels,
+        tax_id: String?,
+        use_case: String?
+      }
+
+    class AccountBusinessProfile < Straddle::Internal::Type::BaseModel
+      attr_accessor name: String
+
+      attr_accessor website: String
+
+      attr_accessor address: Straddle::AccountAddress?
+
+      attr_accessor description: String?
+
+      attr_reader industry: Straddle::AccountIndustry?
+
+      def industry=: (Straddle::AccountIndustry) -> Straddle::AccountIndustry
+
+      attr_accessor legal_name: String?
+
+      attr_accessor phone: String?
+
+      attr_reader support_channels: Straddle::AccountSupportChannels?
+
+      def support_channels=: (
+        Straddle::AccountSupportChannels
+      ) -> Straddle::AccountSupportChannels
+
+      attr_accessor tax_id: String?
+
+      attr_accessor use_case: String?
+
+      def initialize: (
+        name: String,
+        website: String,
+        ?address: Straddle::AccountAddress?,
+        ?description: String?,
+        ?industry: Straddle::AccountIndustry,
+        ?legal_name: String?,
+        ?phone: String?,
+        ?support_channels: Straddle::AccountSupportChannels,
+        ?tax_id: String?,
+        ?use_case: String?
+      ) -> void
+
+      def to_hash: -> {
+        name: String,
+        website: String,
+        address: Straddle::AccountAddress?,
+        description: String?,
+        industry: Straddle::AccountIndustry,
+        legal_name: String?,
+        phone: String?,
+        support_channels: Straddle::AccountSupportChannels,
+        tax_id: String?,
+        use_case: String?
+      }
+    end
+  end
+end

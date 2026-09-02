@@ -1,0 +1,35 @@
+module Straddle
+  module Models
+    type account_policy_controls =
+      {
+        allow_customer_identity_skip: bool,
+        allow_data_unmask: bool,
+        allow_duplicate_email: bool,
+        allow_paykey_verification_skip: bool
+      }
+
+    class AccountPolicyControls < Straddle::Internal::Type::BaseModel
+      attr_accessor allow_customer_identity_skip: bool
+
+      attr_accessor allow_data_unmask: bool
+
+      attr_accessor allow_duplicate_email: bool
+
+      attr_accessor allow_paykey_verification_skip: bool
+
+      def initialize: (
+        allow_customer_identity_skip: bool,
+        allow_data_unmask: bool,
+        allow_duplicate_email: bool,
+        allow_paykey_verification_skip: bool
+      ) -> void
+
+      def to_hash: -> {
+        allow_customer_identity_skip: bool,
+        allow_data_unmask: bool,
+        allow_duplicate_email: bool,
+        allow_paykey_verification_skip: bool
+      }
+    end
+  end
+end

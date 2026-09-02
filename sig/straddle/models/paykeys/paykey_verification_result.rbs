@@ -1,0 +1,19 @@
+module Straddle
+  module Models
+    module PaykeyVerificationResult = Paykeys::PaykeyVerificationResult
+
+    module Paykeys
+      type paykey_verification_result = :accept | :reject | :review
+
+      module PaykeyVerificationResult
+        extend Straddle::Internal::Type::Enum
+
+        ACCEPT: :accept
+        REJECT: :reject
+        REVIEW: :review
+
+        def self?.values: -> ::Array[Straddle::Models::Paykeys::paykey_verification_result]
+      end
+    end
+  end
+end

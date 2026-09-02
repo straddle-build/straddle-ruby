@@ -1,0 +1,14 @@
+module Straddle
+  module Models
+    type funding_event_transfer_direction = :deposit | :withdrawal
+
+    module FundingEventTransferDirection
+      extend Straddle::Internal::Type::Enum
+
+      DEPOSIT: :deposit
+      WITHDRAWAL: :withdrawal
+
+      def self?.values: -> ::Array[Straddle::Models::funding_event_transfer_direction]
+    end
+  end
+end

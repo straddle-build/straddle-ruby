@@ -1,0 +1,327 @@
+module Straddle
+  module Models
+    type platform_created_v1_webhook_event =
+      {
+        account_id: String,
+        data: Straddle::PlatformCreatedV1WebhookEvent::Data,
+        event_id: String,
+        event_type: String
+      }
+
+    class PlatformCreatedV1WebhookEvent < Straddle::Internal::Type::BaseModel
+      attr_accessor account_id: String
+
+      attr_accessor data: Straddle::PlatformCreatedV1WebhookEvent::Data
+
+      attr_accessor event_id: String
+
+      attr_accessor event_type: String
+
+      def initialize: (
+        account_id: String,
+        data: Straddle::PlatformCreatedV1WebhookEvent::Data,
+        event_id: String,
+        event_type: String
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        data: Straddle::PlatformCreatedV1WebhookEvent::Data,
+        event_id: String,
+        event_type: String
+      }
+
+      type data =
+        {
+          id: String,
+          status: Straddle::Models::PlatformCreatedV1WebhookEvent::Data::status,
+          status_detail: Straddle::PlatformCreatedV1WebhookEvent::Data::StatusDetail,
+          business_profile: Straddle::PlatformCreatedV1WebhookEvent::Data::BusinessProfile,
+          created_at: Time?,
+          external_id: String?,
+          metadata: ::Hash[Symbol, String?]?,
+          updated_at: Time?
+        }
+
+      class Data < Straddle::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor status: Straddle::Models::PlatformCreatedV1WebhookEvent::Data::status
+
+        attr_accessor status_detail: Straddle::PlatformCreatedV1WebhookEvent::Data::StatusDetail
+
+        attr_reader business_profile: Straddle::PlatformCreatedV1WebhookEvent::Data::BusinessProfile?
+
+        def business_profile=: (
+          Straddle::PlatformCreatedV1WebhookEvent::Data::BusinessProfile
+        ) -> Straddle::PlatformCreatedV1WebhookEvent::Data::BusinessProfile
+
+        attr_accessor created_at: Time?
+
+        attr_accessor external_id: String?
+
+        attr_accessor metadata: ::Hash[Symbol, String?]?
+
+        attr_accessor updated_at: Time?
+
+        def initialize: (
+          id: String,
+          status: Straddle::Models::PlatformCreatedV1WebhookEvent::Data::status,
+          status_detail: Straddle::PlatformCreatedV1WebhookEvent::Data::StatusDetail,
+          ?business_profile: Straddle::PlatformCreatedV1WebhookEvent::Data::BusinessProfile,
+          ?created_at: Time?,
+          ?external_id: String?,
+          ?metadata: ::Hash[Symbol, String?]?,
+          ?updated_at: Time?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          status: Straddle::Models::PlatformCreatedV1WebhookEvent::Data::status,
+          status_detail: Straddle::PlatformCreatedV1WebhookEvent::Data::StatusDetail,
+          business_profile: Straddle::PlatformCreatedV1WebhookEvent::Data::BusinessProfile,
+          created_at: Time?,
+          external_id: String?,
+          metadata: ::Hash[Symbol, String?]?,
+          updated_at: Time?
+        }
+
+        type status = :created | :onboarding | :active | :rejected | :inactive
+
+        module Status
+          extend Straddle::Internal::Type::Enum
+
+          CREATED: :created
+          ONBOARDING: :onboarding
+          ACTIVE: :active
+          REJECTED: :rejected
+          INACTIVE: :inactive
+
+          def self?.values: -> ::Array[Straddle::Models::PlatformCreatedV1WebhookEvent::Data::status]
+        end
+
+        type status_detail =
+          {
+            code: String,
+            message: String,
+            reason: Straddle::Models::PlatformCreatedV1WebhookEvent::Data::StatusDetail::reason,
+            source: Straddle::Models::PlatformCreatedV1WebhookEvent::Data::StatusDetail::source
+          }
+
+        class StatusDetail < Straddle::Internal::Type::BaseModel
+          attr_accessor code: String
+
+          attr_accessor message: String
+
+          attr_accessor reason: Straddle::Models::PlatformCreatedV1WebhookEvent::Data::StatusDetail::reason
+
+          attr_accessor source: Straddle::Models::PlatformCreatedV1WebhookEvent::Data::StatusDetail::source
+
+          def initialize: (
+            code: String,
+            message: String,
+            reason: Straddle::Models::PlatformCreatedV1WebhookEvent::Data::StatusDetail::reason,
+            source: Straddle::Models::PlatformCreatedV1WebhookEvent::Data::StatusDetail::source
+          ) -> void
+
+          def to_hash: -> {
+            code: String,
+            message: String,
+            reason: Straddle::Models::PlatformCreatedV1WebhookEvent::Data::StatusDetail::reason,
+            source: Straddle::Models::PlatformCreatedV1WebhookEvent::Data::StatusDetail::source
+          }
+
+          type reason =
+            :unverified
+            | :new
+            | :in_review
+            | :pending
+            | :stuck
+            | :verified
+            | :failed_verification
+            | :disabled
+            | :terminated
+
+          module Reason
+            extend Straddle::Internal::Type::Enum
+
+            UNVERIFIED: :unverified
+            NEW: :new
+            IN_REVIEW: :in_review
+            PENDING: :pending
+            STUCK: :stuck
+            VERIFIED: :verified
+            FAILED_VERIFICATION: :failed_verification
+            DISABLED: :disabled
+            TERMINATED: :terminated
+
+            def self?.values: -> ::Array[Straddle::Models::PlatformCreatedV1WebhookEvent::Data::StatusDetail::reason]
+          end
+
+          type source = :watchtower
+
+          module Source
+            extend Straddle::Internal::Type::Enum
+
+            WATCHTOWER: :watchtower
+
+            def self?.values: -> ::Array[Straddle::Models::PlatformCreatedV1WebhookEvent::Data::StatusDetail::source]
+          end
+        end
+
+        type business_profile =
+          {
+            name: String,
+            website: String,
+            address: Straddle::PlatformCreatedV1WebhookEvent::Data::BusinessProfile::Address,
+            description: String?,
+            industry: Straddle::PlatformCreatedV1WebhookEvent::Data::BusinessProfile::Industry,
+            legal_name: String?,
+            phone: String?,
+            support_channels: Straddle::PlatformCreatedV1WebhookEvent::Data::BusinessProfile::SupportChannels,
+            tax_id: String?,
+            use_case: String?
+          }
+
+        class BusinessProfile < Straddle::Internal::Type::BaseModel
+          attr_accessor name: String
+
+          attr_accessor website: String
+
+          attr_reader address: Straddle::PlatformCreatedV1WebhookEvent::Data::BusinessProfile::Address?
+
+          def address=: (
+            Straddle::PlatformCreatedV1WebhookEvent::Data::BusinessProfile::Address
+          ) -> Straddle::PlatformCreatedV1WebhookEvent::Data::BusinessProfile::Address
+
+          attr_accessor description: String?
+
+          attr_reader industry: Straddle::PlatformCreatedV1WebhookEvent::Data::BusinessProfile::Industry?
+
+          def industry=: (
+            Straddle::PlatformCreatedV1WebhookEvent::Data::BusinessProfile::Industry
+          ) -> Straddle::PlatformCreatedV1WebhookEvent::Data::BusinessProfile::Industry
+
+          attr_accessor legal_name: String?
+
+          attr_accessor phone: String?
+
+          attr_reader support_channels: Straddle::PlatformCreatedV1WebhookEvent::Data::BusinessProfile::SupportChannels?
+
+          def support_channels=: (
+            Straddle::PlatformCreatedV1WebhookEvent::Data::BusinessProfile::SupportChannels
+          ) -> Straddle::PlatformCreatedV1WebhookEvent::Data::BusinessProfile::SupportChannels
+
+          attr_accessor tax_id: String?
+
+          attr_accessor use_case: String?
+
+          def initialize: (
+            name: String,
+            website: String,
+            ?address: Straddle::PlatformCreatedV1WebhookEvent::Data::BusinessProfile::Address,
+            ?description: String?,
+            ?industry: Straddle::PlatformCreatedV1WebhookEvent::Data::BusinessProfile::Industry,
+            ?legal_name: String?,
+            ?phone: String?,
+            ?support_channels: Straddle::PlatformCreatedV1WebhookEvent::Data::BusinessProfile::SupportChannels,
+            ?tax_id: String?,
+            ?use_case: String?
+          ) -> void
+
+          def to_hash: -> {
+            name: String,
+            website: String,
+            address: Straddle::PlatformCreatedV1WebhookEvent::Data::BusinessProfile::Address,
+            description: String?,
+            industry: Straddle::PlatformCreatedV1WebhookEvent::Data::BusinessProfile::Industry,
+            legal_name: String?,
+            phone: String?,
+            support_channels: Straddle::PlatformCreatedV1WebhookEvent::Data::BusinessProfile::SupportChannels,
+            tax_id: String?,
+            use_case: String?
+          }
+
+          type address =
+            {
+              city: String?,
+              country: String?,
+              :line1 => String?,
+              :line2 => String?,
+              postal_code: String?,
+              state: String?
+            }
+
+          class Address < Straddle::Internal::Type::BaseModel
+            attr_accessor city: String?
+
+            attr_accessor country: String?
+
+            attr_accessor line1: String?
+
+            attr_accessor line2: String?
+
+            attr_accessor postal_code: String?
+
+            attr_accessor state: String?
+
+            def initialize: (
+              ?city: String?,
+              ?country: String?,
+              ?line1: String?,
+              ?line2: String?,
+              ?postal_code: String?,
+              ?state: String?
+            ) -> void
+
+            def to_hash: -> {
+              city: String?,
+              country: String?,
+              :line1 => String?,
+              :line2 => String?,
+              postal_code: String?,
+              state: String?
+            }
+          end
+
+          type industry = { category: String?, mcc: String?, sector: String? }
+
+          class Industry < Straddle::Internal::Type::BaseModel
+            attr_accessor category: String?
+
+            attr_accessor mcc: String?
+
+            attr_accessor sector: String?
+
+            def initialize: (
+              ?category: String?,
+              ?mcc: String?,
+              ?sector: String?
+            ) -> void
+
+            def to_hash: -> { category: String?, mcc: String?, sector: String? }
+          end
+
+          type support_channels =
+            { email: String?, phone: String?, url: String? }
+
+          class SupportChannels < Straddle::Internal::Type::BaseModel
+            attr_accessor email: String?
+
+            attr_accessor phone: String?
+
+            attr_accessor url: String?
+
+            def initialize: (
+              ?email: String?,
+              ?phone: String?,
+              ?url: String?
+            ) -> void
+
+            def to_hash: -> { email: String?, phone: String?, url: String? }
+          end
+        end
+      end
+    end
+  end
+end

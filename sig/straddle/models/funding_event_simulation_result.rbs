@@ -1,0 +1,13 @@
+module Straddle
+  module Models
+    type funding_event_simulation_result = { id: String }
+
+    class FundingEventSimulationResult < Straddle::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      def initialize: (id: String) -> void
+
+      def to_hash: -> { id: String }
+    end
+  end
+end

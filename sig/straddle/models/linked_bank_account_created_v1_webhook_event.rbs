@@ -1,0 +1,35 @@
+module Straddle
+  module Models
+    type linked_bank_account_created_v1_webhook_event =
+      {
+        account_id: String,
+        data: Straddle::LinkedBankAccount,
+        event_id: String,
+        event_type: String
+      }
+
+    class LinkedBankAccountCreatedV1WebhookEvent < Straddle::Internal::Type::BaseModel
+      attr_accessor account_id: String
+
+      attr_accessor data: Straddle::LinkedBankAccount
+
+      attr_accessor event_id: String
+
+      attr_accessor event_type: String
+
+      def initialize: (
+        account_id: String,
+        data: Straddle::LinkedBankAccount,
+        event_id: String,
+        event_type: String
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        data: Straddle::LinkedBankAccount,
+        event_id: String,
+        event_type: String
+      }
+    end
+  end
+end

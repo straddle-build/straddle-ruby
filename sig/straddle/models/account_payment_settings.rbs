@@ -1,0 +1,25 @@
+module Straddle
+  module Models
+    type account_payment_settings =
+      {
+        charges: Straddle::AccountChargeSettings,
+        payouts: Straddle::AccountPayoutSettings
+      }
+
+    class AccountPaymentSettings < Straddle::Internal::Type::BaseModel
+      attr_accessor charges: Straddle::AccountChargeSettings
+
+      attr_accessor payouts: Straddle::AccountPayoutSettings
+
+      def initialize: (
+        charges: Straddle::AccountChargeSettings,
+        payouts: Straddle::AccountPayoutSettings
+      ) -> void
+
+      def to_hash: -> {
+        charges: Straddle::AccountChargeSettings,
+        payouts: Straddle::AccountPayoutSettings
+      }
+    end
+  end
+end

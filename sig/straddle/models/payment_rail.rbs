@@ -1,0 +1,13 @@
+module Straddle
+  module Models
+    type payment_rail = :ach
+
+    module PaymentRail
+      extend Straddle::Internal::Type::Enum
+
+      ACH: :ach
+
+      def self?.values: -> ::Array[Straddle::Models::payment_rail]
+    end
+  end
+end

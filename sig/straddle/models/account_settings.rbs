@@ -1,0 +1,50 @@
+module Straddle
+  module Models
+    type account_settings_api =
+      {
+        charges: Straddle::ChargeSettings,
+        configuration: Straddle::AccountPolicyControls,
+        consent_types: Straddle::AccountConsentSettings,
+        customer_types: Straddle::AccountCustomerTypeSettings,
+        payment_types: Straddle::AccountPaymentTypeSettings,
+        payouts: Straddle::PayoutSettings,
+        statement_settings: Straddle::AccountStatementSettings
+      }
+
+    class AccountSettingsAPI < Straddle::Internal::Type::BaseModel
+      attr_accessor charges: Straddle::ChargeSettings
+
+      attr_accessor configuration: Straddle::AccountPolicyControls
+
+      attr_accessor consent_types: Straddle::AccountConsentSettings
+
+      attr_accessor customer_types: Straddle::AccountCustomerTypeSettings
+
+      attr_accessor payment_types: Straddle::AccountPaymentTypeSettings
+
+      attr_accessor payouts: Straddle::PayoutSettings
+
+      attr_accessor statement_settings: Straddle::AccountStatementSettings
+
+      def initialize: (
+        charges: Straddle::ChargeSettings,
+        configuration: Straddle::AccountPolicyControls,
+        consent_types: Straddle::AccountConsentSettings,
+        customer_types: Straddle::AccountCustomerTypeSettings,
+        payment_types: Straddle::AccountPaymentTypeSettings,
+        payouts: Straddle::PayoutSettings,
+        statement_settings: Straddle::AccountStatementSettings
+      ) -> void
+
+      def to_hash: -> {
+        charges: Straddle::ChargeSettings,
+        configuration: Straddle::AccountPolicyControls,
+        consent_types: Straddle::AccountConsentSettings,
+        customer_types: Straddle::AccountCustomerTypeSettings,
+        payment_types: Straddle::AccountPaymentTypeSettings,
+        payouts: Straddle::PayoutSettings,
+        statement_settings: Straddle::AccountStatementSettings
+      }
+    end
+  end
+end

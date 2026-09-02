@@ -1,0 +1,47 @@
+module Straddle
+  module Models
+    type account_payment_type_settings =
+      {
+        charges: Straddle::Models::AccountPaymentTypeSettings::charges,
+        payouts: Straddle::Models::AccountPaymentTypeSettings::payouts
+      }
+
+    class AccountPaymentTypeSettings < Straddle::Internal::Type::BaseModel
+      attr_accessor charges: Straddle::Models::AccountPaymentTypeSettings::charges
+
+      attr_accessor payouts: Straddle::Models::AccountPaymentTypeSettings::payouts
+
+      def initialize: (
+        charges: Straddle::Models::AccountPaymentTypeSettings::charges,
+        payouts: Straddle::Models::AccountPaymentTypeSettings::payouts
+      ) -> void
+
+      def to_hash: -> {
+        charges: Straddle::Models::AccountPaymentTypeSettings::charges,
+        payouts: Straddle::Models::AccountPaymentTypeSettings::payouts
+      }
+
+      type charges = :active | :inactive
+
+      module Charges
+        extend Straddle::Internal::Type::Enum
+
+        ACTIVE: :active
+        INACTIVE: :inactive
+
+        def self?.values: -> ::Array[Straddle::Models::AccountPaymentTypeSettings::charges]
+      end
+
+      type payouts = :active | :inactive
+
+      module Payouts
+        extend Straddle::Internal::Type::Enum
+
+        ACTIVE: :active
+        INACTIVE: :inactive
+
+        def self?.values: -> ::Array[Straddle::Models::AccountPaymentTypeSettings::payouts]
+      end
+    end
+  end
+end

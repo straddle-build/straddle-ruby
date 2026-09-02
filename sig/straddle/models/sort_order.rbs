@@ -1,0 +1,14 @@
+module Straddle
+  module Models
+    type sort_order = :asc | :desc
+
+    module SortOrder
+      extend Straddle::Internal::Type::Enum
+
+      ASC: :asc
+      DESC: :desc
+
+      def self?.values: -> ::Array[Straddle::Models::sort_order]
+    end
+  end
+end

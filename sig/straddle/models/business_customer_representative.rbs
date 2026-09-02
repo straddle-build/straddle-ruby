@@ -1,0 +1,18 @@
+module Straddle
+  module Models
+    type business_customer_representative =
+      { name: String, email: String?, phone: String? }
+
+    class BusinessCustomerRepresentative < Straddle::Internal::Type::BaseModel
+      attr_accessor name: String
+
+      attr_accessor email: String?
+
+      attr_accessor phone: String?
+
+      def initialize: (name: String, ?email: String?, ?phone: String?) -> void
+
+      def to_hash: -> { name: String, email: String?, phone: String? }
+    end
+  end
+end

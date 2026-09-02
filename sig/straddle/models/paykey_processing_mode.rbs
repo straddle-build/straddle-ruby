@@ -1,0 +1,15 @@
+module Straddle
+  module Models
+    type paykey_processing_mode = :inline | :background | :skip
+
+    module PaykeyProcessingMode
+      extend Straddle::Internal::Type::Enum
+
+      INLINE: :inline
+      BACKGROUND: :background
+      SKIP: :skip
+
+      def self?.values: -> ::Array[Straddle::Models::paykey_processing_mode]
+    end
+  end
+end

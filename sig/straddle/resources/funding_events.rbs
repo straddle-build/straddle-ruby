@@ -1,0 +1,62 @@
+module Straddle
+  module Resources
+    class FundingEvents
+      def retrieve: (
+        String id,
+        ?correlation_id: String,
+        ?request_id: String,
+        ?straddle_account_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::FundingEventResponse
+
+      def list: (
+        ?created_from: Date?,
+        ?created_to: Date?,
+        ?direction: Straddle::Models::transfer_direction,
+        ?event_type: Straddle::Models::funding_event_type,
+        ?page_number: Integer,
+        ?page_size: Integer,
+        ?search_text: String?,
+        ?sort_by: Straddle::Models::FundingEventListParams::sort_by,
+        ?sort_order: Straddle::Models::sort_order,
+        ?status: ::Array[Straddle::Models::payment_status]?,
+        ?status_reason: ::Array[Straddle::Models::payment_status_reason]?,
+        ?status_source: ::Array[Straddle::Models::payment_status_source]?,
+        ?trace_id: String?,
+        ?trace_number: String?,
+        ?correlation_id: String,
+        ?request_id: String,
+        ?straddle_account_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::FundingEventSummaryList
+
+      def list_payments: (
+        String id,
+        ?default_page_size: Integer,
+        ?default_sort: Straddle::Models::FundingEventListPaymentsParams::default_sort,
+        ?default_sort_order: Straddle::Models::sort_order,
+        ?include_metadata: bool,
+        ?page_number: Integer,
+        ?page_size: Integer,
+        ?sort_by: Straddle::Models::FundingEventListPaymentsParams::sort_by,
+        ?sort_order: Straddle::Models::sort_order,
+        ?correlation_id: String,
+        ?request_id: String,
+        ?straddle_account_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::FundingEventPaymentList
+
+      def simulate: (
+        funding_event_job_type: Straddle::Models::FundingEventSimulateParams::funding_event_job_type,
+        ?sandbox_outcome: Straddle::Models::simulated_payment_outcome,
+        ?correlation_id: String,
+        ?idempotency_key: String,
+        ?request_id: String,
+        ?straddle_account_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::FundingEventSimulation
+
+      def initialize: (client: Straddle::Client) -> void
+    end
+  end
+end

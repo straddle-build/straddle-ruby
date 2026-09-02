@@ -1,0 +1,33 @@
+module Straddle
+  module Models
+    type paykey_configuration =
+      {
+        processing_method: Straddle::Models::paykey_processing_mode,
+        sandbox_outcome: Straddle::Models::simulated_paykey_outcome
+      }
+
+    class PaykeyConfiguration < Straddle::Internal::Type::BaseModel
+      attr_reader processing_method: Straddle::Models::paykey_processing_mode?
+
+      def processing_method=: (
+        Straddle::Models::paykey_processing_mode
+      ) -> Straddle::Models::paykey_processing_mode
+
+      attr_reader sandbox_outcome: Straddle::Models::simulated_paykey_outcome?
+
+      def sandbox_outcome=: (
+        Straddle::Models::simulated_paykey_outcome
+      ) -> Straddle::Models::simulated_paykey_outcome
+
+      def initialize: (
+        ?processing_method: Straddle::Models::paykey_processing_mode,
+        ?sandbox_outcome: Straddle::Models::simulated_paykey_outcome
+      ) -> void
+
+      def to_hash: -> {
+        processing_method: Straddle::Models::paykey_processing_mode,
+        sandbox_outcome: Straddle::Models::simulated_paykey_outcome
+      }
+    end
+  end
+end

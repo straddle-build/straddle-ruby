@@ -1,0 +1,67 @@
+module Straddle
+  module Models
+    type account_simulate_onboarding_params =
+      {
+        account_id: String,
+        final_status: Straddle::Models::AccountSimulateOnboardingParams::final_status,
+        correlation_id: String,
+        idempotency_key: String,
+        request_id: String
+      }
+      & Straddle::Internal::Type::request_parameters
+
+    class AccountSimulateOnboardingParams < Straddle::Internal::Type::BaseModel
+      extend Straddle::Internal::Type::RequestParameters::Converter
+      include Straddle::Internal::Type::RequestParameters
+
+      attr_accessor account_id: String
+
+      attr_reader final_status: Straddle::Models::AccountSimulateOnboardingParams::final_status?
+
+      def final_status=: (
+        Straddle::Models::AccountSimulateOnboardingParams::final_status
+      ) -> Straddle::Models::AccountSimulateOnboardingParams::final_status
+
+      attr_reader correlation_id: String?
+
+      def correlation_id=: (String) -> String
+
+      attr_reader idempotency_key: String?
+
+      def idempotency_key=: (String) -> String
+
+      attr_reader request_id: String?
+
+      def request_id=: (String) -> String
+
+      def initialize: (
+        account_id: String,
+        ?final_status: Straddle::Models::AccountSimulateOnboardingParams::final_status,
+        ?correlation_id: String,
+        ?idempotency_key: String,
+        ?request_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        final_status: Straddle::Models::AccountSimulateOnboardingParams::final_status,
+        correlation_id: String,
+        idempotency_key: String,
+        request_id: String,
+        request_options: Straddle::RequestOptions
+      }
+
+      type final_status = :onboarding | :active
+
+      module FinalStatus
+        extend Straddle::Internal::Type::Enum
+
+        ONBOARDING: :onboarding
+        ACTIVE: :active
+
+        def self?.values: -> ::Array[Straddle::Models::AccountSimulateOnboardingParams::final_status]
+      end
+    end
+  end
+end

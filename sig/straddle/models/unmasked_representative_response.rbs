@@ -1,0 +1,43 @@
+module Straddle
+  module Models
+    type unmasked_representative_response =
+      {
+        data: Straddle::UnmaskedRepresentative,
+        meta: Straddle::ResponseMetadata,
+        response_type: Straddle::Models::UnmaskedRepresentativeResponse::response_type
+      }
+
+    class UnmaskedRepresentativeResponse < Straddle::Internal::Type::BaseModel
+      attr_accessor data: Straddle::UnmaskedRepresentative
+
+      attr_accessor meta: Straddle::ResponseMetadata
+
+      attr_accessor response_type: Straddle::Models::UnmaskedRepresentativeResponse::response_type
+
+      def initialize: (
+        data: Straddle::UnmaskedRepresentative,
+        meta: Straddle::ResponseMetadata,
+        response_type: Straddle::Models::UnmaskedRepresentativeResponse::response_type
+      ) -> void
+
+      def to_hash: -> {
+        data: Straddle::UnmaskedRepresentative,
+        meta: Straddle::ResponseMetadata,
+        response_type: Straddle::Models::UnmaskedRepresentativeResponse::response_type
+      }
+
+      type response_type = :object | :array | :error | :none
+
+      module ResponseType
+        extend Straddle::Internal::Type::Enum
+
+        OBJECT: :object
+        ARRAY: :array
+        ERROR: :error
+        NONE: :none
+
+        def self?.values: -> ::Array[Straddle::Models::UnmaskedRepresentativeResponse::response_type]
+      end
+    end
+  end
+end

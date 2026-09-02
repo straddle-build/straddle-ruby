@@ -1,0 +1,17 @@
+module Straddle
+  module Models
+    module Customers
+      type verification_decision = :accept | :reject | :review
+
+      module VerificationDecision
+        extend Straddle::Internal::Type::Enum
+
+        ACCEPT: :accept
+        REJECT: :reject
+        REVIEW: :review
+
+        def self?.values: -> ::Array[Straddle::Models::Customers::verification_decision]
+      end
+    end
+  end
+end

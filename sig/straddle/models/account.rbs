@@ -1,0 +1,136 @@
+module Straddle
+  module Models
+    type account =
+      {
+        id: String,
+        access_level: Straddle::Models::Account::access_level,
+        organization_id: String,
+        status: Straddle::Models::Account::status,
+        status_detail: Straddle::AccountStatusDetail,
+        type: Straddle::Models::Account::type_,
+        business_profile: Straddle::AccountBusinessProfile,
+        capabilities: Straddle::AccountCapabilities,
+        created_at: Time?,
+        external_id: String?,
+        metadata: ::Hash[Symbol, String?]?,
+        settings: Straddle::AccountPaymentSettings,
+        terms_of_service: Straddle::TermsOfService,
+        updated_at: Time?
+      }
+
+    class Account < Straddle::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor access_level: Straddle::Models::Account::access_level
+
+      attr_accessor organization_id: String
+
+      attr_accessor status: Straddle::Models::Account::status
+
+      attr_accessor status_detail: Straddle::AccountStatusDetail
+
+      attr_accessor type: Straddle::Models::Account::type_
+
+      attr_reader business_profile: Straddle::AccountBusinessProfile?
+
+      def business_profile=: (
+        Straddle::AccountBusinessProfile
+      ) -> Straddle::AccountBusinessProfile
+
+      attr_reader capabilities: Straddle::AccountCapabilities?
+
+      def capabilities=: (
+        Straddle::AccountCapabilities
+      ) -> Straddle::AccountCapabilities
+
+      attr_accessor created_at: Time?
+
+      attr_accessor external_id: String?
+
+      attr_accessor metadata: ::Hash[Symbol, String?]?
+
+      attr_reader settings: Straddle::AccountPaymentSettings?
+
+      def settings=: (
+        Straddle::AccountPaymentSettings
+      ) -> Straddle::AccountPaymentSettings
+
+      attr_reader terms_of_service: Straddle::TermsOfService?
+
+      def terms_of_service=: (
+        Straddle::TermsOfService
+      ) -> Straddle::TermsOfService
+
+      attr_accessor updated_at: Time?
+
+      def initialize: (
+        id: String,
+        access_level: Straddle::Models::Account::access_level,
+        organization_id: String,
+        status: Straddle::Models::Account::status,
+        status_detail: Straddle::AccountStatusDetail,
+        type: Straddle::Models::Account::type_,
+        ?business_profile: Straddle::AccountBusinessProfile,
+        ?capabilities: Straddle::AccountCapabilities,
+        ?created_at: Time?,
+        ?external_id: String?,
+        ?metadata: ::Hash[Symbol, String?]?,
+        ?settings: Straddle::AccountPaymentSettings,
+        ?terms_of_service: Straddle::TermsOfService,
+        ?updated_at: Time?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        access_level: Straddle::Models::Account::access_level,
+        organization_id: String,
+        status: Straddle::Models::Account::status,
+        status_detail: Straddle::AccountStatusDetail,
+        type: Straddle::Models::Account::type_,
+        business_profile: Straddle::AccountBusinessProfile,
+        capabilities: Straddle::AccountCapabilities,
+        created_at: Time?,
+        external_id: String?,
+        metadata: ::Hash[Symbol, String?]?,
+        settings: Straddle::AccountPaymentSettings,
+        terms_of_service: Straddle::TermsOfService,
+        updated_at: Time?
+      }
+
+      type access_level = :standard | :managed
+
+      module AccessLevel
+        extend Straddle::Internal::Type::Enum
+
+        STANDARD: :standard
+        MANAGED: :managed
+
+        def self?.values: -> ::Array[Straddle::Models::Account::access_level]
+      end
+
+      type status = :created | :onboarding | :active | :rejected | :inactive
+
+      module Status
+        extend Straddle::Internal::Type::Enum
+
+        CREATED: :created
+        ONBOARDING: :onboarding
+        ACTIVE: :active
+        REJECTED: :rejected
+        INACTIVE: :inactive
+
+        def self?.values: -> ::Array[Straddle::Models::Account::status]
+      end
+
+      type type_ = :business
+
+      module Type
+        extend Straddle::Internal::Type::Enum
+
+        BUSINESS: :business
+
+        def self?.values: -> ::Array[Straddle::Models::Account::type_]
+      end
+    end
+  end
+end

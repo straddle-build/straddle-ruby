@@ -1,0 +1,169 @@
+module Straddle
+  module Models
+    class CustomerIdentityVerification = Customers::CustomerIdentityVerification
+
+    module Customers
+      type customer_identity_verification =
+        {
+          breakdown: Straddle::Customers::CustomerIdentityVerification::Breakdown,
+          created_at: Time,
+          decision: Straddle::Models::Customers::verification_decision,
+          review_id: String,
+          updated_at: Time,
+          kyc: Straddle::Customers::CustomerKYCVerification,
+          messages: ::Hash[Symbol, String]?,
+          network_alerts: Straddle::Customers::IdentityVerificationAlerts,
+          reputation: Straddle::Customers::ReputationCheck,
+          watch_list: Straddle::Customers::IdentityVerificationWatchlist
+        }
+
+      class CustomerIdentityVerification < Straddle::Internal::Type::BaseModel
+        attr_accessor breakdown: Straddle::Customers::CustomerIdentityVerification::Breakdown
+
+        attr_accessor created_at: Time
+
+        attr_accessor decision: Straddle::Models::Customers::verification_decision
+
+        attr_accessor review_id: String
+
+        attr_accessor updated_at: Time
+
+        attr_reader kyc: Straddle::Customers::CustomerKYCVerification?
+
+        def kyc=: (
+          Straddle::Customers::CustomerKYCVerification
+        ) -> Straddle::Customers::CustomerKYCVerification
+
+        attr_accessor messages: ::Hash[Symbol, String]?
+
+        attr_reader network_alerts: Straddle::Customers::IdentityVerificationAlerts?
+
+        def network_alerts=: (
+          Straddle::Customers::IdentityVerificationAlerts
+        ) -> Straddle::Customers::IdentityVerificationAlerts
+
+        attr_reader reputation: Straddle::Customers::ReputationCheck?
+
+        def reputation=: (
+          Straddle::Customers::ReputationCheck
+        ) -> Straddle::Customers::ReputationCheck
+
+        attr_reader watch_list: Straddle::Customers::IdentityVerificationWatchlist?
+
+        def watch_list=: (
+          Straddle::Customers::IdentityVerificationWatchlist
+        ) -> Straddle::Customers::IdentityVerificationWatchlist
+
+        def initialize: (
+          breakdown: Straddle::Customers::CustomerIdentityVerification::Breakdown,
+          created_at: Time,
+          decision: Straddle::Models::Customers::verification_decision,
+          review_id: String,
+          updated_at: Time,
+          ?kyc: Straddle::Customers::CustomerKYCVerification,
+          ?messages: ::Hash[Symbol, String]?,
+          ?network_alerts: Straddle::Customers::IdentityVerificationAlerts,
+          ?reputation: Straddle::Customers::ReputationCheck,
+          ?watch_list: Straddle::Customers::IdentityVerificationWatchlist
+        ) -> void
+
+        def to_hash: -> {
+          breakdown: Straddle::Customers::CustomerIdentityVerification::Breakdown,
+          created_at: Time,
+          decision: Straddle::Models::Customers::verification_decision,
+          review_id: String,
+          updated_at: Time,
+          kyc: Straddle::Customers::CustomerKYCVerification,
+          messages: ::Hash[Symbol, String]?,
+          network_alerts: Straddle::Customers::IdentityVerificationAlerts,
+          reputation: Straddle::Customers::ReputationCheck,
+          watch_list: Straddle::Customers::IdentityVerificationWatchlist
+        }
+
+        type breakdown =
+          {
+            address: Straddle::Customers::IdentityVerificationBreakdown,
+            business_evaluation: Straddle::Customers::IdentityVerificationBreakdown,
+            business_identification: Straddle::Customers::IdentityVerificationBreakdown,
+            business_validation: Straddle::Customers::IdentityVerificationBreakdown,
+            email: Straddle::Customers::IdentityVerificationBreakdown,
+            fraud: Straddle::Customers::IdentityVerificationBreakdown,
+            phone: Straddle::Customers::IdentityVerificationBreakdown,
+            synthetic: Straddle::Customers::IdentityVerificationBreakdown
+          }
+
+        class Breakdown < Straddle::Internal::Type::BaseModel
+          attr_reader address: Straddle::Customers::IdentityVerificationBreakdown?
+
+          def address=: (
+            Straddle::Customers::IdentityVerificationBreakdown
+          ) -> Straddle::Customers::IdentityVerificationBreakdown
+
+          attr_reader business_evaluation: Straddle::Customers::IdentityVerificationBreakdown?
+
+          def business_evaluation=: (
+            Straddle::Customers::IdentityVerificationBreakdown
+          ) -> Straddle::Customers::IdentityVerificationBreakdown
+
+          attr_reader business_identification: Straddle::Customers::IdentityVerificationBreakdown?
+
+          def business_identification=: (
+            Straddle::Customers::IdentityVerificationBreakdown
+          ) -> Straddle::Customers::IdentityVerificationBreakdown
+
+          attr_reader business_validation: Straddle::Customers::IdentityVerificationBreakdown?
+
+          def business_validation=: (
+            Straddle::Customers::IdentityVerificationBreakdown
+          ) -> Straddle::Customers::IdentityVerificationBreakdown
+
+          attr_reader email: Straddle::Customers::IdentityVerificationBreakdown?
+
+          def email=: (
+            Straddle::Customers::IdentityVerificationBreakdown
+          ) -> Straddle::Customers::IdentityVerificationBreakdown
+
+          attr_reader fraud: Straddle::Customers::IdentityVerificationBreakdown?
+
+          def fraud=: (
+            Straddle::Customers::IdentityVerificationBreakdown
+          ) -> Straddle::Customers::IdentityVerificationBreakdown
+
+          attr_reader phone: Straddle::Customers::IdentityVerificationBreakdown?
+
+          def phone=: (
+            Straddle::Customers::IdentityVerificationBreakdown
+          ) -> Straddle::Customers::IdentityVerificationBreakdown
+
+          attr_reader synthetic: Straddle::Customers::IdentityVerificationBreakdown?
+
+          def synthetic=: (
+            Straddle::Customers::IdentityVerificationBreakdown
+          ) -> Straddle::Customers::IdentityVerificationBreakdown
+
+          def initialize: (
+            ?address: Straddle::Customers::IdentityVerificationBreakdown,
+            ?business_evaluation: Straddle::Customers::IdentityVerificationBreakdown,
+            ?business_identification: Straddle::Customers::IdentityVerificationBreakdown,
+            ?business_validation: Straddle::Customers::IdentityVerificationBreakdown,
+            ?email: Straddle::Customers::IdentityVerificationBreakdown,
+            ?fraud: Straddle::Customers::IdentityVerificationBreakdown,
+            ?phone: Straddle::Customers::IdentityVerificationBreakdown,
+            ?synthetic: Straddle::Customers::IdentityVerificationBreakdown
+          ) -> void
+
+          def to_hash: -> {
+            address: Straddle::Customers::IdentityVerificationBreakdown,
+            business_evaluation: Straddle::Customers::IdentityVerificationBreakdown,
+            business_identification: Straddle::Customers::IdentityVerificationBreakdown,
+            business_validation: Straddle::Customers::IdentityVerificationBreakdown,
+            email: Straddle::Customers::IdentityVerificationBreakdown,
+            fraud: Straddle::Customers::IdentityVerificationBreakdown,
+            phone: Straddle::Customers::IdentityVerificationBreakdown,
+            synthetic: Straddle::Customers::IdentityVerificationBreakdown
+          }
+        end
+      end
+    end
+  end
+end

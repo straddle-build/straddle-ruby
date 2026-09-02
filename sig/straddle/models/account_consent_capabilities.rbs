@@ -1,0 +1,25 @@
+module Straddle
+  module Models
+    type account_consent_capabilities =
+      {
+        internet: Straddle::AccountCapability,
+        signed_agreement: Straddle::AccountCapability
+      }
+
+    class AccountConsentCapabilities < Straddle::Internal::Type::BaseModel
+      attr_accessor internet: Straddle::AccountCapability
+
+      attr_accessor signed_agreement: Straddle::AccountCapability
+
+      def initialize: (
+        internet: Straddle::AccountCapability,
+        signed_agreement: Straddle::AccountCapability
+      ) -> void
+
+      def to_hash: -> {
+        internet: Straddle::AccountCapability,
+        signed_agreement: Straddle::AccountCapability
+      }
+    end
+  end
+end

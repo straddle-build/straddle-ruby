@@ -1,0 +1,13 @@
+module Straddle
+  module Models
+    type payment_document_type = :payment_authorization
+
+    module PaymentDocumentType
+      extend Straddle::Internal::Type::Enum
+
+      PAYMENT_AUTHORIZATION: :payment_authorization
+
+      def self?.values: -> ::Array[Straddle::Models::payment_document_type]
+    end
+  end
+end

@@ -1,0 +1,14 @@
+module Straddle
+  module Models
+    type consent_type = :internet | :signed
+
+    module ConsentType
+      extend Straddle::Internal::Type::Enum
+
+      INTERNET: :internet
+      SIGNED: :signed
+
+      def self?.values: -> ::Array[Straddle::Models::consent_type]
+    end
+  end
+end

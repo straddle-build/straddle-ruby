@@ -1,0 +1,30 @@
+module Straddle
+  module Models
+    type customer_summary_list =
+      {
+        data: ::Array[Straddle::CustomerSummary],
+        meta: Straddle::PageMetadata,
+        response_type: Straddle::Models::response_type
+      }
+
+    class CustomerSummaryList < Straddle::Internal::Type::BaseModel
+      attr_accessor data: ::Array[Straddle::CustomerSummary]
+
+      attr_accessor meta: Straddle::PageMetadata
+
+      attr_accessor response_type: Straddle::Models::response_type
+
+      def initialize: (
+        data: ::Array[Straddle::CustomerSummary],
+        meta: Straddle::PageMetadata,
+        response_type: Straddle::Models::response_type
+      ) -> void
+
+      def to_hash: -> {
+        data: ::Array[Straddle::CustomerSummary],
+        meta: Straddle::PageMetadata,
+        response_type: Straddle::Models::response_type
+      }
+    end
+  end
+end

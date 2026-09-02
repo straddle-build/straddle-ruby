@@ -1,0 +1,208 @@
+module Straddle
+  module Models
+    type customer_event_v1_webhook_event =
+      {
+        account_id: String,
+        data: Straddle::CustomerEventV1WebhookEvent::Data,
+        event_id: String,
+        event_type: String
+      }
+
+    class CustomerEventV1WebhookEvent < Straddle::Internal::Type::BaseModel
+      attr_accessor account_id: String
+
+      attr_accessor data: Straddle::CustomerEventV1WebhookEvent::Data
+
+      attr_accessor event_id: String
+
+      attr_accessor event_type: String
+
+      def initialize: (
+        account_id: String,
+        data: Straddle::CustomerEventV1WebhookEvent::Data,
+        event_id: String,
+        event_type: String
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        data: Straddle::CustomerEventV1WebhookEvent::Data,
+        event_id: String,
+        event_type: String
+      }
+
+      type data =
+        {
+          id: String,
+          created_at: Time,
+          device: Straddle::MaskedCustomerDevice,
+          email: String,
+          name: String,
+          phone: String,
+          status: Straddle::Models::CustomerEventV1WebhookEvent::Data::status,
+          type: Straddle::Models::customer_type,
+          updated_at: Time,
+          address: Straddle::CustomerEventV1WebhookEvent::Data::Address,
+          compliance_profile: Straddle::CustomerEventV1WebhookEvent::Data::ComplianceProfile,
+          external_id: String?,
+          metadata: ::Hash[Symbol, String?]?
+        }
+
+      class Data < Straddle::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor created_at: Time
+
+        attr_accessor device: Straddle::MaskedCustomerDevice
+
+        attr_accessor email: String
+
+        attr_accessor name: String
+
+        attr_accessor phone: String
+
+        attr_accessor status: Straddle::Models::CustomerEventV1WebhookEvent::Data::status
+
+        attr_accessor type: Straddle::Models::customer_type
+
+        attr_accessor updated_at: Time
+
+        attr_reader address: Straddle::CustomerEventV1WebhookEvent::Data::Address?
+
+        def address=: (
+          Straddle::CustomerEventV1WebhookEvent::Data::Address
+        ) -> Straddle::CustomerEventV1WebhookEvent::Data::Address
+
+        attr_reader compliance_profile: Straddle::CustomerEventV1WebhookEvent::Data::ComplianceProfile?
+
+        def compliance_profile=: (
+          Straddle::CustomerEventV1WebhookEvent::Data::ComplianceProfile
+        ) -> Straddle::CustomerEventV1WebhookEvent::Data::ComplianceProfile
+
+        attr_accessor external_id: String?
+
+        attr_accessor metadata: ::Hash[Symbol, String?]?
+
+        def initialize: (
+          id: String,
+          created_at: Time,
+          device: Straddle::MaskedCustomerDevice,
+          email: String,
+          name: String,
+          phone: String,
+          status: Straddle::Models::CustomerEventV1WebhookEvent::Data::status,
+          type: Straddle::Models::customer_type,
+          updated_at: Time,
+          ?address: Straddle::CustomerEventV1WebhookEvent::Data::Address,
+          ?compliance_profile: Straddle::CustomerEventV1WebhookEvent::Data::ComplianceProfile,
+          ?external_id: String?,
+          ?metadata: ::Hash[Symbol, String?]?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          created_at: Time,
+          device: Straddle::MaskedCustomerDevice,
+          email: String,
+          name: String,
+          phone: String,
+          status: Straddle::Models::CustomerEventV1WebhookEvent::Data::status,
+          type: Straddle::Models::customer_type,
+          updated_at: Time,
+          address: Straddle::CustomerEventV1WebhookEvent::Data::Address,
+          compliance_profile: Straddle::CustomerEventV1WebhookEvent::Data::ComplianceProfile,
+          external_id: String?,
+          metadata: ::Hash[Symbol, String?]?
+        }
+
+        type status = :pending | :review | :verified | :inactive | :rejected
+
+        module Status
+          extend Straddle::Internal::Type::Enum
+
+          PENDING: :pending
+          REVIEW: :review
+          VERIFIED: :verified
+          INACTIVE: :inactive
+          REJECTED: :rejected
+
+          def self?.values: -> ::Array[Straddle::Models::CustomerEventV1WebhookEvent::Data::status]
+        end
+
+        type address =
+          {
+            :address1 => String,
+            city: String,
+            state: String,
+            zip: String,
+            :address2 => String?
+          }
+
+        class Address < Straddle::Internal::Type::BaseModel
+          attr_accessor address1: String
+
+          attr_accessor city: String
+
+          attr_accessor state: String
+
+          attr_accessor zip: String
+
+          attr_accessor address2: String?
+
+          def initialize: (
+            address1: String,
+            city: String,
+            state: String,
+            zip: String,
+            ?address2: String?
+          ) -> void
+
+          def to_hash: -> {
+            :address1 => String,
+            city: String,
+            state: String,
+            zip: String,
+            :address2 => String?
+          }
+        end
+
+        type compliance_profile =
+          {
+            dob: String?,
+            ein: String?,
+            legal_business_name: String?,
+            ssn: String?,
+            website: String?
+          }
+
+        class ComplianceProfile < Straddle::Internal::Type::BaseModel
+          attr_accessor dob: String?
+
+          attr_accessor ein: String?
+
+          attr_accessor legal_business_name: String?
+
+          attr_accessor ssn: String?
+
+          attr_accessor website: String?
+
+          def initialize: (
+            ?dob: String?,
+            ?ein: String?,
+            ?legal_business_name: String?,
+            ?ssn: String?,
+            ?website: String?
+          ) -> void
+
+          def to_hash: -> {
+            dob: String?,
+            ein: String?,
+            legal_business_name: String?,
+            ssn: String?,
+            website: String?
+          }
+        end
+      end
+    end
+  end
+end

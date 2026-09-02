@@ -1,0 +1,34 @@
+module Straddle
+  module Models
+    type payout_configuration =
+      {
+        auto_hold: bool?,
+        auto_hold_message: String?,
+        sandbox_outcome: Straddle::Models::simulated_payment_outcome
+      }
+
+    class PayoutConfiguration < Straddle::Internal::Type::BaseModel
+      attr_accessor auto_hold: bool?
+
+      attr_accessor auto_hold_message: String?
+
+      attr_reader sandbox_outcome: Straddle::Models::simulated_payment_outcome?
+
+      def sandbox_outcome=: (
+        Straddle::Models::simulated_payment_outcome
+      ) -> Straddle::Models::simulated_payment_outcome
+
+      def initialize: (
+        ?auto_hold: bool?,
+        ?auto_hold_message: String?,
+        ?sandbox_outcome: Straddle::Models::simulated_payment_outcome
+      ) -> void
+
+      def to_hash: -> {
+        auto_hold: bool?,
+        auto_hold_message: String?,
+        sandbox_outcome: Straddle::Models::simulated_payment_outcome
+      }
+    end
+  end
+end

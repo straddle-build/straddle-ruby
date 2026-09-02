@@ -1,0 +1,30 @@
+module Straddle
+  module Models
+    type account_capabilities =
+      {
+        consent_types: Straddle::AccountConsentCapabilities,
+        customer_types: Straddle::AccountCustomerCapabilities,
+        payment_types: Straddle::AccountPaymentCapabilities
+      }
+
+    class AccountCapabilities < Straddle::Internal::Type::BaseModel
+      attr_accessor consent_types: Straddle::AccountConsentCapabilities
+
+      attr_accessor customer_types: Straddle::AccountCustomerCapabilities
+
+      attr_accessor payment_types: Straddle::AccountPaymentCapabilities
+
+      def initialize: (
+        consent_types: Straddle::AccountConsentCapabilities,
+        customer_types: Straddle::AccountCustomerCapabilities,
+        payment_types: Straddle::AccountPaymentCapabilities
+      ) -> void
+
+      def to_hash: -> {
+        consent_types: Straddle::AccountConsentCapabilities,
+        customer_types: Straddle::AccountCustomerCapabilities,
+        payment_types: Straddle::AccountPaymentCapabilities
+      }
+    end
+  end
+end

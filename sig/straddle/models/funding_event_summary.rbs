@@ -1,0 +1,88 @@
+module Straddle
+  module Models
+    type funding_event_summary =
+      {
+        id: String,
+        amount: Integer,
+        created_at: Time,
+        direction: Straddle::Models::transfer_direction,
+        event_type: Straddle::Models::funding_event_type,
+        payment_count: Integer,
+        trace_ids: ::Hash[Symbol, String],
+        trace_numbers: ::Array[String],
+        transfer_date: Date,
+        updated_at: Time,
+        status: Straddle::Models::payment_status,
+        status_details: Straddle::PaymentStatusDetails,
+        trace_number: String?
+      }
+
+    class FundingEventSummary < Straddle::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor amount: Integer
+
+      attr_accessor created_at: Time
+
+      attr_accessor direction: Straddle::Models::transfer_direction
+
+      attr_accessor event_type: Straddle::Models::funding_event_type
+
+      attr_accessor payment_count: Integer
+
+      attr_accessor trace_ids: ::Hash[Symbol, String]
+
+      attr_accessor trace_numbers: ::Array[String]
+
+      attr_accessor transfer_date: Date
+
+      attr_accessor updated_at: Time
+
+      attr_reader status: Straddle::Models::payment_status?
+
+      def status=: (
+        Straddle::Models::payment_status
+      ) -> Straddle::Models::payment_status
+
+      attr_reader status_details: Straddle::PaymentStatusDetails?
+
+      def status_details=: (
+        Straddle::PaymentStatusDetails
+      ) -> Straddle::PaymentStatusDetails
+
+      attr_accessor trace_number: String?
+
+      def initialize: (
+        id: String,
+        amount: Integer,
+        created_at: Time,
+        direction: Straddle::Models::transfer_direction,
+        event_type: Straddle::Models::funding_event_type,
+        payment_count: Integer,
+        trace_ids: ::Hash[Symbol, String],
+        trace_numbers: ::Array[String],
+        transfer_date: Date,
+        updated_at: Time,
+        ?status: Straddle::Models::payment_status,
+        ?status_details: Straddle::PaymentStatusDetails,
+        ?trace_number: String?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        amount: Integer,
+        created_at: Time,
+        direction: Straddle::Models::transfer_direction,
+        event_type: Straddle::Models::funding_event_type,
+        payment_count: Integer,
+        trace_ids: ::Hash[Symbol, String],
+        trace_numbers: ::Array[String],
+        transfer_date: Date,
+        updated_at: Time,
+        status: Straddle::Models::payment_status,
+        status_details: Straddle::PaymentStatusDetails,
+        trace_number: String?
+      }
+    end
+  end
+end

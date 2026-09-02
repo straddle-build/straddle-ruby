@@ -1,0 +1,71 @@
+module Straddle
+  module Models
+    type unmasked_linked_bank_account =
+      {
+        id: String,
+        account_id: String,
+        bank_account: Straddle::UnmaskedLinkedBankAccountDetails,
+        created_at: Time,
+        status: Straddle::Models::UnmaskedLinkedBankAccount::status,
+        status_detail: Straddle::LinkedBankAccountStatusDetail,
+        updated_at: Time,
+        metadata: ::Hash[Symbol, String?]?
+      }
+
+    class UnmaskedLinkedBankAccount < Straddle::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor account_id: String
+
+      attr_accessor bank_account: Straddle::UnmaskedLinkedBankAccountDetails
+
+      attr_accessor created_at: Time
+
+      attr_accessor status: Straddle::Models::UnmaskedLinkedBankAccount::status
+
+      attr_accessor status_detail: Straddle::LinkedBankAccountStatusDetail
+
+      attr_accessor updated_at: Time
+
+      attr_accessor metadata: ::Hash[Symbol, String?]?
+
+      def initialize: (
+        id: String,
+        account_id: String,
+        bank_account: Straddle::UnmaskedLinkedBankAccountDetails,
+        created_at: Time,
+        status: Straddle::Models::UnmaskedLinkedBankAccount::status,
+        status_detail: Straddle::LinkedBankAccountStatusDetail,
+        updated_at: Time,
+        ?metadata: ::Hash[Symbol, String?]?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        account_id: String,
+        bank_account: Straddle::UnmaskedLinkedBankAccountDetails,
+        created_at: Time,
+        status: Straddle::Models::UnmaskedLinkedBankAccount::status,
+        status_detail: Straddle::LinkedBankAccountStatusDetail,
+        updated_at: Time,
+        metadata: ::Hash[Symbol, String?]?
+      }
+
+      type status =
+        :created | :onboarding | :active | :rejected | :inactive | :canceled
+
+      module Status
+        extend Straddle::Internal::Type::Enum
+
+        CREATED: :created
+        ONBOARDING: :onboarding
+        ACTIVE: :active
+        REJECTED: :rejected
+        INACTIVE: :inactive
+        CANCELED: :canceled
+
+        def self?.values: -> ::Array[Straddle::Models::UnmaskedLinkedBankAccount::status]
+      end
+    end
+  end
+end

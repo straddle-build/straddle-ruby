@@ -1,0 +1,55 @@
+module Straddle
+  class Client < Straddle::Internal::Transport::BaseClient
+    DEFAULT_MAX_RETRIES: 2
+
+    DEFAULT_TIMEOUT_IN_SECONDS: Float
+
+    DEFAULT_INITIAL_RETRY_DELAY: Float
+
+    DEFAULT_MAX_RETRY_DELAY: Float
+
+    attr_reader bearer: String
+
+    attr_reader webhook_secret: String?
+
+    attr_reader accounts: Straddle::Resources::Accounts
+
+    attr_reader capability_requests: Straddle::Resources::CapabilityRequests
+
+    attr_reader linked_bank_accounts: Straddle::Resources::LinkedBankAccounts
+
+    attr_reader organizations: Straddle::Resources::Organizations
+
+    attr_reader representatives: Straddle::Resources::Representatives
+
+    attr_reader bridge: Straddle::Resources::Bridge
+
+    attr_reader customers: Straddle::Resources::Customers
+
+    attr_reader paykeys: Straddle::Resources::Paykeys
+
+    attr_reader charges: Straddle::Resources::Charges
+
+    attr_reader funding_events: Straddle::Resources::FundingEvents
+
+    attr_reader payments: Straddle::Resources::Payments
+
+    attr_reader payouts: Straddle::Resources::Payouts
+
+    attr_reader account_settings: Straddle::Resources::AccountSettings
+
+    attr_reader webhooks: Straddle::Resources::Webhooks
+
+    private def auth_headers: -> ::Hash[String, String]
+
+    def initialize: (
+      ?bearer: String?,
+      ?webhook_secret: String?,
+      ?base_url: String?,
+      ?max_retries: Integer,
+      ?timeout: Float,
+      ?initial_retry_delay: Float,
+      ?max_retry_delay: Float
+    ) -> void
+  end
+end

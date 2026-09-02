@@ -1,0 +1,72 @@
+module Straddle
+  module Models
+    type account_status_detail =
+      {
+        code: String,
+        message: String,
+        reason: Straddle::Models::AccountStatusDetail::reason,
+        source: Straddle::Models::AccountStatusDetail::source
+      }
+
+    class AccountStatusDetail < Straddle::Internal::Type::BaseModel
+      attr_accessor code: String
+
+      attr_accessor message: String
+
+      attr_accessor reason: Straddle::Models::AccountStatusDetail::reason
+
+      attr_accessor source: Straddle::Models::AccountStatusDetail::source
+
+      def initialize: (
+        code: String,
+        message: String,
+        reason: Straddle::Models::AccountStatusDetail::reason,
+        source: Straddle::Models::AccountStatusDetail::source
+      ) -> void
+
+      def to_hash: -> {
+        code: String,
+        message: String,
+        reason: Straddle::Models::AccountStatusDetail::reason,
+        source: Straddle::Models::AccountStatusDetail::source
+      }
+
+      type reason =
+        :unverified
+        | :in_review
+        | :pending
+        | :stuck
+        | :verified
+        | :failed_verification
+        | :disabled
+        | :terminated
+        | :new
+
+      module Reason
+        extend Straddle::Internal::Type::Enum
+
+        UNVERIFIED: :unverified
+        IN_REVIEW: :in_review
+        PENDING: :pending
+        STUCK: :stuck
+        VERIFIED: :verified
+        FAILED_VERIFICATION: :failed_verification
+        DISABLED: :disabled
+        TERMINATED: :terminated
+        NEW: :new
+
+        def self?.values: -> ::Array[Straddle::Models::AccountStatusDetail::reason]
+      end
+
+      type source = :watchtower
+
+      module Source
+        extend Straddle::Internal::Type::Enum
+
+        WATCHTOWER: :watchtower
+
+        def self?.values: -> ::Array[Straddle::Models::AccountStatusDetail::source]
+      end
+    end
+  end
+end

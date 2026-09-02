@@ -1,0 +1,160 @@
+module Straddle
+  module Models
+    type unmasked_payout =
+      {
+        id: String,
+        amount: Integer,
+        config: Straddle::PayoutConfiguration,
+        currency: String,
+        description: String?,
+        device: Straddle::PaymentDevice,
+        external_id: String,
+        funding_ids: ::Array[String],
+        has_resubmit: bool,
+        is_refund: bool,
+        is_resubmit: bool,
+        paykey: String,
+        payment_date: Date,
+        status: Straddle::Models::payment_status,
+        status_details: Straddle::PaymentStatusDetails,
+        status_history: ::Array[Straddle::PaymentStatusHistory],
+        trace_ids: ::Hash[Symbol, String],
+        created_at: Time?,
+        customer_details: Straddle::CustomerDetails,
+        documents: ::Array[Straddle::PaymentAuthorizationProof]?,
+        effective_at: Time?,
+        metadata: ::Hash[Symbol, String]?,
+        paykey_details: Straddle::PaykeyDetails,
+        payment_rail: Straddle::Models::payment_rail,
+        processed_at: Time?,
+        related_payments: ::Array[Straddle::RelatedPayment]?,
+        updated_at: Time?
+      }
+
+    class UnmaskedPayout < Straddle::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor amount: Integer
+
+      attr_accessor config: Straddle::PayoutConfiguration
+
+      attr_accessor currency: String
+
+      attr_accessor description: String?
+
+      attr_accessor device: Straddle::PaymentDevice
+
+      attr_accessor external_id: String
+
+      attr_accessor funding_ids: ::Array[String]
+
+      attr_accessor has_resubmit: bool
+
+      attr_accessor is_refund: bool
+
+      attr_accessor is_resubmit: bool
+
+      attr_accessor paykey: String
+
+      attr_accessor payment_date: Date
+
+      attr_accessor status: Straddle::Models::payment_status
+
+      attr_accessor status_details: Straddle::PaymentStatusDetails
+
+      attr_accessor status_history: ::Array[Straddle::PaymentStatusHistory]
+
+      attr_accessor trace_ids: ::Hash[Symbol, String]
+
+      attr_accessor created_at: Time?
+
+      attr_reader customer_details: Straddle::CustomerDetails?
+
+      def customer_details=: (
+        Straddle::CustomerDetails
+      ) -> Straddle::CustomerDetails
+
+      attr_accessor documents: ::Array[Straddle::PaymentAuthorizationProof]?
+
+      attr_accessor effective_at: Time?
+
+      attr_accessor metadata: ::Hash[Symbol, String]?
+
+      attr_reader paykey_details: Straddle::PaykeyDetails?
+
+      def paykey_details=: (Straddle::PaykeyDetails) -> Straddle::PaykeyDetails
+
+      attr_reader payment_rail: Straddle::Models::payment_rail?
+
+      def payment_rail=: (
+        Straddle::Models::payment_rail
+      ) -> Straddle::Models::payment_rail
+
+      attr_accessor processed_at: Time?
+
+      attr_accessor related_payments: ::Array[Straddle::RelatedPayment]?
+
+      attr_accessor updated_at: Time?
+
+      def initialize: (
+        id: String,
+        amount: Integer,
+        config: Straddle::PayoutConfiguration,
+        currency: String,
+        description: String?,
+        device: Straddle::PaymentDevice,
+        external_id: String,
+        funding_ids: ::Array[String],
+        has_resubmit: bool,
+        is_refund: bool,
+        is_resubmit: bool,
+        paykey: String,
+        payment_date: Date,
+        status: Straddle::Models::payment_status,
+        status_details: Straddle::PaymentStatusDetails,
+        status_history: ::Array[Straddle::PaymentStatusHistory],
+        trace_ids: ::Hash[Symbol, String],
+        ?created_at: Time?,
+        ?customer_details: Straddle::CustomerDetails,
+        ?documents: ::Array[Straddle::PaymentAuthorizationProof]?,
+        ?effective_at: Time?,
+        ?metadata: ::Hash[Symbol, String]?,
+        ?paykey_details: Straddle::PaykeyDetails,
+        ?payment_rail: Straddle::Models::payment_rail,
+        ?processed_at: Time?,
+        ?related_payments: ::Array[Straddle::RelatedPayment]?,
+        ?updated_at: Time?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        amount: Integer,
+        config: Straddle::PayoutConfiguration,
+        currency: String,
+        description: String?,
+        device: Straddle::PaymentDevice,
+        external_id: String,
+        funding_ids: ::Array[String],
+        has_resubmit: bool,
+        is_refund: bool,
+        is_resubmit: bool,
+        paykey: String,
+        payment_date: Date,
+        status: Straddle::Models::payment_status,
+        status_details: Straddle::PaymentStatusDetails,
+        status_history: ::Array[Straddle::PaymentStatusHistory],
+        trace_ids: ::Hash[Symbol, String],
+        created_at: Time?,
+        customer_details: Straddle::CustomerDetails,
+        documents: ::Array[Straddle::PaymentAuthorizationProof]?,
+        effective_at: Time?,
+        metadata: ::Hash[Symbol, String]?,
+        paykey_details: Straddle::PaykeyDetails,
+        payment_rail: Straddle::Models::payment_rail,
+        processed_at: Time?,
+        related_payments: ::Array[Straddle::RelatedPayment]?,
+        updated_at: Time?
+      }
+    end
+  end
+end

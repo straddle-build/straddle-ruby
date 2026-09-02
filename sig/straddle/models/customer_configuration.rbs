@@ -1,0 +1,33 @@
+module Straddle
+  module Models
+    type customer_configuration =
+      {
+        processing_method: Straddle::Models::paykey_processing_mode,
+        sandbox_outcome: Straddle::Models::simulated_customer_outcome
+      }
+
+    class CustomerConfiguration < Straddle::Internal::Type::BaseModel
+      attr_reader processing_method: Straddle::Models::paykey_processing_mode?
+
+      def processing_method=: (
+        Straddle::Models::paykey_processing_mode
+      ) -> Straddle::Models::paykey_processing_mode
+
+      attr_reader sandbox_outcome: Straddle::Models::simulated_customer_outcome?
+
+      def sandbox_outcome=: (
+        Straddle::Models::simulated_customer_outcome
+      ) -> Straddle::Models::simulated_customer_outcome
+
+      def initialize: (
+        ?processing_method: Straddle::Models::paykey_processing_mode,
+        ?sandbox_outcome: Straddle::Models::simulated_customer_outcome
+      ) -> void
+
+      def to_hash: -> {
+        processing_method: Straddle::Models::paykey_processing_mode,
+        sandbox_outcome: Straddle::Models::simulated_customer_outcome
+      }
+    end
+  end
+end

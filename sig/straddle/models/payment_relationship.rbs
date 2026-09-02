@@ -1,0 +1,15 @@
+module Straddle
+  module Models
+    type payment_relationship = :original | :resubmit | :refund
+
+    module PaymentRelationship
+      extend Straddle::Internal::Type::Enum
+
+      ORIGINAL: :original
+      RESUBMIT: :resubmit
+      REFUND: :refund
+
+      def self?.values: -> ::Array[Straddle::Models::payment_relationship]
+    end
+  end
+end

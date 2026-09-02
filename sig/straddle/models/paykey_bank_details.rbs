@@ -1,0 +1,30 @@
+module Straddle
+  module Models
+    type paykey_bank_details =
+      {
+        account_number: String,
+        account_type: Straddle::Models::account_type,
+        routing_number: String
+      }
+
+    class PaykeyBankDetails < Straddle::Internal::Type::BaseModel
+      attr_accessor account_number: String
+
+      attr_accessor account_type: Straddle::Models::account_type
+
+      attr_accessor routing_number: String
+
+      def initialize: (
+        account_number: String,
+        account_type: Straddle::Models::account_type,
+        routing_number: String
+      ) -> void
+
+      def to_hash: -> {
+        account_number: String,
+        account_type: Straddle::Models::account_type,
+        routing_number: String
+      }
+    end
+  end
+end

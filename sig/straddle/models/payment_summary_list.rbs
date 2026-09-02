@@ -1,0 +1,30 @@
+module Straddle
+  module Models
+    type payment_summary_list =
+      {
+        data: ::Array[Straddle::PaymentSummary],
+        meta: Straddle::PageMetadata,
+        response_type: Straddle::Models::response_type
+      }
+
+    class PaymentSummaryList < Straddle::Internal::Type::BaseModel
+      attr_accessor data: ::Array[Straddle::PaymentSummary]
+
+      attr_accessor meta: Straddle::PageMetadata
+
+      attr_accessor response_type: Straddle::Models::response_type
+
+      def initialize: (
+        data: ::Array[Straddle::PaymentSummary],
+        meta: Straddle::PageMetadata,
+        response_type: Straddle::Models::response_type
+      ) -> void
+
+      def to_hash: -> {
+        data: ::Array[Straddle::PaymentSummary],
+        meta: Straddle::PageMetadata,
+        response_type: Straddle::Models::response_type
+      }
+    end
+  end
+end

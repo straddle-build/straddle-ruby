@@ -1,0 +1,43 @@
+module Straddle
+  module Models
+    type capability_request_list =
+      {
+        data: ::Array[Straddle::CapabilityRequest],
+        meta: Straddle::PageMetadata,
+        response_type: Straddle::Models::CapabilityRequestList::response_type
+      }
+
+    class CapabilityRequestList < Straddle::Internal::Type::BaseModel
+      attr_accessor data: ::Array[Straddle::CapabilityRequest]
+
+      attr_accessor meta: Straddle::PageMetadata
+
+      attr_accessor response_type: Straddle::Models::CapabilityRequestList::response_type
+
+      def initialize: (
+        data: ::Array[Straddle::CapabilityRequest],
+        meta: Straddle::PageMetadata,
+        response_type: Straddle::Models::CapabilityRequestList::response_type
+      ) -> void
+
+      def to_hash: -> {
+        data: ::Array[Straddle::CapabilityRequest],
+        meta: Straddle::PageMetadata,
+        response_type: Straddle::Models::CapabilityRequestList::response_type
+      }
+
+      type response_type = :object | :array | :error | :none
+
+      module ResponseType
+        extend Straddle::Internal::Type::Enum
+
+        OBJECT: :object
+        ARRAY: :array
+        ERROR: :error
+        NONE: :none
+
+        def self?.values: -> ::Array[Straddle::Models::CapabilityRequestList::response_type]
+      end
+    end
+  end
+end

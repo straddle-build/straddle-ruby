@@ -1,0 +1,43 @@
+module Straddle
+  module Models
+    type linked_bank_account_list =
+      {
+        data: ::Array[Straddle::LinkedBankAccount],
+        meta: Straddle::PageMetadata,
+        response_type: Straddle::Models::LinkedBankAccountList::response_type
+      }
+
+    class LinkedBankAccountList < Straddle::Internal::Type::BaseModel
+      attr_accessor data: ::Array[Straddle::LinkedBankAccount]
+
+      attr_accessor meta: Straddle::PageMetadata
+
+      attr_accessor response_type: Straddle::Models::LinkedBankAccountList::response_type
+
+      def initialize: (
+        data: ::Array[Straddle::LinkedBankAccount],
+        meta: Straddle::PageMetadata,
+        response_type: Straddle::Models::LinkedBankAccountList::response_type
+      ) -> void
+
+      def to_hash: -> {
+        data: ::Array[Straddle::LinkedBankAccount],
+        meta: Straddle::PageMetadata,
+        response_type: Straddle::Models::LinkedBankAccountList::response_type
+      }
+
+      type response_type = :object | :array | :error | :none
+
+      module ResponseType
+        extend Straddle::Internal::Type::Enum
+
+        OBJECT: :object
+        ARRAY: :array
+        ERROR: :error
+        NONE: :none
+
+        def self?.values: -> ::Array[Straddle::Models::LinkedBankAccountList::response_type]
+      end
+    end
+  end
+end

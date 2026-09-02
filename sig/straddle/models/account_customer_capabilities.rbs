@@ -1,0 +1,25 @@
+module Straddle
+  module Models
+    type account_customer_capabilities =
+      {
+        businesses: Straddle::AccountCapability,
+        individuals: Straddle::AccountCapability
+      }
+
+    class AccountCustomerCapabilities < Straddle::Internal::Type::BaseModel
+      attr_accessor businesses: Straddle::AccountCapability
+
+      attr_accessor individuals: Straddle::AccountCapability
+
+      def initialize: (
+        businesses: Straddle::AccountCapability,
+        individuals: Straddle::AccountCapability
+      ) -> void
+
+      def to_hash: -> {
+        businesses: Straddle::AccountCapability,
+        individuals: Straddle::AccountCapability
+      }
+    end
+  end
+end

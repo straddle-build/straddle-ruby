@@ -1,0 +1,30 @@
+module Straddle
+  module Models
+    type paykey_balance_details =
+      {
+        status: Straddle::Models::paykey_balance_refresh_status,
+        account_balance: Integer?,
+        updated_at: Time?
+      }
+
+    class PaykeyBalanceDetails < Straddle::Internal::Type::BaseModel
+      attr_accessor status: Straddle::Models::paykey_balance_refresh_status
+
+      attr_accessor account_balance: Integer?
+
+      attr_accessor updated_at: Time?
+
+      def initialize: (
+        status: Straddle::Models::paykey_balance_refresh_status,
+        ?account_balance: Integer?,
+        ?updated_at: Time?
+      ) -> void
+
+      def to_hash: -> {
+        status: Straddle::Models::paykey_balance_refresh_status,
+        account_balance: Integer?,
+        updated_at: Time?
+      }
+    end
+  end
+end

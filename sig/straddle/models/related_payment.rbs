@@ -1,0 +1,30 @@
+module Straddle
+  module Models
+    type related_payment =
+      {
+        id: String,
+        payment_type: Straddle::Models::payment_type,
+        relationship: Straddle::Models::payment_relationship
+      }
+
+    class RelatedPayment < Straddle::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor payment_type: Straddle::Models::payment_type
+
+      attr_accessor relationship: Straddle::Models::payment_relationship
+
+      def initialize: (
+        id: String,
+        payment_type: Straddle::Models::payment_type,
+        relationship: Straddle::Models::payment_relationship
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        payment_type: Straddle::Models::payment_type,
+        relationship: Straddle::Models::payment_relationship
+      }
+    end
+  end
+end

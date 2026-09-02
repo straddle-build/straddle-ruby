@@ -1,0 +1,19 @@
+module Straddle
+  module Models
+    module Customers
+      type correlation_bucket =
+        :low_confidence | :potential_match | :likely_match | :high_confidence
+
+      module CorrelationBucket
+        extend Straddle::Internal::Type::Enum
+
+        LOW_CONFIDENCE: :low_confidence
+        POTENTIAL_MATCH: :potential_match
+        LIKELY_MATCH: :likely_match
+        HIGH_CONFIDENCE: :high_confidence
+
+        def self?.values: -> ::Array[Straddle::Models::Customers::correlation_bucket]
+      end
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Straddle
+  module Models
+    type webhook_unwrap_params =
+      {  } & Straddle::Internal::Type::request_parameters
+
+    class WebhookUnwrapParams < Straddle::Internal::Type::BaseModel
+      extend Straddle::Internal::Type::RequestParameters::Converter
+      include Straddle::Internal::Type::RequestParameters
+
+      def initialize: (?request_options: Straddle::request_opts) -> void
+
+      def to_hash: -> { request_options: Straddle::RequestOptions }
+    end
+  end
+end

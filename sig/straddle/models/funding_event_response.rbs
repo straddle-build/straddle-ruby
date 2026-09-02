@@ -1,0 +1,30 @@
+module Straddle
+  module Models
+    type funding_event_response =
+      {
+        data: Straddle::FundingEvent,
+        meta: Straddle::ResponseMetadata,
+        response_type: Straddle::Models::response_type
+      }
+
+    class FundingEventResponse < Straddle::Internal::Type::BaseModel
+      attr_accessor data: Straddle::FundingEvent
+
+      attr_accessor meta: Straddle::ResponseMetadata
+
+      attr_accessor response_type: Straddle::Models::response_type
+
+      def initialize: (
+        data: Straddle::FundingEvent,
+        meta: Straddle::ResponseMetadata,
+        response_type: Straddle::Models::response_type
+      ) -> void
+
+      def to_hash: -> {
+        data: Straddle::FundingEvent,
+        meta: Straddle::ResponseMetadata,
+        response_type: Straddle::Models::response_type
+      }
+    end
+  end
+end

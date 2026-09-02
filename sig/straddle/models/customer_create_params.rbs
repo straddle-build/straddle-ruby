@@ -1,0 +1,103 @@
+module Straddle
+  module Models
+    type customer_create_params =
+      {
+        device: Straddle::CustomerDevice,
+        email: String,
+        name: String,
+        phone: String,
+        type: Straddle::Models::customer_type,
+        address: Straddle::CustomerAddress?,
+        compliance_profile: Straddle::Models::unmasked_compliance_profile?,
+        config: Straddle::CustomerConfiguration,
+        external_id: String?,
+        metadata: ::Hash[Symbol, String]?,
+        correlation_id: String,
+        idempotency_key: String,
+        request_id: String,
+        straddle_account_id: String
+      }
+      & Straddle::Internal::Type::request_parameters
+
+    class CustomerCreateParams < Straddle::Internal::Type::BaseModel
+      extend Straddle::Internal::Type::RequestParameters::Converter
+      include Straddle::Internal::Type::RequestParameters
+
+      attr_accessor device: Straddle::CustomerDevice
+
+      attr_accessor email: String
+
+      attr_accessor name: String
+
+      attr_accessor phone: String
+
+      attr_accessor type: Straddle::Models::customer_type
+
+      attr_accessor address: Straddle::CustomerAddress?
+
+      attr_accessor compliance_profile: Straddle::Models::unmasked_compliance_profile?
+
+      attr_reader config: Straddle::CustomerConfiguration?
+
+      def config=: (
+        Straddle::CustomerConfiguration
+      ) -> Straddle::CustomerConfiguration
+
+      attr_accessor external_id: String?
+
+      attr_accessor metadata: ::Hash[Symbol, String]?
+
+      attr_reader correlation_id: String?
+
+      def correlation_id=: (String) -> String
+
+      attr_reader idempotency_key: String?
+
+      def idempotency_key=: (String) -> String
+
+      attr_reader request_id: String?
+
+      def request_id=: (String) -> String
+
+      attr_reader straddle_account_id: String?
+
+      def straddle_account_id=: (String) -> String
+
+      def initialize: (
+        device: Straddle::CustomerDevice,
+        email: String,
+        name: String,
+        phone: String,
+        type: Straddle::Models::customer_type,
+        ?address: Straddle::CustomerAddress?,
+        ?compliance_profile: Straddle::Models::unmasked_compliance_profile?,
+        ?config: Straddle::CustomerConfiguration,
+        ?external_id: String?,
+        ?metadata: ::Hash[Symbol, String]?,
+        ?correlation_id: String,
+        ?idempotency_key: String,
+        ?request_id: String,
+        ?straddle_account_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        device: Straddle::CustomerDevice,
+        email: String,
+        name: String,
+        phone: String,
+        type: Straddle::Models::customer_type,
+        address: Straddle::CustomerAddress?,
+        compliance_profile: Straddle::Models::unmasked_compliance_profile?,
+        config: Straddle::CustomerConfiguration,
+        external_id: String?,
+        metadata: ::Hash[Symbol, String]?,
+        correlation_id: String,
+        idempotency_key: String,
+        request_id: String,
+        straddle_account_id: String,
+        request_options: Straddle::RequestOptions
+      }
+    end
+  end
+end

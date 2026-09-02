@@ -1,0 +1,14 @@
+module Straddle
+  module Models
+    type payment_type = :charge | :payout
+
+    module PaymentType
+      extend Straddle::Internal::Type::Enum
+
+      CHARGE: :charge
+      PAYOUT: :payout
+
+      def self?.values: -> ::Array[Straddle::Models::payment_type]
+    end
+  end
+end

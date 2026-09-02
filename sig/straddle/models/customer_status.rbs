@@ -1,0 +1,18 @@
+module Straddle
+  module Models
+    type customer_status =
+      :pending | :review | :verified | :inactive | :rejected
+
+    module CustomerStatus
+      extend Straddle::Internal::Type::Enum
+
+      PENDING: :pending
+      REVIEW: :review
+      VERIFIED: :verified
+      INACTIVE: :inactive
+      REJECTED: :rejected
+
+      def self?.values: -> ::Array[Straddle::Models::customer_status]
+    end
+  end
+end

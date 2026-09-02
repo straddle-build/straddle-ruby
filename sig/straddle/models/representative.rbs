@@ -1,0 +1,119 @@
+module Straddle
+  module Models
+    type representative =
+      {
+        id: String,
+        account_id: String,
+        created_at: Time,
+        dob: Date,
+        email: String?,
+        first_name: String,
+        last_name: String,
+        mobile_number: String,
+        name: String,
+        relationship: Straddle::RepresentativeRelationship,
+        :ssn_last4 => String,
+        status: Straddle::Models::Representative::status,
+        status_detail: Straddle::RepresentativeStatusDetail,
+        updated_at: Time,
+        external_id: String?,
+        metadata: ::Hash[Symbol, String]?,
+        phone: String?,
+        user_id: String?
+      }
+
+    class Representative < Straddle::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor account_id: String
+
+      attr_accessor created_at: Time
+
+      attr_accessor dob: Date
+
+      attr_accessor email: String?
+
+      attr_accessor first_name: String
+
+      attr_accessor last_name: String
+
+      attr_accessor mobile_number: String
+
+      attr_accessor name: String
+
+      attr_accessor relationship: Straddle::RepresentativeRelationship
+
+      attr_accessor ssn_last4: String
+
+      attr_accessor status: Straddle::Models::Representative::status
+
+      attr_accessor status_detail: Straddle::RepresentativeStatusDetail
+
+      attr_accessor updated_at: Time
+
+      attr_accessor external_id: String?
+
+      attr_accessor metadata: ::Hash[Symbol, String]?
+
+      attr_accessor phone: String?
+
+      attr_accessor user_id: String?
+
+      def initialize: (
+        id: String,
+        account_id: String,
+        created_at: Time,
+        dob: Date,
+        email: String?,
+        first_name: String,
+        last_name: String,
+        mobile_number: String,
+        name: String,
+        relationship: Straddle::RepresentativeRelationship,
+        ssn_last4: String,
+        status: Straddle::Models::Representative::status,
+        status_detail: Straddle::RepresentativeStatusDetail,
+        updated_at: Time,
+        ?external_id: String?,
+        ?metadata: ::Hash[Symbol, String]?,
+        ?phone: String?,
+        ?user_id: String?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        account_id: String,
+        created_at: Time,
+        dob: Date,
+        email: String?,
+        first_name: String,
+        last_name: String,
+        mobile_number: String,
+        name: String,
+        relationship: Straddle::RepresentativeRelationship,
+        :ssn_last4 => String,
+        status: Straddle::Models::Representative::status,
+        status_detail: Straddle::RepresentativeStatusDetail,
+        updated_at: Time,
+        external_id: String?,
+        metadata: ::Hash[Symbol, String]?,
+        phone: String?,
+        user_id: String?
+      }
+
+      type status = :created | :onboarding | :active | :rejected | :inactive
+
+      module Status
+        extend Straddle::Internal::Type::Enum
+
+        CREATED: :created
+        ONBOARDING: :onboarding
+        ACTIVE: :active
+        REJECTED: :rejected
+        INACTIVE: :inactive
+
+        def self?.values: -> ::Array[Straddle::Models::Representative::status]
+      end
+    end
+  end
+end

@@ -1,0 +1,37 @@
+module Straddle
+  module Models
+    class PaykeyVerificationBreakdown = Paykeys::PaykeyVerificationBreakdown
+
+    module Paykeys
+      type paykey_verification_breakdown =
+        {
+          account_validation: Straddle::Paykeys::AccountValidationDetails,
+          name_match: Straddle::Paykeys::AccountNameMatchDetails
+        }
+
+      class PaykeyVerificationBreakdown < Straddle::Internal::Type::BaseModel
+        attr_reader account_validation: Straddle::Paykeys::AccountValidationDetails?
+
+        def account_validation=: (
+          Straddle::Paykeys::AccountValidationDetails
+        ) -> Straddle::Paykeys::AccountValidationDetails
+
+        attr_reader name_match: Straddle::Paykeys::AccountNameMatchDetails?
+
+        def name_match=: (
+          Straddle::Paykeys::AccountNameMatchDetails
+        ) -> Straddle::Paykeys::AccountNameMatchDetails
+
+        def initialize: (
+          ?account_validation: Straddle::Paykeys::AccountValidationDetails,
+          ?name_match: Straddle::Paykeys::AccountNameMatchDetails
+        ) -> void
+
+        def to_hash: -> {
+          account_validation: Straddle::Paykeys::AccountValidationDetails,
+          name_match: Straddle::Paykeys::AccountNameMatchDetails
+        }
+      end
+    end
+  end
+end

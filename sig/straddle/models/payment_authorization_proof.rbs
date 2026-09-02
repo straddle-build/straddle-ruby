@@ -1,0 +1,40 @@
+module Straddle
+  module Models
+    type payment_authorization_proof =
+      {
+        document_id: String,
+        document_name: String,
+        document_size: Integer,
+        document_type: Straddle::Models::payment_document_type,
+        uploaded_at: Time
+      }
+
+    class PaymentAuthorizationProof < Straddle::Internal::Type::BaseModel
+      attr_accessor document_id: String
+
+      attr_accessor document_name: String
+
+      attr_accessor document_size: Integer
+
+      attr_accessor document_type: Straddle::Models::payment_document_type
+
+      attr_accessor uploaded_at: Time
+
+      def initialize: (
+        document_id: String,
+        document_name: String,
+        document_size: Integer,
+        document_type: Straddle::Models::payment_document_type,
+        uploaded_at: Time
+      ) -> void
+
+      def to_hash: -> {
+        document_id: String,
+        document_name: String,
+        document_size: Integer,
+        document_type: Straddle::Models::payment_document_type,
+        uploaded_at: Time
+      }
+    end
+  end
+end

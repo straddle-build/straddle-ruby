@@ -1,0 +1,14 @@
+module Straddle
+  module Models
+    type account_type = :checking | :savings
+
+    module AccountType
+      extend Straddle::Internal::Type::Enum
+
+      CHECKING: :checking
+      SAVINGS: :savings
+
+      def self?.values: -> ::Array[Straddle::Models::account_type]
+    end
+  end
+end

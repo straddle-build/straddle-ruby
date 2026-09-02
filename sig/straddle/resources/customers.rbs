@@ -1,0 +1,98 @@
+module Straddle
+  module Resources
+    class Customers
+      attr_reader review: Straddle::Resources::Customers::Review
+
+      def create: (
+        device: Straddle::CustomerDevice,
+        email: String,
+        name: String,
+        phone: String,
+        type: Straddle::Models::customer_type,
+        ?address: Straddle::CustomerAddress?,
+        ?compliance_profile: Straddle::Models::unmasked_compliance_profile?,
+        ?config: Straddle::CustomerConfiguration,
+        ?external_id: String?,
+        ?metadata: ::Hash[Symbol, String]?,
+        ?correlation_id: String,
+        ?idempotency_key: String,
+        ?request_id: String,
+        ?straddle_account_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::CustomerResponse
+
+      def retrieve: (
+        String id,
+        ?correlation_id: String,
+        ?request_id: String,
+        ?straddle_account_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::CustomerResponse
+
+      def update: (
+        String id,
+        device: Straddle::CustomerDevice,
+        email: String,
+        name: String,
+        phone: String,
+        status: Straddle::Models::customer_status,
+        ?address: Straddle::CustomerAddress?,
+        ?compliance_profile: Straddle::Models::unmasked_compliance_profile?,
+        ?external_id: String?,
+        ?metadata: ::Hash[Symbol, String]?,
+        ?correlation_id: String,
+        ?idempotency_key: String,
+        ?request_id: String,
+        ?straddle_account_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::CustomerResponse
+
+      def list: (
+        ?created_from: Time,
+        ?created_to: Time,
+        ?email: String,
+        ?external_id: String,
+        ?name: String,
+        ?page_number: Integer,
+        ?page_size: Integer,
+        ?search_text: String,
+        ?sort_by: Straddle::Models::CustomerListParams::sort_by,
+        ?sort_order: Straddle::Models::sort_order,
+        ?status: ::Array[Straddle::Models::customer_status],
+        ?types: ::Array[Straddle::Models::customer_type],
+        ?correlation_id: String,
+        ?request_id: String,
+        ?straddle_account_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::CustomerSummaryList
+
+      def delete: (
+        String id,
+        ?correlation_id: String,
+        ?idempotency_key: String,
+        ?request_id: String,
+        ?straddle_account_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::CustomerResponse
+
+      def list_unmasked: (
+        String id,
+        ?correlation_id: String,
+        ?request_id: String,
+        ?straddle_account_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::UnmaskedCustomerResponse
+
+      def refresh_review: (
+        String id,
+        ?correlation_id: String,
+        ?idempotency_key: String,
+        ?request_id: String,
+        ?straddle_account_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::CustomerResponse
+
+      def initialize: (client: Straddle::Client) -> void
+    end
+  end
+end

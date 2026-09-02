@@ -1,0 +1,89 @@
+module Straddle
+  module Resources
+    class Paykeys
+      attr_reader review: Straddle::Resources::Paykeys::Review
+
+      def retrieve: (
+        String id,
+        ?correlation_id: String,
+        ?request_id: String,
+        ?straddle_account_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::PaykeyResponse
+
+      def list: (
+        ?created_from: Time,
+        ?created_to: Time,
+        ?customer_id: String,
+        ?page_number: Integer,
+        ?page_size: Integer,
+        ?search_text: String,
+        ?sort_by: Straddle::Models::PaykeyListParams::sort_by,
+        ?sort_order: Straddle::Models::sort_order,
+        ?source: ::Array[Straddle::Models::paykey_source],
+        ?status: ::Array[Straddle::Models::paykey_status],
+        ?unblock_eligible: bool,
+        ?correlation_id: String,
+        ?request_id: String,
+        ?straddle_account_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::PaykeySummaryList
+
+      def cancel: (
+        String id,
+        ?reason: String?,
+        ?correlation_id: String,
+        ?idempotency_key: String,
+        ?request_id: String,
+        ?straddle_account_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::PaykeyResponse
+
+      def list_unmasked: (
+        String id,
+        ?correlation_id: String,
+        ?request_id: String,
+        ?straddle_account_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::UnmaskedPaykeyResponse
+
+      def refresh_balance: (
+        String id,
+        ?correlation_id: String,
+        ?idempotency_key: String,
+        ?request_id: String,
+        ?straddle_account_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::PaykeyResponse
+
+      def refresh_review: (
+        String id,
+        ?correlation_id: String,
+        ?idempotency_key: String,
+        ?request_id: String,
+        ?straddle_account_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::PaykeyResponse
+
+      def reveal: (
+        String id,
+        ?correlation_id: String,
+        ?request_id: String,
+        ?straddle_account_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::RevealedPaykeyResponse
+
+      def unblock: (
+        String id,
+        ?message: String?,
+        ?correlation_id: String,
+        ?idempotency_key: String,
+        ?request_id: String,
+        ?straddle_account_id: String,
+        ?request_options: Straddle::request_opts
+      ) -> Straddle::PaykeyResponse
+
+      def initialize: (client: Straddle::Client) -> void
+    end
+  end
+end

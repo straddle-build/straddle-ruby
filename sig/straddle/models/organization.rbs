@@ -1,0 +1,45 @@
+module Straddle
+  module Models
+    type organization =
+      {
+        id: String,
+        created_at: Time,
+        name: String,
+        updated_at: Time,
+        external_id: String?,
+        metadata: ::Hash[Symbol, String?]?
+      }
+
+    class Organization < Straddle::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor created_at: Time
+
+      attr_accessor name: String
+
+      attr_accessor updated_at: Time
+
+      attr_accessor external_id: String?
+
+      attr_accessor metadata: ::Hash[Symbol, String?]?
+
+      def initialize: (
+        id: String,
+        created_at: Time,
+        name: String,
+        updated_at: Time,
+        ?external_id: String?,
+        ?metadata: ::Hash[Symbol, String?]?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        created_at: Time,
+        name: String,
+        updated_at: Time,
+        external_id: String?,
+        metadata: ::Hash[Symbol, String?]?
+      }
+    end
+  end
+end
