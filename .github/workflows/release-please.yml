@@ -55,3 +55,51 @@ jobs:
           git checkout -B scalar-next origin/scalar-next
           git merge --no-edit -m "Sync release ${{ steps.release.outputs.tag_name }} back to scalar-next" "${{ steps.release.outputs.sha }}"
           git push origin scalar-next
+  publish:
+    needs: release-please
+    # `!cancelled()` keeps publishing even when the back-sync to the integration branch
+    # failed: a raced integration branch must not block the release from reaching its
+    # registry.
+    if: ${{ !cancelled() && needs.release-please.outputs.release_created == 'true' }}
+    runs-on: ubuntu-latest
+    # Job-level permissions replace the workflow's release-cutting grants with the publish
+    # floor. OIDC trusted publishing verifies this run's claims, which name this workflow
+    # file — register release-please.yml as the trusted publisher on the registry.
+    permissions:
+      contents: read
+      id-token: write
+      packages: write
+    env:
+      VERSIONING_POLICY: manual
+    steps:
+      # Publishing runs inline — a top-level job of this same run — rather than dispatching
+      # sdk-release.yml: workflow_dispatch resolves the target workflow on the repository's
+      # default branch only, so a dispatch would 404 whenever the release line is any other
+      # branch, while OIDC trusted publishing accepts this job because it stays top-level
+      # (never a reusable-workflow call). The release-please job cut the tag earlier in this
+      # run; checking it out publishes exactly the released commit, not the branch head that
+      # triggered the workflow.
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          ref: ${{ needs.release-please.outputs.tag_name }}
+      - uses: ruby/setup-ruby@9eb537ca036ebaed86729dcb9309076e4c5c3b74 # v1.314.0
+        with:
+          ruby-version: "3.2"
+          bundler-cache: false
+      - run: ruby -e 'Dir["lib/**/*.rb"].each { |file| system("ruby", "-c", file) || exit(1) }'
+      - run: gem build *.gemspec
+      # Trusted publishing: exchanges the job's OIDC id-token for a short-lived rubygems.org API
+      # key and exports it as GEM_HOST_API_KEY for the push below, so no long-lived secret is
+      # stored. Requires a trusted publisher registered for this gem on rubygems.org naming this
+      # repository and this workflow file (a pending publisher covers a gem's first release).
+      - name: Configure RubyGems credentials
+        uses: rubygems/configure-rubygems-credentials@dc5a8d8553e6ee01fc26761a49e99e733d17954a # v2.1.0
+      - name: Publish to RubyGems
+        run: |
+          gem build *.gemspec --output straddle.gem
+          GEM_VERSION="$(ruby -e 'puts Gem::Specification.load(Dir.glob("*.gemspec").first).version')"
+          if curl -sf -A "scalar-sdk-release" "https://rubygems.org/api/v1/versions/straddle.json" | grep -q "\"number\":\"${GEM_VERSION}\""; then
+            echo "straddle ${GEM_VERSION} already on RubyGems, skipping"
+          else
+            gem push straddle.gem
+          fi
