@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    straddle (0.1.0)
+    straddle (1.0.0)
       base64
       cgi
       connection_pool
