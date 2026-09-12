@@ -22,6 +22,10 @@ module Straddle
       sig { params(config: Straddle::PayoutConfiguration::OrHash).void }
       attr_writer :config
 
+      # Timestamp when this payout was created.
+      sig { returns(Time) }
+      attr_accessor :created_at
+
       # Currency code. Only `USD` is supported.
       sig { returns(String) }
       attr_accessor :currency
@@ -85,9 +89,9 @@ module Straddle
       sig { returns(T::Hash[Symbol, String]) }
       attr_accessor :trace_ids
 
-      # Timestamp when this payout was created.
-      sig { returns(T.nilable(Time)) }
-      attr_accessor :created_at
+      # Timestamp when this payout was last updated.
+      sig { returns(Time) }
+      attr_accessor :updated_at
 
       # Information about the customer associated with the charge or payout.
       sig { returns(T.nilable(Straddle::CustomerDetails)) }
@@ -130,15 +134,12 @@ module Straddle
       sig { returns(T.nilable(T::Array[Straddle::RelatedPayment])) }
       attr_accessor :related_payments
 
-      # Timestamp when this payout was last updated.
-      sig { returns(T.nilable(Time)) }
-      attr_accessor :updated_at
-
       sig do
         params(
           id: String,
           amount: Integer,
           config: Straddle::PayoutConfiguration::OrHash,
+          created_at: Time,
           currency: String,
           description: T.nilable(String),
           device: Straddle::PaymentDevice::OrHash,
@@ -153,7 +154,7 @@ module Straddle
           status_details: Straddle::PaymentStatusDetails::OrHash,
           status_history: T::Array[Straddle::PaymentStatusHistory::OrHash],
           trace_ids: T::Hash[Symbol, String],
-          created_at: T.nilable(Time),
+          updated_at: Time,
           customer_details: Straddle::CustomerDetails::OrHash,
           documents:
             T.nilable(T::Array[Straddle::PaymentAuthorizationProof::OrHash]),
@@ -163,8 +164,7 @@ module Straddle
           payment_rail: Straddle::PaymentRail::OrSymbol,
           processed_at: T.nilable(Time),
           related_payments:
-            T.nilable(T::Array[Straddle::RelatedPayment::OrHash]),
-          updated_at: T.nilable(Time)
+            T.nilable(T::Array[Straddle::RelatedPayment::OrHash])
         ).returns(T.attached_class)
       end
       def self.new(
@@ -173,6 +173,8 @@ module Straddle
         # Amount in cents.
         amount:,
         config:,
+        # Timestamp when this payout was created.
+        created_at:,
         # Currency code. Only `USD` is supported.
         currency:,
         # A human-readable description of the payout.
@@ -200,8 +202,8 @@ module Straddle
         status_history:,
         # Trace identifiers from the payment network. Keys depend on the payment rail.
         trace_ids:,
-        # Timestamp when this payout was created.
-        created_at: nil,
+        # Timestamp when this payout was last updated.
+        updated_at:,
         # Information about the customer associated with the charge or payout.
         customer_details: nil,
         # Authorization documents for this payout, ordered by upload time.
@@ -217,9 +219,7 @@ module Straddle
         # processed.
         processed_at: nil,
         # Related payments and their relationship to this payout.
-        related_payments: nil,
-        # Timestamp when this payout was last updated.
-        updated_at: nil
+        related_payments: nil
       )
       end
 
@@ -229,6 +229,7 @@ module Straddle
             id: String,
             amount: Integer,
             config: Straddle::PayoutConfiguration,
+            created_at: Time,
             currency: String,
             description: T.nilable(String),
             device: Straddle::PaymentDevice,
@@ -243,7 +244,7 @@ module Straddle
             status_details: Straddle::PaymentStatusDetails,
             status_history: T::Array[Straddle::PaymentStatusHistory],
             trace_ids: T::Hash[Symbol, String],
-            created_at: T.nilable(Time),
+            updated_at: Time,
             customer_details: Straddle::CustomerDetails,
             documents: T.nilable(T::Array[Straddle::PaymentAuthorizationProof]),
             effective_at: T.nilable(Time),
@@ -251,8 +252,7 @@ module Straddle
             paykey_details: Straddle::PaykeyDetails,
             payment_rail: Straddle::PaymentRail::TaggedSymbol,
             processed_at: T.nilable(Time),
-            related_payments: T.nilable(T::Array[Straddle::RelatedPayment]),
-            updated_at: T.nilable(Time)
+            related_payments: T.nilable(T::Array[Straddle::RelatedPayment])
           }
         )
       end

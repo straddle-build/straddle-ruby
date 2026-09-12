@@ -5,6 +5,7 @@ module Straddle
         id: String,
         amount: Integer,
         config: Straddle::PayoutConfiguration,
+        created_at: Time,
         currency: String,
         description: String?,
         device: Straddle::PaymentDevice,
@@ -19,7 +20,7 @@ module Straddle
         status_details: Straddle::PaymentStatusDetails,
         status_history: ::Array[Straddle::PaymentStatusHistory],
         trace_ids: ::Hash[Symbol, String],
-        created_at: Time?,
+        updated_at: Time,
         customer_details: Straddle::CustomerDetails,
         documents: ::Array[Straddle::PaymentAuthorizationProof]?,
         effective_at: Time?,
@@ -27,8 +28,7 @@ module Straddle
         paykey_details: Straddle::PaykeyDetails,
         payment_rail: Straddle::Models::payment_rail,
         processed_at: Time?,
-        related_payments: ::Array[Straddle::RelatedPayment]?,
-        updated_at: Time?
+        related_payments: ::Array[Straddle::RelatedPayment]?
       }
 
     class UnmaskedPayout < Straddle::Internal::Type::BaseModel
@@ -37,6 +37,8 @@ module Straddle
       attr_accessor amount: Integer
 
       attr_accessor config: Straddle::PayoutConfiguration
+
+      attr_accessor created_at: Time
 
       attr_accessor currency: String
 
@@ -66,7 +68,7 @@ module Straddle
 
       attr_accessor trace_ids: ::Hash[Symbol, String]
 
-      attr_accessor created_at: Time?
+      attr_accessor updated_at: Time
 
       attr_reader customer_details: Straddle::CustomerDetails?
 
@@ -94,12 +96,11 @@ module Straddle
 
       attr_accessor related_payments: ::Array[Straddle::RelatedPayment]?
 
-      attr_accessor updated_at: Time?
-
       def initialize: (
         id: String,
         amount: Integer,
         config: Straddle::PayoutConfiguration,
+        created_at: Time,
         currency: String,
         description: String?,
         device: Straddle::PaymentDevice,
@@ -114,7 +115,7 @@ module Straddle
         status_details: Straddle::PaymentStatusDetails,
         status_history: ::Array[Straddle::PaymentStatusHistory],
         trace_ids: ::Hash[Symbol, String],
-        ?created_at: Time?,
+        updated_at: Time,
         ?customer_details: Straddle::CustomerDetails,
         ?documents: ::Array[Straddle::PaymentAuthorizationProof]?,
         ?effective_at: Time?,
@@ -122,14 +123,14 @@ module Straddle
         ?paykey_details: Straddle::PaykeyDetails,
         ?payment_rail: Straddle::Models::payment_rail,
         ?processed_at: Time?,
-        ?related_payments: ::Array[Straddle::RelatedPayment]?,
-        ?updated_at: Time?
+        ?related_payments: ::Array[Straddle::RelatedPayment]?
       ) -> void
 
       def to_hash: -> {
         id: String,
         amount: Integer,
         config: Straddle::PayoutConfiguration,
+        created_at: Time,
         currency: String,
         description: String?,
         device: Straddle::PaymentDevice,
@@ -144,7 +145,7 @@ module Straddle
         status_details: Straddle::PaymentStatusDetails,
         status_history: ::Array[Straddle::PaymentStatusHistory],
         trace_ids: ::Hash[Symbol, String],
-        created_at: Time?,
+        updated_at: Time,
         customer_details: Straddle::CustomerDetails,
         documents: ::Array[Straddle::PaymentAuthorizationProof]?,
         effective_at: Time?,
@@ -152,8 +153,7 @@ module Straddle
         paykey_details: Straddle::PaykeyDetails,
         payment_rail: Straddle::Models::payment_rail,
         processed_at: Time?,
-        related_payments: ::Array[Straddle::RelatedPayment]?,
-        updated_at: Time?
+        related_payments: ::Array[Straddle::RelatedPayment]?
       }
     end
   end
