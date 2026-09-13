@@ -12,7 +12,7 @@ Generated Ruby client for Straddle API, published as `straddle`. Use the generat
 Add the gem to your application's `Gemfile`:
 
 ```ruby
-gem "straddle", "~> 1.0.0" # x-release-please-version
+gem "straddle", "~> 1.0.4" # x-release-please-version
 ```
 
 Or install it directly:
