@@ -20,6 +20,12 @@ module Straddle
       #   @return [Straddle::Models::PayoutConfiguration]
       required :config, -> { Straddle::PayoutConfiguration }
 
+      # @!attribute created_at
+      #   Timestamp when this payout was created.
+      #
+      #   @return [Time]
+      required :created_at, Time
+
       # @!attribute currency
       #   Currency code. Only `USD` is supported.
       #
@@ -103,11 +109,11 @@ module Straddle
       #   @return [Hash{Symbol=>String}]
       required :trace_ids, Straddle::Internal::Type::HashOf[String]
 
-      # @!attribute created_at
-      #   Timestamp when this payout was created.
+      # @!attribute updated_at
+      #   Timestamp when this payout was last updated.
       #
-      #   @return [Time, nil]
-      optional :created_at, Time, nil?: true
+      #   @return [Time]
+      required :updated_at, Time
 
       # @!attribute customer_details
       #   Information about the customer associated with the charge or payout.
@@ -161,13 +167,7 @@ module Straddle
                -> { Straddle::Internal::Type::ArrayOf[Straddle::RelatedPayment] },
                nil?: true
 
-      # @!attribute updated_at
-      #   Timestamp when this payout was last updated.
-      #
-      #   @return [Time, nil]
-      optional :updated_at, Time, nil?: true
-
-      # @!method initialize(id:, amount:, config:, currency:, description:, device:, external_id:, funding_ids:, has_resubmit:, is_refund:, is_resubmit:, paykey:, payment_date:, status:, status_details:, status_history:, trace_ids:, created_at: nil, customer_details: nil, documents: nil, effective_at: nil, metadata: nil, paykey_details: nil, payment_rail: nil, processed_at: nil, related_payments: nil, updated_at: nil)
+      # @!method initialize(id:, amount:, config:, created_at:, currency:, description:, device:, external_id:, funding_ids:, has_resubmit:, is_refund:, is_resubmit:, paykey:, payment_date:, status:, status_details:, status_history:, trace_ids:, updated_at:, customer_details: nil, documents: nil, effective_at: nil, metadata: nil, paykey_details: nil, payment_rail: nil, processed_at: nil, related_payments: nil)
       #   Some parameter documentations has been truncated, see
       #   {Straddle::Models::UnmaskedPayout} for more details.
       #
@@ -176,6 +176,8 @@ module Straddle
       #   @param amount [Integer] Amount in cents.
       #
       #   @param config [Straddle::Models::PayoutConfiguration]
+      #
+      #   @param created_at [Time] Timestamp when this payout was created.
       #
       #   @param currency [String] Currency code. Only `USD` is supported.
       #
@@ -205,7 +207,7 @@ module Straddle
       #
       #   @param trace_ids [Hash{Symbol=>String}] Trace identifiers from the payment network. Keys depend on the payment rail.
       #
-      #   @param created_at [Time, nil] Timestamp when this payout was created.
+      #   @param updated_at [Time] Timestamp when this payout was last updated.
       #
       #   @param customer_details [Straddle::Models::CustomerDetails] Information about the customer associated with the charge or payout.
       #
@@ -222,8 +224,6 @@ module Straddle
       #   @param processed_at [Time, nil] Timestamp when this payout was submitted to the payment network. Null until proc
       #
       #   @param related_payments [Array<Straddle::Models::RelatedPayment>, nil] Related payments and their relationship to this payout.
-      #
-      #   @param updated_at [Time, nil] Timestamp when this payout was last updated.
     end
   end
 end

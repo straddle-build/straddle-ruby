@@ -242,7 +242,7 @@ Creates a linked bank account for an account or platform, assigns its payment pu
 | Response | [`LinkedBankAccountResponse`](././lib/straddle/models/linked_bank_account_response.rb) |
 
 ```ruby
-response = client.linked_bank_accounts.create({ bank_account: { "account_holder" => "", "routing_number" => "xxxxxxxxx", "account_number" => "" }, account_id: "7c9e6679-7425-40de-944b-e07fc1f90ae7", description: "", metadata: {  }, platform_id: "7c9e6679-7425-40de-944b-e07fc1f90ae7", purposes: [] })
+response = client.linked_bank_accounts.create({ bank_account: { "account_holder" => "", "routing_number" => "xxxxxxxxx", "account_number" => "" }, account_id: "7c9e6679-7425-40de-944b-e07fc1f90ae7", description: "", metadata: {  }, platform_id: "7c9e6679-7425-40de-944b-e07fc1f90ae7", purposes: ["charges"] })
 
 puts response.inspect
 ```
@@ -588,7 +588,7 @@ Creates a customer and starts identity, fraud, and risk assessments.
 | Response | [`CustomerResponse`](././lib/straddle/models/customer_response.rb) |
 
 ```ruby
-response = client.customers.create({ device: { "ip_address" => "192.168.1.1" }, email: "ron.swanson@pawnee.com", name: "Ron Swanson", phone: "+12128675309", type: "individual", address: { "address1" => "123 Main St", "city" => "Anytown", "state" => "CA", "zip" => "94105" }, compliance_profile: StringIO.new("smoke-test"), config: {  }, external_id: "customer_123", metadata: {  } })
+response = client.customers.create({ device: { "ip_address" => "192.168.1.1" }, email: "ron.swanson@pawnee.com", name: "Ron Swanson", phone: "+12128675309", type: "individual", address: { "address1" => "123 Main St", "city" => "Anytown", "state" => "CA", "zip" => "12345" }, compliance_profile: StringIO.new("smoke-test"), config: {  }, external_id: "customer_123", metadata: {  } })
 
 puts response.inspect
 ```
@@ -964,7 +964,7 @@ Uploads a proof-of-authorization document for a charge. A later upload adds anot
 | Response | [`ChargeResponse`](././lib/straddle/models/charge_response.rb) |
 
 ```ruby
-response = client.charges.upload_authorization_proof("7c9e6679-7425-40de-944b-e07fc1f90ae7", { file: "" })
+response = client.charges.upload_authorization_proof("7c9e6679-7425-40de-944b-e07fc1f90ae7", { file: "file" })
 
 puts response.inspect
 ```
@@ -1186,7 +1186,7 @@ Uploads a proof-of-authorization document for a payout. A later upload adds anot
 | Response | [`PayoutResponse`](././lib/straddle/models/payout_response.rb) |
 
 ```ruby
-response = client.payouts.upload_authorization_proof("7c9e6679-7425-40de-944b-e07fc1f90ae7", { file: "" })
+response = client.payouts.upload_authorization_proof("7c9e6679-7425-40de-944b-e07fc1f90ae7", { file: "file" })
 
 puts response.inspect
 ```

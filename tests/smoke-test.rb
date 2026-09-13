@@ -12,7 +12,7 @@ require "straddle"
 # Smoke test: calls every generated operation once to confirm the SDK can reach each endpoint.
 # Run it from this repo with `ruby tests/smoke-test.rb`. The generator also runs this file
 # against a mock server and reads the JSON report produced via SCALAR_SMOKE_REPORT.
-client = Straddle::Client.new(max_retries: 0, timeout: 30)
+client = Straddle::Client.new(max_retries: 2, timeout: 30)
 
 cases = [
   {
@@ -307,7 +307,7 @@ cases = [
           description: "",
           metadata: {},
           platform_id: "7c9e6679-7425-40de-944b-e07fc1f90ae7",
-          purposes: [],
+          purposes: ["charges"],
           correlation_id: "correlation_id",
           idempotency_key: "idempotency_key",
           request_id: "request_id"
@@ -844,15 +844,7 @@ cases = [
           email: "ron.swanson@pawnee.com",
           name: "Ron Swanson",
           phone: "+12128675309",
-          type: "individual",
-          address: {
-            "address1" => "123 Main St",
-            "city" => "Anytown",
-            "state" => "CA",
-            "zip" => "94105"
-          },
-          external_id: "customer_123",
-          metadata: {}
+          type: "individual"
         }
       )
     end
@@ -874,9 +866,10 @@ cases = [
           type: "individual",
           address: {
             "address1" => "123 Main St",
+            "address2" => "Apt 1",
             "city" => "Anytown",
             "state" => "CA",
-            "zip" => "94105"
+            "zip" => "12345"
           },
           compliance_profile: StringIO.new("smoke-test"),
           config: {
@@ -1655,7 +1648,7 @@ cases = [
     path: "/v1/charges/{id}/authorization",
     label: "required params",
     run: -> do
-      client.charges.upload_authorization_proof("7c9e6679-7425-40de-944b-e07fc1f90ae7", {file: ""})
+      client.charges.upload_authorization_proof("7c9e6679-7425-40de-944b-e07fc1f90ae7", {file: "file"})
     end
   },
   {
@@ -1667,7 +1660,7 @@ cases = [
       client.charges.upload_authorization_proof(
         "7c9e6679-7425-40de-944b-e07fc1f90ae7",
         {
-          file: "",
+          file: "file",
           correlation_id: "correlation_id",
           idempotency_key: "idempotency_key",
           request_id: "request_id",
@@ -2101,7 +2094,7 @@ cases = [
     path: "/v1/payouts/{id}/authorization",
     label: "required params",
     run: -> do
-      client.payouts.upload_authorization_proof("7c9e6679-7425-40de-944b-e07fc1f90ae7", {file: ""})
+      client.payouts.upload_authorization_proof("7c9e6679-7425-40de-944b-e07fc1f90ae7", {file: "file"})
     end
   },
   {
@@ -2113,7 +2106,7 @@ cases = [
       client.payouts.upload_authorization_proof(
         "7c9e6679-7425-40de-944b-e07fc1f90ae7",
         {
-          file: "",
+          file: "file",
           correlation_id: "correlation_id",
           idempotency_key: "idempotency_key",
           request_id: "request_id",
@@ -2143,6 +2136,22 @@ cases = [
   }
 ]
 
+# Renders a failure as its whole cause chain, then the backtrace of the exception that escaped.
+# The SDK wraps a dropped socket in an APIConnectionError whose message is only "Connection
+# error." — the Errno::ECONNRESET or EOFError that says which teardown it was is attached as
+# `cause` and is invisible unless walked. The chain leads so that a report reader taking only the
+# first line still sees the class and message of the failure itself.
+def error_details(e)
+  chain = []
+  current = e
+  # Ruby refuses to set a circular `cause`, so following it always terminates.
+  while current
+    chain << "#{current.class.name}: #{current.message}"
+    current = current.cause
+  end
+  (chain + e.backtrace.to_a).join("\n")
+end
+
 def run_case(test_case)
   started_at = Process.clock_gettime(Process::CLOCK_MONOTONIC)
   # `label` distinguishes the required-params run from the all-params run of the same operation;
@@ -2159,7 +2168,7 @@ def run_case(test_case)
     identity.merge(
       status: "failed",
       durationMs: ((Process.clock_gettime(Process::CLOCK_MONOTONIC) - started_at) * 1000).to_i,
-      error: ([e.class.name, e.message] + e.backtrace.to_a).join("\n")
+      error: error_details(e)
     )
   end
 end
@@ -2177,8 +2186,28 @@ selected =
     end
   )
 
-results =
-  selected.map { |test_case| Thread.new(test_case) { |smoke_case| run_case(smoke_case) } }.map(&:value)
+# Run the cases under a bounded worker pool rather than one thread per case. A large SDK has
+# hundreds of operations, and starting a thread for each one puts more requests in flight than
+# the client's connection pool has slots while the runner is already busy with other targets.
+# SCALAR_SMOKE_CONCURRENCY overrides the cap; anything unparseable falls back to the default.
+# Workers pull from a shared cursor and write into a pre-sized array, so results stay in case
+# order however the threads interleave.
+concurrency = [Integer(ENV.fetch("SCALAR_SMOKE_CONCURRENCY", "32"), exception: false) || 32, 1].max
+worker_count = [concurrency, selected.length].min
+results = Array.new(selected.length)
+cursor = 0
+mutex = Mutex.new
+Array
+  .new(worker_count) do
+    Thread.new do
+      loop do
+        index = mutex.synchronize { cursor.tap { cursor += 1 } }
+        break if index >= selected.length
+        results[index] = run_case(selected[index])
+      end
+    end
+  end
+  .each(&:join)
 
 failed = results.select { |result| result[:status] == "failed" }
 if ENV["SCALAR_SMOKE_REPORT"]
