@@ -1,148 +1,143 @@
-# Straddle API
+# Straddle Ruby SDK
 
-This library provides convenient access to the Straddle API from Ruby.
+Use Straddle's Pay by Bank and Embed APIs from Ruby. The SDK provides typed models, authentication, retries, and request configuration.
 
-The full API of this library can be found in [api.md](./api.md).
+## Install
 
-<br />
-
-## Contents
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [API Reference](./api.md)
-- [Authentication](#authentication)
-- [Errors](#errors)
-- [Client Options](#client-options)
-- [Request Options](#request-options)
-- [Retries and Timeouts](#retries-and-timeouts)
-- [Helpers](#helpers)
-- [Requirements](#requirements)
-
-<br />
-
-## Installation
-
-Add the gem to your application's `Gemfile`:
+Use Ruby 3.2 or later. Add the gem to your application's `Gemfile`:
 
 ```ruby
 gem "straddle", "~> 1.0.4" # x-release-please-version
 ```
 
-Or install it directly:
+Install your bundle:
+
+```sh
+bundle install
+```
+
+For a standalone script, install the gem directly:
 
 ```sh
 gem install straddle
 ```
 
-<br />
+The RubyGems package is [`straddle`](https://rubygems.org/gems/straddle). Its source lives in `straddle-build/straddle-ruby`.
 
-## Usage
+## Make your first request
+
+Create a sandbox API key in the [Straddle Dashboard](https://dashboard.straddle.com), then set it in your environment. See [API authentication](https://docs.straddle.com/api-reference/authentication) for the setup steps.
+
+```sh
+export STRADDLE_API_KEY="YOUR_SANDBOX_API_KEY"
+```
+
+Save the following example as `quickstart.rb`. It requests the first page of customers from the sandbox:
 
 ```ruby
 require "straddle"
 
 client = Straddle::Client.new(
-  bearer: ENV["BEARER"], # defaults to the BEARER env var
+  bearer: ENV.fetch("STRADDLE_API_KEY"),
+  base_url: "https://sandbox.straddle.com"
 )
 
-response = client.accounts.retrieve("7c9e6679-7425-40de-944b-e07fc1f90ae7")
-
-puts response.inspect
+page = client.customers.list(page_number: 1, page_size: 10)
+puts "Customers on this page: #{page.data.length}"
 ```
 
-The examples in the following sections assume a `client` configured as shown above.
+For a SaaS platform key, add `straddle_account_id: "YOUR_EMBEDDED_ACCOUNT_ID"` to the `list` arguments before running the example. This selects the embedded account whose customers you want to read. Direct accounts and marketplaces list customers without that header. See [platform account scoping](https://docs.straddle.com/guides/embed/api-headers).
 
-See the [API reference](./api.md) for every available operation.
+Run the example from your application:
 
-<br />
+```sh
+bundle exec ruby quickstart.rb
+```
 
-## Authentication
+If you installed the gem directly, use `ruby quickstart.rb`.
 
-Pass credentials to the generated client constructor. Environment variables are read automatically when supported by the target runtime.
+A successful request prints the number of customers on the page. `Customers on this page: 0` is valid for an empty account. Customer records are in `page.data`; pagination and request metadata are in `page.meta`.
 
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `bearer` | `String \| nil` | - | Send the API key as a bearer token in the `Authorization` header. Defaults to BEARER. |
+The remaining examples use this `client`.
 
-Declared schemes:
+## Configure authentication and environments
 
-- `Bearer` bearer token
+The example passes `STRADDLE_API_KEY` explicitly as `bearer`. If you omit `bearer`, the client reads `BEARER`.
 
-<br />
+Set `base_url` explicitly to select an environment. If you omit it, the client reads `STRADDLE_BASE_URL`, then defaults to `https://sandbox.straddle.com`. Production uses `https://production.straddle.com` and a production API key. See [environments](https://docs.straddle.com/api-reference/environments).
 
-## Errors
+## Read additional pages
 
-Non-success responses throw generated API errors. Error objects expose status, headers, response body, and request metadata where the target runtime supports it.
+List methods return one response page. Choose the next `page_number` using `page.meta.total_pages`, and keep your filters and account scope the same between requests:
+
+```ruby
+next_page = client.customers.list(page_number: 2, page_size: 10)
+```
+
+Models expose response fields as attributes. Methods accept a plain hash or the corresponding parameter model. The gem also includes Sorbet `.rbi` and Steep `.rbs` signatures. See the [method reference](./api.md) for filters and response types.
+
+## Handle errors
+
+Catch `Straddle::Errors::APIError` to inspect the status, headers, and body of a failed request. Connection errors also inherit from this class and have no HTTP status.
 
 ```ruby
 begin
-  response = client.accounts.retrieve("7c9e6679-7425-40de-944b-e07fc1f90ae7")
-
-  puts response.inspect
+  page = client.customers.list(page_size: 10)
 rescue Straddle::Errors::APIError => error
-  puts "#{error.status}: #{error.message}"
+  warn "#{error.status}: #{error.message}"
   raise
 end
 ```
 
-Documented error statuses: `400`, `401`, `403`, `404`, `422`, `500`.
+For a `401`, check that the key matches the selected environment. For a `403`, check the key's permissions and account scope. See [API errors](https://docs.straddle.com/api-reference/errors) for response details.
 
-<br />
+## Set retries and timeouts
 
-## Client Options
+The client retries connection errors, `408`, `409`, `429`, and `5xx` responses twice by default. It uses exponential backoff and honors supported `Retry-After` values. The default timeout is 60 seconds; retries can extend the total request duration.
 
-Configure the generated client by setting any of these options when you create it.
+Set `max_retries` and `timeout` in the constructor, or pass `request_options` for an individual request:
 
 ```ruby
-require "straddle"
-
-client = Straddle::Client.new(
-  timeout: 60.0,
-  max_retries: 2,
+page = client.customers.list(
+  page_size: 10,
+  request_options: {max_retries: 0, timeout: 30.0}
 )
 ```
 
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `bearer` | `String \| nil` | `ENV["BEARER"]` | Send the API key as a bearer token in the `Authorization` header. |
-| `webhook_secret` | `String \| nil` | `ENV["STRADDLE_WEBHOOK_SECRET"]` | Secret used to verify incoming webhook signatures. |
-| `base_url` | `String \| nil` | `ENV["STRADDLE_BASE_URL"]` | Override the default API base URL. |
-| `max_retries` | `Integer` | `2` | Max number of retries to attempt after a failed retryable request. |
-| `timeout` | `Float` | `60.0` | Seconds to wait for a response before timing out. |
-| `initial_retry_delay` | `Float` | `0.5` | Seconds to wait before the first retry; later retries back off exponentially. |
-| `max_retry_delay` | `Float` | `8.0` | Upper bound, in seconds, on the delay between retries. |
+For write operations that accept an idempotency key, pass the operation's `idempotency_key` argument. Reuse that value when retrying the same operation. See [idempotency](https://docs.straddle.com/api-reference/idempotency).
 
-<br />
+## Client and request options
 
-## Request Options
+Set these options in the client constructor.
 
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `idempotency_key` | `String` | - | Idempotency key for one request, sent when the SDK configures an idempotency header. |
-| `extra_query` | `Hash` | - | Additional query parameters for one request. |
-| `extra_headers` | `Hash` | - | Additional headers for one request. |
-| `extra_body` | `Hash` | - | Additional body fields for one request. |
-| `max_retries` | `Integer` | - | Override retry count for one request. |
-| `timeout` | `Float` | - | Override timeout for one request. |
+| Option | Purpose | Default |
+| --- | --- | --- |
+| `bearer` | API key | `BEARER` |
+| `base_url` | API base URL | `STRADDLE_BASE_URL`, then sandbox |
+| `webhook_secret` | Secret for webhook signature verification | `STRADDLE_WEBHOOK_SECRET` |
+| `max_retries` | Retry count | `2` |
+| `timeout` | Timeout in seconds | `60.0` |
+| `initial_retry_delay` | Initial retry delay in seconds | `0.5` |
+| `max_retry_delay` | Maximum backoff delay in seconds | `8.0` |
 
-<br />
+Pass these values inside a method's `request_options` hash.
 
-## Retries and Timeouts
+| Option | Purpose |
+| --- | --- |
+| `extra_query` | Add query parameters |
+| `extra_headers` | Add headers |
+| `extra_body` | Add body fields |
+| `max_retries` | Override the retry count |
+| `timeout` | Override the timeout in seconds |
 
-Generated clients support request timeouts and retry temporary failures such as network errors, 408, 409, 429, and 5xx responses. Retry delays honor `Retry-After` headers when present. Tune the retry and timeout client options shown above, or override them per request.
+## Reference and support
 
-<br />
+Use the following resources as you build your integration:
 
-## Helpers
+- [SDK method reference](./api.md) and [operation signatures](./reference.md).
+- [Straddle guides](https://docs.straddle.com): payment flows, sandbox testing, and API concepts.
+- [GitHub issues](https://github.com/straddle-build/straddle-ruby/issues): SDK bugs and feature requests.
+- [Local development](./CONTRIBUTING.md) and [versioning](./VERSIONING.md): submit customizations against `scalar-next` so Scalar carries them through regeneration.
+- [Security policy](./SECURITY.md) and [Apache 2.0 license](./LICENSE).
 
-- Every model is a `BaseModel`: pass a plain hash or a model instance, and read decoded values back as attributes.
-- The gem ships `rbi/` and `sig/` trees, so Sorbet and Steep type-check calls into the SDK.
-
-<br />
-
-## Requirements
-
-- Ruby >= 3.2
-
-Powered by Scalar.
+Straddle generates this SDK with Scalar and maintains repository customizations through the workflow in `VERSIONING.md`.
