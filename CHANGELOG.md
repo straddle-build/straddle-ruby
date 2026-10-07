@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.5](https://github.com/straddle-build/straddle-ruby/compare/v1.0.4...v1.0.5) (2026-10-07)
+
+
+### Documentation
+
+* refresh Ruby SDK quickstart and examples ([#4](https://github.com/straddle-build/straddle-ruby/issues/4)) ([ea6875a](https://github.com/straddle-build/straddle-ruby/commit/ea6875a7413774b108ad2d092d740b95a8e142d8))
+
 ## [1.0.4](https://github.com/straddle-build/straddle-ruby/compare/v1.0.0...v1.0.4) (2026-09-13)
 
 
