@@ -222,8 +222,11 @@ module Straddle
 
         # @api private
         #
+        # A product token can't contain `:`, so the namespaced class name (`Straddle::Client`) is
+        # not usable here; the gateway rejects it.
+        #
         # @return [String]
-        private def user_agent = "#{self.class.name}/Ruby #{Straddle::VERSION}"
+        private def user_agent = "Straddle/Ruby #{Straddle::VERSION}"
 
         # @api private
         #
