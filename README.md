@@ -7,7 +7,7 @@ Use Straddle's Pay by Bank and Embed APIs from Ruby. The SDK provides typed mode
 Use Ruby 3.2 or later. Add the gem to your application's `Gemfile`:
 
 ```ruby
-gem "straddle", "~> 1.0.4" # x-release-please-version
+gem "straddle", "~> 1.0.5" # x-release-please-version
 ```
 
 Install your bundle:

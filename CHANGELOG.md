@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.0.5](https://github.com/straddle-build/straddle-ruby/compare/v1.0.4...v1.0.5) (2026-10-19)
+
+
+### Bug Fixes
+
+* **Client:** [EG-1003] send a valid User-Agent ([f49a1cf](https://github.com/straddle-build/straddle-ruby/commit/f49a1cf57846c7305b22b821667356de6e1d3450))
+* **Client:** [EG-1003] send a valid User-Agent ([9c3d427](https://github.com/straddle-build/straddle-ruby/commit/9c3d427524917bfce8e05d4c58f32c9468f74d23))
+
+
+### Documentation
+
+* refresh Ruby SDK quickstart and examples ([#4](https://github.com/straddle-build/straddle-ruby/issues/4)) ([ea6875a](https://github.com/straddle-build/straddle-ruby/commit/ea6875a7413774b108ad2d092d740b95a8e142d8))
+
 ## [1.0.4](https://github.com/straddle-build/straddle-ruby/compare/v1.0.0...v1.0.4) (2026-09-13)
 
 
